@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from sol_usb.gateware.test.utils                   import SolSSGatewareTestCase, ss_domain_test_case
-from sol_usb.gateware.usb.usb3.physical.scrambling import ScramblerLFSR
+from torii_usb.test.utils                   import USBSSGatewareTestCase, ss_domain_test_case
+from torii_usb.usb.usb3.physical.scrambling import ScramblerLFSR
 
-class ScramblerLFSRTest(SolSSGatewareTestCase):
+class ScramblerLFSRTest(USBSSGatewareTestCase):
 	FRAGMENT_UNDER_TEST = ScramblerLFSR
 
 	@ss_domain_test_case

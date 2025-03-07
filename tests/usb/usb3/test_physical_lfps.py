@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from math                                    import ceil
+from math                             import ceil
 
-from sol_usb.gateware.test.utils             import SolSSGatewareTestCase, ss_domain_test_case
-from sol_usb.gateware.usb.usb3.physical.lfps import LFPSGenerator, _PollingLFPS, _PollingLFPSBurst, _PollingLFPSRepeat
+from torii_usb.test.utils             import USBSSGatewareTestCase, ss_domain_test_case
+from torii_usb.usb.usb3.physical.lfps import LFPSGenerator, _PollingLFPS, _PollingLFPSBurst, _PollingLFPSRepeat
 
-class LFPSGeneratorTest(SolSSGatewareTestCase):
+class LFPSGeneratorTest(USBSSGatewareTestCase):
 	FRAGMENT_UNDER_TEST = LFPSGenerator
 	FRAGMENT_ARGUMENTS  = dict(
 		lfps_pattern = _PollingLFPS,

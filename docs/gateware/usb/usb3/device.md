@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.device
+.. automodule:: torii_usb.usb.usb3.device
 	:members:
 
 ```

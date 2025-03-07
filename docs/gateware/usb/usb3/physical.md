@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.physical
+.. automodule:: torii_usb.usb.usb3.physical
 	:members:
 
 ```
@@ -11,7 +11,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.physical.alignment
+.. automodule:: torii_usb.usb.usb3.physical.alignment
 	:members:
 
 ```
@@ -20,7 +20,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.physical.coding
+.. automodule:: torii_usb.usb.usb3.physical.coding
 	:members:
 
 ```
@@ -29,7 +29,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.physical.ctc
+.. automodule:: torii_usb.usb.usb3.physical.ctc
 	:members:
 
 ```
@@ -38,7 +38,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.physical.layer
+.. automodule:: torii_usb.usb.usb3.physical.layer
 	:members:
 
 ```
@@ -47,7 +47,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.physical.lfps
+.. automodule:: torii_usb.usb.usb3.physical.lfps
 	:members:
 
 ```
@@ -56,7 +56,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.physical.power
+.. automodule:: torii_usb.usb.usb3.physical.power
 	:members:
 
 ```
@@ -65,7 +65,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.physical.scrambling
+.. automodule:: torii_usb.usb.usb3.physical.scrambling
 	:members:
 
 ```

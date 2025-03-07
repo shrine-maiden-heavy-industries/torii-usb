@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from sol_usb.gateware.test       import SolUSBGatewareTestCase, usb_domain_test_case
-from sol_usb.gateware.usb.stream import USBOutStreamBoundaryDetector
+from torii_usb.test       import USBGatewareTestCase, usb_domain_test_case
+from torii_usb.usb.stream import USBOutStreamBoundaryDetector
 
-class USBOutStreamBoundaryDetectorTest(SolUSBGatewareTestCase):
+class USBOutStreamBoundaryDetectorTest(USBGatewareTestCase):
 	FRAGMENT_UNDER_TEST   = USBOutStreamBoundaryDetector
 
 	@usb_domain_test_case

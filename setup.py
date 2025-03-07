@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: BSD-2-Clause
+# SPDX-License-Identifier: BSD-3-Clause
 
 from pathlib    import Path
 
@@ -35,7 +35,7 @@ def doc_version():
 		return 'latest'
 
 setup(
-	name             = 'sol-usb',
+	name             = 'torii-usb',
 	use_scm_version  = scm_version(),
 	author           = 'Katherine Temkin',
 	author_email     = 'k@ktemkin.com',
@@ -51,7 +51,7 @@ setup(
 	description      = 'Torii HDL framework for FPGA-based USB solutions',
 	python_requires  = '~=3.10',
 	zip_safe         = True,
-	url              = 'https://sol.shmdn.link/',
+	url              = 'https://torii-usb.shmdn.link/',
 
 	long_description = README_FILE.read_text(),
 	long_description_content_type = 'text/markdown',
@@ -63,25 +63,14 @@ setup(
 	],
 
 	install_requires = [
-		'pyserial~=3.5',
-		'pyvcd>=0.4.0,<0.5',
-		'rich',
-
-		'usb-construct>=0.2.1,<1.0',
 		'torii>=0.7.5,<1.0',
+		'usb-construct>=0.2.1,<1.0',
 	],
 
 	extras_require = {
 		'dev': [
 			'nox',
 		],
-		'platform': [
-			'pyusb~=1.2.0',
-			'libusb1~=1.9.2',
-			'luminary-fpga>=0.0.6,<=0.1.0',
-			'prompt-toolkit~=3.0.16',
-			'ziglang~=0.8.0',
-		]
 	},
 
 	packages = find_packages(
@@ -89,15 +78,12 @@ setup(
 		exclude = (
 			'tests',
 			'tests.*',
-			'hardware',
 			'examples',
 			'examples.*',
-			'applets',
-			'applets.*',
 		)
 	),
 	package_data = {
-		'sol_usb': [
+		'torii_usb': [
 			'py.typed'
 		],
 	},
@@ -130,8 +116,8 @@ setup(
 	],
 
 	project_urls = {
-		'Documentation': 'https://sol.shmdn.link/',
-		'Source Code'  : 'https://github.com/shrine-maiden-heavy-industries/sol',
-		'Bug Tracker'  : 'https://github.com/shrine-maiden-heavy-industries/sol/issues',
+		'Documentation': 'https://torii-usb.shmdn.link/',
+		'Source Code'  : 'https://github.com/shrine-maiden-heavy-industries/torii-usb',
+		'Bug Tracker'  : 'https://github.com/shrine-maiden-heavy-industries/torii-usb/issues',
 	},
 )

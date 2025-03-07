@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.protocol
+.. automodule:: torii_usb.usb.usb3.protocol
 	:members:
 
 ```
@@ -11,7 +11,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.protocol.data
+.. automodule:: torii_usb.usb.usb3.protocol.data
 	:members:
 
 ```
@@ -20,7 +20,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.protocol.endpoint
+.. automodule:: torii_usb.usb.usb3.protocol.endpoint
 	:members:
 
 ```
@@ -29,7 +29,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.protocol.layer
+.. automodule:: torii_usb.usb.usb3.protocol.layer
 	:members:
 
 ```
@@ -38,7 +38,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.protocol.link_management
+.. automodule:: torii_usb.usb.usb3.protocol.link_management
 	:members:
 
 ```
@@ -47,7 +47,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.protocol.timestamp
+.. automodule:: torii_usb.usb.usb3.protocol.timestamp
 	:members:
 
 ```
@@ -56,7 +56,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.protocol.transaction
+.. automodule:: torii_usb.usb.usb3.protocol.transaction
 	:members:
 
 ```

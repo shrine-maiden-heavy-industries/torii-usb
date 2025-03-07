@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from sol_usb.gateware.stream.generator import ConstantStreamGenerator
-from sol_usb.gateware.test             import (
-	SolSSGatewareTestCase, SolUSBGatewareTestCase, ss_domain_test_case, usb_domain_test_case
+from torii_usb.stream.generator import ConstantStreamGenerator
+from torii_usb.test             import (
+	USBSSGatewareTestCase, USBGatewareTestCase, ss_domain_test_case, usb_domain_test_case
 )
-from sol_usb.gateware.usb.stream       import SuperSpeedStreamInterface
+from torii_usb.usb.stream       import SuperSpeedStreamInterface
 
-class ConstantStreamGeneratorTest(SolUSBGatewareTestCase):
+class ConstantStreamGeneratorTest(USBGatewareTestCase):
 	FRAGMENT_UNDER_TEST = ConstantStreamGenerator
 	FRAGMENT_ARGUMENTS  = {'constant_data': b'HELLO, WORLD', 'domain': 'usb', 'max_length_width': 16}
 
@@ -155,7 +155,7 @@ class ConstantStreamGeneratorTest(SolUSBGatewareTestCase):
 		yield
 		self.assertEqual((yield dut.stream.valid), 0)
 
-class ConstantStreamGeneratorWideTest(SolSSGatewareTestCase):
+class ConstantStreamGeneratorWideTest(USBSSGatewareTestCase):
 	FRAGMENT_UNDER_TEST = ConstantStreamGenerator
 	FRAGMENT_ARGUMENTS  = dict(
 		domain           = 'ss',

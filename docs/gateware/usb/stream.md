@@ -3,7 +3,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.stream
+.. automodule:: torii_usb.usb.stream
 	:members:
 
 ```

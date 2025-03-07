@@ -1,14 +1,14 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from unittest                   import TestCase
+from unittest            import TestCase
 
-from torii.hdl                  import Module, Record, Signal
-from torii.hdl.rec              import Direction
+from torii.hdl           import Module, Record, Signal
+from torii.hdl.rec       import Direction
 
-from sol_usb.gateware.test      import SolGatewareTestCase, sync_test_case
-from sol_usb.gateware.utils.cdc import stretch_strobe_signal, synchronize
+from torii_usb.test      import ToriiUSBGatewareTestCase, sync_test_case
+from torii_usb.utils.cdc import stretch_strobe_signal, synchronize
 
-class StrobeStretcherTest(SolGatewareTestCase):
+class StrobeStretcherTest(ToriiUSBGatewareTestCase):
 	''' Test case for our strobe stretcher function. '''
 
 	def instantiate_dut(self):

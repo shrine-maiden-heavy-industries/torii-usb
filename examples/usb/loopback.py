@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 #
-# This file is part of SOL.
+# This file is part of Torii-USB.
 #
 # Copyright (c) 2020 Great Scott Gadgets <info@greatscottgadgets.com>
 
@@ -9,8 +9,7 @@ from torii.hdl              import Elaboratable, Module
 
 from usb_construct.emitters import DeviceDescriptorCollection
 
-from sol_usb.cli            import cli
-from sol_usb.usb2           import USBDevice, USBStreamInEndpoint, USBStreamOutEndpoint
+from torii_usb.usb2         import USBDevice, USBStreamInEndpoint, USBStreamOutEndpoint
 
 class USBStreamOutDeviceExample(Elaboratable):
 	'''
@@ -37,7 +36,7 @@ class USBStreamOutDeviceExample(Elaboratable):
 			d.idVendor           = 0x16d0
 			d.idProduct          = 0xf3b
 
-			d.iManufacturer      = 'SOL'
+			d.iManufacturer      = 'Torii-USB'
 			d.iProduct           = 'User IO streamer'
 			d.iSerialNumber      = 'no serial'
 
@@ -102,6 +101,3 @@ class USBStreamOutDeviceExample(Elaboratable):
 		]
 
 		return m
-
-if __name__ == '__main__':
-	cli(USBStreamOutDeviceExample)

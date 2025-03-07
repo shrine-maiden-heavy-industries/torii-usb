@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from sol_usb.gateware.test                import SolUSBGatewareTestCase, usb_domain_test_case
-from sol_usb.gateware.usb.usb2.descriptor import (
+from torii_usb.test                import USBGatewareTestCase, usb_domain_test_case
+from torii_usb.usb.usb2.descriptor import (
 	DeviceDescriptorCollection, GetDescriptorHandlerBlock, StandardDescriptorNumbers
 )
 
-class GetDescriptorHandlerBlockTest(SolUSBGatewareTestCase):
+class GetDescriptorHandlerBlockTest(USBGatewareTestCase):
 	descriptors = DeviceDescriptorCollection()
 
 	with descriptors.DeviceDescriptor() as d:

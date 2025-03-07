@@ -1,20 +1,20 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from collections.abc                 import Iterable
-from concurrent.futures              import Future
-from typing                          import TypedDict
+from collections.abc          import Iterable
+from concurrent.futures       import Future
+from typing                   import TypedDict
 
-from torii.hdl                       import Module
-from torii.sim                       import Settle, Tick
+from torii.hdl                import Module
+from torii.sim                import Settle, Tick
 
-from sol_usb.gateware.interface.utmi import UTMIInterface
-from sol_usb.gateware.test           import SolGatewareTestCase, usb_domain_test_case
-from sol_usb.gateware.usb.analyzer   import USBAnalyzer
+from torii_usb.interface.utmi import UTMIInterface
+from torii_usb.test           import ToriiUSBGatewareTestCase, usb_domain_test_case
+from torii_usb.usb.analyzer   import USBAnalyzer
 
 class WaitDict(TypedDict):
 	wait: float
 
-class USBAnalyzerTest(SolGatewareTestCase):
+class USBAnalyzerTest(ToriiUSBGatewareTestCase):
 	USB_CLOCK_FREQUENCY = 60e6
 	SYNC_CLOCK_FREQUENCY = None
 
@@ -235,7 +235,7 @@ class USBAnalyzerTest(SolGatewareTestCase):
 		yield from self.advance_cycles(1024)
 		yield Settle()
 
-class USBAnalyzerOverflowTest(SolGatewareTestCase):
+class USBAnalyzerOverflowTest(ToriiUSBGatewareTestCase):
 	''' Test that evaluates the analyzer behaviour for overflow with real-world data '''
 	USB_CLOCK_FREQUENCY = 60e6
 	SYNC_CLOCK_FREQUENCY = None
@@ -437,7 +437,7 @@ class USBAnalyzerOverflowTest(SolGatewareTestCase):
 		{'wait': 5e-6},
 		# IN ADDR 74 EP 0
 		(0x69, 0x4a, 0x80),
-		# DATA1 [ 34 03 64 00 72 00 61 00 67 00 6f 00 6e 00 42 00 6f 00 6f 00 74 00 20 00 44 00 46 00 2a 00 10 00 31 00 37 00 37 00 3a 00 36 00 37 00 30 00 32 00 32 00 39 00 ]
+		# DATA1 [ 34 03 64 00 72 00 61 00 67 00 6f 00 6e 00 42 00 6f 00 6f 00 74 00 20 00 44 00 46 00 2a 00 10 00 31 00 37 00 37 00 3a 00 36 00 37 00 30 00 32 00 32 00 39 00 ] # noqa: E501
 		(0x4b, 0x34, 0x03, 0x64, 0x00, 0x72, 0x00, 0x61, 0x00, 0x67, 0x00, 0x6f, 0x00, 0x6e, 0x00, 0x42,
 		0x00, 0x6f, 0x00, 0x6f, 0x00, 0x74, 0x00, 0x20, 0x00, 0x44, 0x00, 0x46, 0x00, 0x2a, 0x00, 0x10,
 		0x00, 0x31, 0x00, 0x37, 0x00, 0x37, 0x00, 0x3a, 0x00, 0x36, 0x00, 0x37, 0x00, 0x30, 0x00, 0x32,
@@ -689,7 +689,7 @@ class USBAnalyzerOverflowTest(SolGatewareTestCase):
 		{'wait': 5e-6},
 		# IN ADDR 74 EP 0
 		(0x69, 0x4a, 0x80),
-		# DATA1 [ 44 03 44 00 65 00 76 00 69 00 63 00 65 00 20 00 46 00 69 00 72 00 6d 00 77 00 61 00 72 00 65 00 20 00 55 00 70 00 67 00 72 00 30 00 32 00 32 00 10 00 34 00 37 00 3a 00 32 00 39 00 33 00 30 00 ]
+		# DATA1 [ 44 03 44 00 65 00 76 00 69 00 63 00 65 00 20 00 46 00 69 00 72 00 6d 00 77 00 61 00 72 00 65 00 20 00 55 00 70 00 67 00 72 00 30 00 32 00 32 00 10 00 34 00 37 00 3a 00 32 00 39 00 33 00 30 00 ] # noqa: E501
 		(0x4b, 0x44, 0x03, 0x44, 0x00, 0x65, 0x00, 0x76, 0x00, 0x69, 0x00, 0x63, 0x00, 0x65, 0x00, 0x20,
 		0x00, 0x46, 0x00, 0x69, 0x00, 0x72, 0x00, 0x6d, 0x00, 0x77, 0x00, 0x61, 0x00, 0x72, 0x00, 0x65,
 		0x00, 0x20, 0x00, 0x55, 0x00, 0x70, 0x00, 0x67, 0x00, 0x72, 0x00, 0x30, 0x00, 0x32, 0x00, 0x32,
@@ -953,14 +953,14 @@ class USBAnalyzerOverflowTest(SolGatewareTestCase):
 			# Clock the system
 			yield
 
-class USBAnalyzerStackTest(SolGatewareTestCase):
+class USBAnalyzerStackTest(ToriiUSBGatewareTestCase):
 	''' Test that evaluates a full-stack USB analyzer setup. '''
 
 	SYNC_CLOCK_FREQUENCY = None
 	USB_CLOCK_FREQUENCY = 60e6
 
 	def instantiate_dut(self):
-		from sol_usb.gateware.interface.ulpi import ULPIInterface, UTMITranslator
+		from torii_usb.interface.ulpi import ULPIInterface, UTMITranslator
 
 		self.ulpi = ULPIInterface()
 

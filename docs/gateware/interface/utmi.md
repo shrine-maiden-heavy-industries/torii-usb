@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.interface.utmi
+.. automodule:: torii_usb.interface.utmi
 	:members:
 
 ```

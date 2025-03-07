@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from sol_usb.gateware.test              import SolGatewareTestCase, usb_domain_test_case
-from sol_usb.gateware.usb.usb2.transfer import USBInTransferManager
+from torii_usb.test              import ToriiUSBGatewareTestCase, usb_domain_test_case
+from torii_usb.usb.usb2.transfer import USBInTransferManager
 
-class USBInTransferManagerTest(SolGatewareTestCase):
+class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 	FRAGMENT_UNDER_TEST = USBInTransferManager
 	FRAGMENT_ARGUMENTS  = {'max_packet_size': 8}
 

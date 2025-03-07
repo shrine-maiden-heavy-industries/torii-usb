@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 #
-# This file is part of SOL.
+# This file is part of Torii-USB.
 #
 # Copyright (c) 2020 Great Scott Gadgets <info@greatscottgadgets.com>
 
-from torii.hdl            import Elaboratable, Module
+from torii.hdl              import Elaboratable, Module
 
-from sol_usb.cli          import cli
-from sol_usb.full_devices import USBSerialDevice
+from torii_usb.full_devices import USBSerialDevice
 
 class USBSerialDeviceExample(Elaboratable):
 	''' Device that acts as a 'USB-to-serial' loopback using our premade gateware. '''
@@ -38,6 +37,3 @@ class USBSerialDeviceExample(Elaboratable):
 		]
 
 		return m
-
-if __name__ == '__main__':
-	cli(USBSerialDeviceExample)

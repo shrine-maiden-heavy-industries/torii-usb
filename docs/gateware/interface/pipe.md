@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.interface.pipe
+.. automodule:: torii_usb.interface.pipe
 	:members:
 
 ```

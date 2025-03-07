@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.application
+.. automodule:: torii_usb.usb.usb3.application
 	:members:
 
 ```
@@ -11,7 +11,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.application.descriptor
+.. automodule:: torii_usb.usb.usb3.application.descriptor
 	:members:
 
 ```
@@ -20,7 +20,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.application.request
+.. automodule:: torii_usb.usb.usb3.application.request
 	:members:
 
 ```

@@ -1,20 +1,20 @@
 # SPDX-License-Identifier: BSD-2-Clause
 
+import datetime
 import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, os.path.abspath('.'))
 
-from sol_usb import __version__ as sol_version
+from torii_usb import __version__ as torii_usb_version
 
 ROOT_DIR = (Path(__file__).parent).parent
 
-project   = 'SOL'
-version   = sol_version
+project   = 'Torii-USB'
+version   = torii_usb_version
 release   = version.split('+')[0]
-copyright = '2020 Great Scott Gadgets'
-author    = 'Katherine J. Temkin'
+copyright = f'{datetime.date.today().year}, Shrine Maiden Heavy Industries'
 language  = 'en'
 
 extensions = [
@@ -62,18 +62,18 @@ templates_path = [
 html_context = {
 	'display_lower_left': False,
 	'current_language'  : language,
-	'current_version'   : sol_version,
-	'version'           : sol_version,
+	'current_version'   : torii_usb_version,
+	'version'           : torii_usb_version,
 	'display_github'    : True,
 	'github_user'       : 'shrine-maiden-heavy-industries',
-	'github_repo'       : 'sol',
+	'github_repo'       : 'torii-usb',
 	'github_version'    : 'main/docs/',
 	'versions'          : [
 		('latest', '/latest')
 	]
 }
 
-html_baseurl     = 'https://sol.shmdn.link/'
+html_baseurl     = 'https://torii-usb.shmdn.link/'
 html_theme       = 'sphinx_rtd_theme'
 html_copy_source = False
 

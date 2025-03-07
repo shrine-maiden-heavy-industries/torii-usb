@@ -16,7 +16,7 @@ DOCS_DIR  = (ROOT_DIR  / 'docs')
 DIST_DIR  = (BUILD_DIR / 'dist')
 
 IN_CI           = getenv('GITHUB_WORKSPACE') is not None
-ENABLE_COVERAGE = IN_CI or getenv('SOL_TEST_COVERAGE') is not None
+ENABLE_COVERAGE = IN_CI or getenv('TORII_TEST_COVERAGE') is not None
 
 # Default sessions to run
 nox.options.sessions = (
@@ -25,7 +25,7 @@ nox.options.sessions = (
 	'typecheck'
 )
 
-def sol_version() -> str:
+def torii_usb_version() -> str:
 	def scheme(version: ScmVersion) -> str:
 		if version.tag and not version.distance:
 			return version.format_with('')
@@ -96,23 +96,15 @@ def typecheck(session: Session) -> None:
 		'mypy', '--non-interactive', '--install-types', '--pretty',
 		'--cache-dir', str((out_dir / '.mypy-cache').resolve()),
 		'--config-file', str((CNTRB_DIR / '.mypy.ini').resolve()),
-		'-p', 'sol_usb', '--html-report', str(out_dir.resolve())
+		'-p', 'torii_usb', '--html-report', str(out_dir.resolve())
 	)
 
 @nox.session
 def lint(session: Session) -> None:
 	session.install('flake8')
 	session.run(
-		'flake8', '--config', str((CNTRB_DIR / '.flake8').resolve()), './sol_usb'
-	)
-	session.run(
-		'flake8', '--config', str((CNTRB_DIR / '.flake8').resolve()), './applets'
-	)
-	session.run(
-		'flake8', '--config', str((CNTRB_DIR / '.flake8').resolve()), './examples'
-	)
-	session.run(
-		'flake8', '--config', str((CNTRB_DIR / '.flake8').resolve()), './tests'
+		'flake8', '--config', str((CNTRB_DIR / '.flake8').resolve()),
+		'./torii_usb', './examples', './tests'
 	)
 
 @nox.session
@@ -127,8 +119,8 @@ def dist(session: Session) -> None:
 def upload(session: Session) -> None:
 	session.install('twine')
 	dist(session)
-	session.log(f'Uploading sol_usb-{sol_version()} to PyPi')
+	session.log(f'Uploading torii_usb-{torii_usb_version()} to PyPi')
 	session.run(
 		'python', '-m', 'twine',
-		'upload', f'{DIST_DIR}/sol*usb-{sol_version()}*'
+		'upload', f'{DIST_DIR}/torii_usb-{torii_usb_version()}*'
 	)

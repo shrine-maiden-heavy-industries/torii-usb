@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from usb_construct.types                  import DescriptorTypes
+from usb_construct.types           import DescriptorTypes
 
-from sol_usb.gateware.test                import usb_domain_test_case
-from sol_usb.gateware.test.usb2           import USBDeviceTest
-from sol_usb.gateware.usb.usb2            import USBPacketID
-from sol_usb.gateware.usb.usb2.descriptor import DeviceDescriptorCollection
-from sol_usb.gateware.usb.usb2.device     import USBDevice
+from torii_usb.test                import usb_domain_test_case
+from torii_usb.test.usb2           import USBDeviceTest
+from torii_usb.usb.usb2            import USBPacketID
+from torii_usb.usb.usb2.descriptor import DeviceDescriptorCollection
+from torii_usb.usb.usb2.device     import USBDevice
 
 class FullDeviceTest(USBDeviceTest):
 	''' :meta private: '''
@@ -41,7 +41,7 @@ class FullDeviceTest(USBDeviceTest):
 			d.idVendor           = 0x16d0
 			d.idProduct          = 0xf3b
 
-			d.iManufacturer      = 'SOL'
+			d.iManufacturer      = 'Torii-USB'
 			d.iProduct           = 'Test Device'
 			d.iSerialNumber      = '1234'
 
@@ -157,7 +157,7 @@ class LongDescriptorTest(USBDeviceTest):
 			d.idVendor           = 0x16d0
 			d.idProduct          = 0xf3b
 
-			d.iManufacturer      = 'SOL'
+			d.iManufacturer      = 'Torii-USB'
 			d.iProduct           = 'Test Device'
 			d.iSerialNumber      = '1234'
 

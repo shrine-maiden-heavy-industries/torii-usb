@@ -1,22 +1,20 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 #
-# This file is part of SOL.
+# This file is part of Torii-USB.
 #
 # Copyright (c) 2020 Great Scott Gadgets <info@greatscottgadgets.com>
 
 import os
 
-from torii.hdl                        import Elaboratable, Module
+from torii.hdl                 import Elaboratable, Module
 
-from usb_construct.emitters           import DeviceDescriptorCollection
+from usb_construct.emitters    import DeviceDescriptorCollection
 
-from sol_usb.cli                      import cli
-from sol_usb.gateware.platform        import NullPin
-from sol_usb.gateware.usb.usb2.device import USBDevice
+from torii_usb.usb.usb2.device import USBDevice
 
 class USBDeviceExample(Elaboratable):
-	''' Simple example of a USB device using the SOL framework. '''
+	''' Simple example of a USB device using the Torii-USB framework. '''
 
 	def create_descriptors(self):
 		''' Create the descriptors we want to use for our device. '''
@@ -33,7 +31,7 @@ class USBDeviceExample(Elaboratable):
 			d.idVendor           = 0x16d0
 			d.idProduct          = 0xf3b
 
-			d.iManufacturer      = 'SOL'
+			d.iManufacturer      = 'Torii-USB'
 			d.iProduct           = 'Test Device'
 			d.iSerialNumber      = '1234'
 
@@ -72,17 +70,14 @@ class USBDeviceExample(Elaboratable):
 		# Connect our device as a high speed device by default.
 		m.d.comb += [
 			usb.connect.eq(1),
-			usb.full_speed_only.eq(1 if os.getenv('SOL_FULL_ONLY') else 0),
+			usb.full_speed_only.eq(1 if os.getenv('TORII_USB_FULL_ONLY') else 0),
 		]
 
 		# ... and for now, attach our LEDs to our most recent control request.
 		m.d.comb += [
-			platform.request_optional('led', 0, default = NullPin()).o.eq(usb.tx_activity_led),
-			platform.request_optional('led', 1, default = NullPin()).o.eq(usb.rx_activity_led),
-			platform.request_optional('led', 2, default = NullPin()).o.eq(usb.suspended),
+			platform.request('led', 0).o.eq(usb.tx_activity_led),
+			platform.request('led', 1).o.eq(usb.rx_activity_led),
+			platform.request('led', 2).o.eq(usb.suspended),
 		]
 
 		return m
-
-if __name__ == '__main__':
-	cli(USBDeviceExample)

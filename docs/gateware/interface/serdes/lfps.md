@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.interface.serdes_phy.lfps
+.. automodule:: torii_usb.interface.serdes_phy.lfps
 	:members:
 
 ```

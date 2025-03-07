@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link
+.. automodule:: torii_usb.usb.usb3.link
 	:members:
 
 ```
@@ -11,7 +11,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link.command
+.. automodule:: torii_usb.usb.usb3.link.command
 	:members:
 
 ```
@@ -20,7 +20,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link.crc
+.. automodule:: torii_usb.usb.usb3.link.crc
 	:members:
 
 ```
@@ -29,7 +29,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link.data
+.. automodule:: torii_usb.usb.usb3.link.data
 	:members:
 
 ```
@@ -38,7 +38,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link.header
+.. automodule:: torii_usb.usb.usb3.link.header
 	:members:
 
 ```
@@ -47,7 +47,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link.idle
+.. automodule:: torii_usb.usb.usb3.link.idle
 	:members:
 
 ```
@@ -56,7 +56,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link.layer
+.. automodule:: torii_usb.usb.usb3.link.layer
 	:members:
 
 ```
@@ -65,7 +65,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link.ltssm
+.. automodule:: torii_usb.usb.usb3.link.ltssm
 	:members:
 
 ```
@@ -74,7 +74,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link.ordered_sets
+.. automodule:: torii_usb.usb.usb3.link.ordered_sets
 	:members:
 
 ```
@@ -83,7 +83,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link.receiver
+.. automodule:: torii_usb.usb.usb3.link.receiver
 	:members:
 
 ```
@@ -92,7 +92,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link.timers
+.. automodule:: torii_usb.usb.usb3.link.timers
 	:members:
 
 ```
@@ -101,7 +101,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.link.transmitter
+.. automodule:: torii_usb.usb.usb3.link.transmitter
 	:members:
 
 ```

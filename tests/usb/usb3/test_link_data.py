@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from sol_usb.gateware.test               import SolSSGatewareTestCase, ss_domain_test_case
-from sol_usb.gateware.usb.usb3.link.data import DataPacketReceiver
+from torii_usb.test               import USBSSGatewareTestCase, ss_domain_test_case
+from torii_usb.usb.usb3.link.data import DataPacketReceiver
 
-class DataPacketReceiverTest(SolSSGatewareTestCase):
+class DataPacketReceiverTest(USBSSGatewareTestCase):
 	FRAGMENT_UNDER_TEST = DataPacketReceiver
 
 	def initialize_signals(self):

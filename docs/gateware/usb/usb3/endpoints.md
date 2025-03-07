@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.endpoints
+.. automodule:: torii_usb.usb.usb3.endpoints
 	:members:
 
 ```
@@ -11,7 +11,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.endpoints.control
+.. automodule:: torii_usb.usb.usb3.endpoints.control
 	:members:
 
 ```
@@ -20,7 +20,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3.endpoints.stream
+.. automodule:: torii_usb.usb.usb3.endpoints.stream
 	:members:
 
 ```

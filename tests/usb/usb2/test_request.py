@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from sol_usb.gateware.usb.usb2.request import USBSetupDecoder
-from sol_usb.gateware.usb.usb2         import USBSpeed
-from sol_usb.gateware.test             import usb_domain_test_case
+from torii_usb.usb.usb2.request import USBSetupDecoder
+from torii_usb.usb.usb2         import USBSpeed
+from torii_usb.test             import usb_domain_test_case
 
-from .test_packet                      import USBPacketizerTest
+from .test_packet               import USBPacketizerTest
 
 class USBSetupDecoderTest(USBPacketizerTest):
 	FRAGMENT_UNDER_TEST = USBSetupDecoder

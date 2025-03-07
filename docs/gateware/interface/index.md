@@ -13,7 +13,7 @@ serdes/index
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.interface
+.. automodule:: torii_usb.interface
 	:members:
 
 ```

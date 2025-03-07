@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 #
-# This file is part of SOL.
+# This file is part of Torii-USB.
 #
 # Copyright (c) 2020 Great Scott Gadgets <info@greatscottgadgets.com>
 
 import os
 
-from torii.hdl                          import Elaboratable, Module, Signal
+from torii.hdl                   import Elaboratable, Module, Signal
 
-from usb_construct.emitters             import DeviceDescriptorCollection
+from usb_construct.emitters      import DeviceDescriptorCollection
 
-from sol_usb.cli                        import cli
-from sol_usb.gateware.usb.usb2.device   import USBDevice
-from sol_usb.gateware.usb.usb2.endpoint import EndpointInterface
+
+from torii_usb.usb.usb2.device   import USBDevice
+from torii_usb.usb.usb2.endpoint import EndpointInterface
 
 BULK_ENDPOINT_NUMBER = 1
-MAX_BULK_PACKET_SIZE = 64 if os.getenv('SOL_FULL_ONLY') else 256
+MAX_BULK_PACKET_SIZE = 64 if os.getenv('TORII_USB_FULL_ONLY') else 256
 CONSTANT_TO_SEND     = 0x00
 
 class StressTestEndpoint(Elaboratable):
@@ -60,14 +60,10 @@ class StressTestEndpoint(Elaboratable):
 		bytes_to_send = Signal(range(0, self._max_packet_size + 1), reset = 0)
 
 		# True iff we're the active endpoint.
-		endpoint_selected = \
-			tokenizer.is_in & \
-			(tokenizer.endpoint == self._endpoint_number) \
+		endpoint_selected = tokenizer.is_in & (tokenizer.endpoint == self._endpoint_number)
 
 		# Pulses when the host is requesting a packet from us.
-		packet_requested = \
-			endpoint_selected \
-			& tokenizer.ready_for_response
+		packet_requested = endpoint_selected & tokenizer.ready_for_response
 
 		#
 		# Transmit logic
@@ -126,7 +122,7 @@ class USBStressTest(Elaboratable):
 			d.idVendor           = 0x16d0
 			d.idProduct          = 0xf3b
 
-			d.iManufacturer      = 'SOL'
+			d.iManufacturer      = 'Torii-USB'
 			d.iProduct           = 'Stress Test'
 			d.iSerialNumber      = 'no serial'
 
@@ -169,10 +165,7 @@ class USBStressTest(Elaboratable):
 		# Connect our device as a high speed device by default.
 		m.d.comb += [
 			usb.connect.eq(1),
-			usb.full_speed_only.eq(1 if os.getenv('SOL_FULL_ONLY') else 0),
+			usb.full_speed_only.eq(1 if os.getenv('TORII_USB_FULL_ONLY') else 0),
 		]
 
 		return m
-
-if __name__ == '__main__':
-	cli(USBStressTest)

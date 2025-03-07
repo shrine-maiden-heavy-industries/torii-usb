@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 #
-# This file is part of SOL.
+# This file is part of Torii-USB.
 #
 # Copyright (c) 2020 Great Scott Gadgets <info@greatscottgadgets.com>
 
-from torii.hdl                 import Cat, Elaboratable, Module
+from torii.hdl              import Cat, Elaboratable, Module
 
-from usb_construct.emitters    import SuperSpeedDeviceDescriptorCollection
-from usb_construct.types       import USBRequestType
+from usb_construct.emitters import SuperSpeedDeviceDescriptorCollection
+from usb_construct.types    import USBRequestType
 
-from sol_usb.cli               import cli
-from sol_usb.gateware.platform import NullPin
-from sol_usb.usb3              import SuperSpeedRequestHandler, USBSuperSpeedDevice
+from torii_usb.usb3         import SuperSpeedRequestHandler, USBSuperSpeedDevice
 
 class LEDRequestHandler(SuperSpeedRequestHandler):
 	''' Simple, example request handler that can control the board's LEDs. '''
@@ -26,7 +24,7 @@ class LEDRequestHandler(SuperSpeedRequestHandler):
 		setup             = self.interface.setup
 
 		# Grab a reference to the board's LEDs.
-		leds  = Cat(platform.request_optional('led', i, default = NullPin()).o for i in range(32))
+		leds  = Cat(platform.request('led', i).o for i in range(32))
 
 		#
 		# Vendor request handlers.
@@ -86,7 +84,7 @@ class LEDRequestHandler(SuperSpeedRequestHandler):
 				return m
 
 class SuperSpeedVendorDeviceExample(Elaboratable):
-	''' Simple example of a USB SuperSpeed device using the SOL framework. '''
+	''' Simple example of a USB SuperSpeed device using the Torii-USB framework. '''
 
 	def create_descriptors(self):
 		''' Create the descriptors we want to use for our device. '''
@@ -109,7 +107,7 @@ class SuperSpeedVendorDeviceExample(Elaboratable):
 			# USB3 requires this to be '9', to indicate 2 ** 9, or 512B.
 			d.bMaxPacketSize0    = 9
 
-			d.iManufacturer      = 'SOL'
+			d.iManufacturer      = 'Torii-USB'
 			d.iProduct           = 'Vendor Test Device'
 			d.iSerialNumber      = '1234'
 
@@ -146,6 +144,3 @@ class SuperSpeedVendorDeviceExample(Elaboratable):
 
 		# Return our elaborated module.
 		return m
-
-if __name__ == '__main__':
-	cli(SuperSpeedVendorDeviceExample)

@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 #
-# This file is part of SOL.
+# This file is part of Torii-USB.
 #
 # Copyright (c) 2020 Great Scott Gadgets <info@greatscottgadgets.com>
 
 ''' Incomplete example for working with a hardware PIPE PHY.'''
 
-from torii.hdl   import Elaboratable, Module
-
-from sol_usb.cli import cli
+from torii.hdl import Elaboratable, Module
 
 class PIPEPhyExample(Elaboratable):
 	''' Hardware module that demonstrates grabbing a PHY resource with gearing. '''
@@ -26,6 +24,3 @@ class PIPEPhyExample(Elaboratable):
 
 		# Return our elaborated module.
 		return m
-
-if __name__ == '__main__':
-	cli(PIPEPhyExample)

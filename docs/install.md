@@ -4,13 +4,13 @@
 The following instructions are a work-in-progress and may not be entirely up to date.
 ```
 
-SOL requires Python >= 3.10, and [Yosys](https://github.com/YosysHQ/yosys) >= 0.30 except for 0.37 due to a Verilog backend bug. SOL has been tested with [CPython](https://www.python.org/), but might possibly run under [PyPy](https://www.pypy.org/).
+Torii-USB requires Python >= 3.10, and [Yosys] >= 0.30 except for 0.37 due to a Verilog backend bug. Torii-USB has been tested with [CPython], but might possibly run under [PyPy].
 
-SOL is built off of the [Torii](https://github.com/shrine-maiden-heavy-industries/torii-hdl) Hardware Definition Language, as such that is also required.
+Torii-USB is built off of the [Torii] Hardware Definition Language, as such that is also required.
 
 ## Installing Prerequisites
 
-Prior to installing SOL, you must install all of its prerequisites and requirements.
+Prior to installing Torii-USB, you must install all of its prerequisites and requirements.
 
 ### Installing Python
 
@@ -132,7 +132,7 @@ First off, install `python` and `pip` onto your system if the're not there alrea
 
 ### Installing Torii
 
-Next, install the latest stable version of [Torii](https://github.com/shrine-maiden-heavy-industries/torii-hdl) from [PyPi](https://pypi.org/project/torii).
+Next, install the latest stable version of [Torii] from [PyPi].
 
 ```{eval-rst}
 .. platform-picker::
@@ -160,9 +160,9 @@ Next, install the latest stable version of [Torii](https://github.com/shrine-mai
 
 ```
 
-## Installing SOL
+## Installing Torii-USB
 
-The [latest release](install.md#latest-release) of SOL is recommended for any new projects planning to use SOL. It provides the most up-to-date stable version of the API. However, if needed, you can also install a [development snapshot](install.md#development-snapshot) to get access to the bleeding-edge, however the API may be unstable.
+The [latest release] of Torii-USB is recommended for any new projects planning to use Torii-USB. It provides the most up-to-date stable version of the API. However, if needed, you can also install a [development snapshot] to get access to the bleeding-edge, however the API may be unstable.
 
 ### Latest release
 
@@ -174,21 +174,21 @@ The [latest release](install.md#latest-release) of SOL is recommended for any ne
 
 		.. code-block:: console
 
-			$ pip3 install --user --upgrade sol-usb
+			$ pip3 install --user --upgrade torii-usb
 
 	.. platform-choice:: macos
 		:title: macOS
 
 		.. code-block:: console
 
-			$ pip install --user --upgrade sol-usb
+			$ pip install --user --upgrade torii-usb
 
 	.. platform-choice:: windows
 		:title: Windows
 
 		.. code-block:: doscon
 
-			> pip install --upgrade sol-usb
+			> pip install --upgrade torii-usb
 
 ```
 
@@ -204,21 +204,21 @@ The [latest release](install.md#latest-release) of SOL is recommended for any ne
 
 		.. code-block:: console
 
-			$ pip3 install --user 'sol-usb @ git+https://github.com/shrine-maiden-heavy-industries/sol.git'
+			$ pip3 install --user 'torii-usb @ git+https://github.com/shrine-maiden-heavy-industries/torii-usb.git'
 
 	.. platform-choice:: macos
 		:title: macOS
 
 		.. code-block:: console
 
-			$ pip install --user 'sol-usb @ git+https://github.com/shrine-maiden-heavy-industries/sol.git'
+			$ pip install --user 'torii-usb @ git+https://github.com/shrine-maiden-heavy-industries/torii-usb.git'
 
 	.. platform-choice:: windows
 		:title: Windows
 
 		.. code-block:: doscon
 
-			> pip install "sol-usb @ git+https://github.com/shrine-maiden-heavy-industries/sol.git"
+			> pip install "torii-usb @ git+https://github.com/shrine-maiden-heavy-industries/torii-usb.git"
 
 ```
 
@@ -231,57 +231,57 @@ The [latest release](install.md#latest-release) of SOL is recommended for any ne
 	.. platform-choice:: linux
 		:title: Linux
 
-		To install an editable development snapshot of SOL for the first time, run:
+		To install an editable development snapshot of Torii-USB for the first time, run:
 
 		.. code-block:: console
 
-			$ git clone https://github.com/shrine-maiden-heavy-industries/sol
-			$ cd sol
+			$ git clone https://github.com/shrine-maiden-heavy-industries/torii-usb
+			$ cd torii-usb
 			$ pip3 install --user --editable '.'
 
-		Any changes made to the ``sol`` directory will immediately affect any code that uses SOL. To update the snapshot, run:
+		Any changes made to the ``torii-usb`` directory will immediately affect any code that uses Torii-USB. To update the snapshot, run:
 
 		.. code-block:: console
 
-			$ cd sol
+			$ cd tori-usb
 			$ git pull --ff-only origin main
 			$ pip3 install --user --editable '.'
 
-		Run the ``pip3 install --editable .`` command each time the editable development snapshot is updated in case package dependencies have been added or changed. Otherwise, code using SOL may misbehave or crash with an ``ImportError``.
+		Run the ``pip3 install --editable .`` command each time the editable development snapshot is updated in case package dependencies have been added or changed. Otherwise, code using Torii-USB may misbehave or crash with an ``ImportError``.
 
 	.. platform-choice:: macos
 		:title: macOS
 
-		To install an editable development snapshot of SOL for the first time, run:
+		To install an editable development snapshot of Torii-USB for the first time, run:
 
 		.. code-block:: console
 
-			$ git clone https://github.com/shrine-maiden-heavy-industries/sol
-			$ cd sol
+			$ git clone https://github.com/shrine-maiden-heavy-industries/torii-usb
+			$ cd torii-usb
 			$ pip install --user --editable '.'
 
-		Any changes made to the ``sol`` directory will immediately affect any code that uses SOL. To update the snapshot, run:
+		Any changes made to the ``torii-usb`` directory will immediately affect any code that uses Torii-USB. To update the snapshot, run:
 
 		.. code-block:: console
 
-			$ cd sol
+			$ cd torii-usb
 			$ git pull --ff-only origin main
 			$ pip install --user --editable '.'
 
-		Run the ``pip install --editable .`` command each time the editable development snapshot is updated in case package dependencies have been added or changed. Otherwise, code using SOL may misbehave or crash with an ``ImportError``.
+		Run the ``pip install --editable .`` command each time the editable development snapshot is updated in case package dependencies have been added or changed. Otherwise, code using Torii-USB may misbehave or crash with an ``ImportError``.
 
 	.. platform-choice:: windows
 		:title: Windows
 
-		To install an editable development snapshot of SOL for the first time, run:
+		To install an editable development snapshot of Torii-USB for the first time, run:
 
 		.. code-block:: doscon
 
-			> git clone https://github.com/shrine-maiden-heavy-industries/sol
-			> cd sol
+			> git clone https://github.com/shrine-maiden-heavy-industries/torii-usb
+			> cd torii-usb
 			> pip install --editable .
 
-		Any changes made to the ``sol`` directory will immediately affect any code that uses SOL. To update the snapshot, run:
+		Any changes made to the ``torii-usb`` directory will immediately affect any code that uses Torii-USB. To update the snapshot, run:
 
 		.. code-block:: doscon
 
@@ -289,6 +289,14 @@ The [latest release](install.md#latest-release) of SOL is recommended for any ne
 			> git pull --ff-only origin main
 			> pip install --editable .
 
-		Run the ``pip install --editable .`` command each time the editable development snapshot is updated in case package dependencies have been added or changed. Otherwise, code using SOL may misbehave or crash with an ``ImportError``.
+		Run the ``pip install --editable .`` command each time the editable development snapshot is updated in case package dependencies have been added or changed. Otherwise, code using Torii-USB may misbehave or crash with an ``ImportError``.
 
 ```
+
+[Yosys]: https://github.com/YosysHQ/yosys
+[CPython]: https://www.python.org/
+[PyPy]: https://www.pypy.org/
+[Torii]: https://github.com/shrine-maiden-heavy-industries/torii-hdl
+[PyPi]: https://pypi.org/project/torii
+[latest release]: #latest-release
+[development snapshot]: #development-snapshot

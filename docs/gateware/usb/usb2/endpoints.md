@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb2.endpoints
+.. automodule:: torii_usb.usb.usb2.endpoints
 	:members:
 
 ```
@@ -12,7 +12,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb2.endpoints.isochronous
+.. automodule:: torii_usb.usb.usb2.endpoints.isochronous
 	:members:
 
 ```
@@ -22,7 +22,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb2.endpoints.status
+.. automodule:: torii_usb.usb.usb2.endpoints.status
 	:members:
 
 ```
@@ -32,7 +32,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb2.endpoints.stream
+.. automodule:: torii_usb.usb.usb2.endpoints.stream
 	:members:
 
 ```

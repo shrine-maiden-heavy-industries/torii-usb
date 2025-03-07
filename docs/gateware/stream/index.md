@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.stream
+.. automodule:: torii_usb.stream
 	:members:
 
 ```
@@ -10,7 +10,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.stream.arbiter
+.. automodule:: torii_usb.stream.arbiter
 	:members:
 
 ```
@@ -18,7 +18,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.stream.generator
+.. automodule:: torii_usb.stream.generator
 	:members:
 
 ```

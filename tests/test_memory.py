@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from sol_usb.gateware.memory import TransactionalizedFIFO
-from sol_usb.gateware.test   import SolGatewareTestCase, sync_test_case
+from torii_usb.memory import TransactionalizedFIFO
+from torii_usb.test   import ToriiUSBGatewareTestCase, sync_test_case
 
-class TransactionalizedFIFOTest(SolGatewareTestCase):
+class TransactionalizedFIFOTest(ToriiUSBGatewareTestCase):
 	FRAGMENT_UNDER_TEST = TransactionalizedFIFO
 	FRAGMENT_ARGUMENTS = {'width': 8, 'depth': 16}
 

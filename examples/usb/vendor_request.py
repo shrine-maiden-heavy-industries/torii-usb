@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 #
-# This file is part of SOL.
+# This file is part of Torii-USB.
 #
 # Copyright (c) 2020 Great Scott Gadgets <info@greatscottgadgets.com>
 
-from torii.hdl                         import Cat, Elaboratable, Module
+from torii.hdl                  import Cat, Elaboratable, Module
 
-from usb_construct.emitters            import DeviceDescriptorCollection
-from usb_construct.types               import USBRequestType
+from usb_construct.emitters     import DeviceDescriptorCollection
+from usb_construct.types        import USBRequestType
 
-from sol_usb.cli                       import cli
-from sol_usb.gateware.platform         import NullPin
-from sol_usb.gateware.usb.usb2.device  import USBDevice
-from sol_usb.gateware.usb.usb2.request import USBRequestHandler
+from torii_usb.usb.usb2.device  import USBDevice
+from torii_usb.usb.usb2.request import USBRequestHandler
 
 class LEDRequestHandler(USBRequestHandler):
 	''' Simple, example request handler that can control the board's LEDs. '''
@@ -27,7 +25,7 @@ class LEDRequestHandler(USBRequestHandler):
 		setup             = self.interface.setup
 
 		# Grab a reference to the board's LEDs.
-		leds  = Cat(platform.request_optional('led', i, default = NullPin()).o for i in range(8))
+		leds  = Cat(platform.request('led', i).o for i in range(8))
 
 		#
 		# Vendor request handlers.
@@ -88,7 +86,7 @@ class USBVendorDeviceExample(Elaboratable):
 			d.idVendor           = 0x16d0
 			d.idProduct          = 0xf3b
 
-			d.iManufacturer      = 'SOL'
+			d.iManufacturer      = 'Torii-USB'
 			d.iProduct           = 'Fancy USB-Controlled LEDs'
 			d.iSerialNumber      = '1234'
 
@@ -127,6 +125,3 @@ class USBVendorDeviceExample(Elaboratable):
 		m.d.comb += usb.connect.eq(1)
 
 		return m
-
-if __name__ == '__main__':
-	cli(USBVendorDeviceExample)

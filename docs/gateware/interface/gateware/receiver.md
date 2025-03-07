@@ -2,7 +2,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.interface.gateware_phy.receiver
+.. automodule:: torii_usb.interface.gateware_phy.receiver
 	:members:
 
 ```

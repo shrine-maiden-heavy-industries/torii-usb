@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from torii.hdl                        import Record, Signal
-from torii.sim                        import Settle
+from torii.hdl                 import Record, Signal
+from torii.sim                 import Settle
 
-from sol_usb.gateware.test            import SolGatewareTestCase, usb_domain_test_case
-from sol_usb.gateware.usb.usb2        import USBSpeed
-from sol_usb.gateware.usb.usb2.packet import (
+from torii_usb.test            import ToriiUSBGatewareTestCase, usb_domain_test_case
+from torii_usb.usb.usb2        import USBSpeed
+from torii_usb.usb.usb2.packet import (
 	InterpacketTimerInterface, USBDataPacketDeserializer, USBDataPacketGenerator, USBDataPacketReceiver,
 	USBHandshakeDetector, USBHandshakeGenerator, USBInterpacketTimer, USBTokenDetector
 )
@@ -15,7 +15,7 @@ class UTMIBus(Record):
 	rx_active: Signal[1]
 	rx_valid: Signal[1]
 
-class USBPacketizerTest(SolGatewareTestCase):
+class USBPacketizerTest(ToriiUSBGatewareTestCase):
 	SYNC_CLOCK_FREQUENCY = None
 	USB_CLOCK_FREQUENCY  = 60e6
 
@@ -280,7 +280,7 @@ class USBDataPacketDeserializerTest(USBPacketizerTest):
 		# Ensure we've gotten a new packet.
 		self.assertEqual((yield self.dut.new_packet), 0, 'accepted invalid CRC!')
 
-class USBDataPacketGeneratorTest(SolGatewareTestCase):
+class USBDataPacketGeneratorTest(ToriiUSBGatewareTestCase):
 	SYNC_CLOCK_FREQUENCY = None
 	USB_CLOCK_FREQUENCY = 60e6
 
@@ -419,7 +419,7 @@ class USBDataPacketGeneratorTest(SolGatewareTestCase):
 		self.assertEqual((yield tx.valid), 1)
 		self.assertEqual((yield tx.data),  0x0)
 
-class USBHandshakeGeneratorTest(SolGatewareTestCase):
+class USBHandshakeGeneratorTest(ToriiUSBGatewareTestCase):
 	SYNC_CLOCK_FREQUENCY = None
 	USB_CLOCK_FREQUENCY = 60e6
 
@@ -479,7 +479,7 @@ class USBHandshakeGeneratorTest(SolGatewareTestCase):
 		yield
 		self.assertEqual((yield dut.tx.valid), 0)
 
-class USBInterpacketTimerTest(SolGatewareTestCase):
+class USBInterpacketTimerTest(ToriiUSBGatewareTestCase):
 	SYNC_CLOCK_FREQUENCY = None
 	USB_CLOCK_FREQUENCY = 60e6
 	dut: USBInterpacketTimer

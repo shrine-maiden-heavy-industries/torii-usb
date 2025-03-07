@@ -5,7 +5,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.request.control
+.. automodule:: torii_usb.usb.request.control
 	:members:
 
 ```
@@ -14,7 +14,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.request.interface
+.. automodule:: torii_usb.usb.request.interface
 	:members:
 
 ```
@@ -23,7 +23,7 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.request.standard
+.. automodule:: torii_usb.usb.request.standard
 	:members:
 
 ```
@@ -32,10 +32,10 @@
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.request.windows
+.. automodule:: torii_usb.usb.request.windows
 	:members:
 
-.. automodule:: sol_usb.gateware.usb.request.windows.descriptorSet
+.. automodule:: torii_usb.usb.request.windows.descriptorSet
 	:members:
 
 ```

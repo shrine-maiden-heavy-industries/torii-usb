@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from torii.hdl                       import Record
+from torii.hdl                import Record
 
-from sol_usb.gateware.interface.ulpi import (
+from torii_usb.interface.ulpi import (
 	ULPIControlTranslator, ULPIRegisterWindow, ULPIRxEventDecoder, ULPITransmitTranslator
 )
-from sol_usb.gateware.test           import SolGatewareTestCase, usb_domain_test_case
+from torii_usb.test           import ToriiUSBGatewareTestCase, usb_domain_test_case
 
-class TestULPIRegisters(SolGatewareTestCase):
+class TestULPIRegisters(ToriiUSBGatewareTestCase):
 	FRAGMENT_UNDER_TEST = ULPIRegisterWindow
 
 	USB_CLOCK_FREQUENCY = 60e6
@@ -156,7 +156,7 @@ class TestULPIRegisters(SolGatewareTestCase):
 		self.assertEqual((yield self.dut.ulpi_stop), 0)
 		self.assertEqual((yield self.dut.busy), 0)
 
-class ULPIRxEventDecoderTest(SolGatewareTestCase):
+class ULPIRxEventDecoderTest(ToriiUSBGatewareTestCase):
 
 	USB_CLOCK_FREQUENCY = 60e6
 	SYNC_CLOCK_FREQUENCY = None
@@ -219,7 +219,7 @@ class ULPIRxEventDecoderTest(SolGatewareTestCase):
 		self.assertEqual((yield self.dut.rx_error),          0)
 		self.assertEqual((yield self.dut.host_disconnect),   0)
 
-class ControlTranslatorTest(SolGatewareTestCase):
+class ControlTranslatorTest(ToriiUSBGatewareTestCase):
 
 	USB_CLOCK_FREQUENCY = 60e6
 	SYNC_CLOCK_FREQUENCY = None
@@ -279,7 +279,7 @@ class ControlTranslatorTest(SolGatewareTestCase):
 		self.assertEqual((yield self.reg_window.write_data),    0)
 		self.assertEqual((yield self.reg_window.write_request), 0)
 
-class ULPITransmitTranslatorTest(SolGatewareTestCase):
+class ULPITransmitTranslatorTest(ToriiUSBGatewareTestCase):
 	USB_CLOCK_FREQUENCY = 60e6
 	SYNC_CLOCK_FREQUENCY = None
 

@@ -18,7 +18,7 @@ interfaces
 
 ```
 
-The *SOL* gateware library provides a flexible base *USB Device* model, which is designed to provide the basis
+The *Torii-USB* gateware library provides a flexible base *USB Device* model, which is designed to provide the basis
 for creating both application-specific and general-purpose USB hardware.
 
 USB devices are created using two core components:
@@ -36,7 +36,7 @@ common bus formats; including the common ULPI low-pin-count variant of UTMI.
 .. figure:: ../../../_images/USBDevice.svg
    :alt: USB 2.0 architecture diagram
 
-   The overall architecture of a SOL USB 2.0 device, highlighting the ``USBDevice`` components, their
+   The overall architecture of a Torii-USB USB 2.0 device, highlighting the ``USBDevice`` components, their
    connections to the *endpoint interfaces*, and optional *bus translator*.
 ```
 
@@ -138,7 +138,7 @@ The sequencer:
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb2
+.. automodule:: torii_usb.usb.usb2
 	:members:
 
 ```

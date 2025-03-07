@@ -11,7 +11,7 @@ xc7
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.interface.serdes_phy
+.. automodule:: torii_usb.interface.serdes_phy
 	:members:
 
 ```

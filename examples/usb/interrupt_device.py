@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 #
-# This file is part of SOL.
+# This file is part of Torii-USB.
 #
 # Copyright (c) 2020 Great Scott Gadgets <info@greatscottgadgets.com>
 
@@ -12,8 +12,7 @@ from torii.hdl              import Elaboratable, Module, Signal
 from usb_construct.emitters import DeviceDescriptorCollection
 from usb_construct.types    import USBTransferType
 
-from sol_usb.cli            import cli
-from sol_usb.usb2           import USBDevice, USBSignalInEndpoint
+from torii_usb.usb2         import USBDevice, USBSignalInEndpoint
 
 class USBInterruptExample(Elaboratable):
 	'''
@@ -40,7 +39,7 @@ class USBInterruptExample(Elaboratable):
 			d.idVendor           = 0x16d0
 			d.idProduct          = 0xf3b
 
-			d.iManufacturer      = 'SOL'
+			d.iManufacturer      = 'Torii-USB'
 			d.iProduct           = 'Status interrupt mechanism'
 			d.iSerialNumber      = '1234'
 
@@ -90,10 +89,7 @@ class USBInterruptExample(Elaboratable):
 		# Connect our device as a high speed device by default.
 		m.d.comb += [
 			usb.connect.eq(1),
-			usb.full_speed_only.eq(1 if os.getenv('SOL_FULL_ONLY') else 0),
+			usb.full_speed_only.eq(1 if os.getenv('TORII_USB_FULL_ONLY') else 0),
 		]
 
 		return m
-
-if __name__ == '__main__':
-	cli(USBInterruptExample)

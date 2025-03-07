@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 #
-# This file is part of SOL.
+# This file is part of Torii-USB.
 #
 # Copyright (c) 2020 Great Scott Gadgets <info@greatscottgadgets.com>
 
@@ -9,11 +9,10 @@ from torii.hdl              import Elaboratable, Module
 
 from usb_construct.emitters import SuperSpeedDeviceDescriptorCollection
 
-from sol_usb.cli            import cli
-from sol_usb.usb3           import USBSuperSpeedDevice
+from torii_usb.usb3         import USBSuperSpeedDevice
 
 class USBSuperSpeedExample(Elaboratable):
-	''' Simple example of a USB SuperSpeed device using the SOL framework. '''
+	''' Simple example of a USB SuperSpeed device using the Torii-USB framework. '''
 
 	def create_descriptors(self):
 		''' Create the descriptors we want to use for our device. '''
@@ -36,7 +35,7 @@ class USBSuperSpeedExample(Elaboratable):
 			# USB3 requires this to be '9', to indicate 2 ** 9, or 512B.
 			d.bMaxPacketSize0    = 9
 
-			d.iManufacturer      = 'SOL'
+			d.iManufacturer      = 'Torii-USB'
 			d.iProduct           = 'SuperSpeed Test Device'
 			d.iSerialNumber      = '1234'
 
@@ -78,6 +77,3 @@ class USBSuperSpeedExample(Elaboratable):
 
 		# Return our elaborated module.
 		return m
-
-if __name__ == '__main__':
-	cli(USBSuperSpeedExample)

@@ -1,26 +1,30 @@
-
+# Python
 __pycache__/
-/*.egg-info/
-/.eggs/
-/dist/
-/.venv/
-/.vs/
-/.vscode/
-/.nox/
-/.mypy_cache/
-/env/
+/*.egg-info
+/.eggs
+/dist
+/.venv
+/.env
+.nox/
+.mypy_cache/
 
-/.coverage/
-/htmlcov/
+# coverage
+/.coverage
+/htmlcov
 
-/tests/spec_*/
+# tests
+/tests/**/spec_*/
 *.vcd
 *.gtkw
 
+# misc user-created
 /*.il
 /*.v
-/build/
-*/build/
+/*.sv
+/*.vhd
+/*.vhdl
+/build
 
-.DS_Store/
-Thumbs.db
+# Code Editors/IDEs
+/.vs
+/.vscode

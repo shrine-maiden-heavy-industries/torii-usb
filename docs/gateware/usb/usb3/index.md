@@ -15,7 +15,7 @@ request
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb.usb3
+.. automodule:: torii_usb.usb.usb3
 	:members:
 
 ```

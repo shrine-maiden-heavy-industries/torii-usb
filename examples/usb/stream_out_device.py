@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 #
-# This file is part of SOL.
+# This file is part of Torii-USB.
 #
 # Copyright (c) 2020 Great Scott Gadgets <info@greatscottgadgets.com>
 
 import os
 
-from torii.hdl                 import Cat, Elaboratable, Module
+from torii.hdl              import Cat, Elaboratable, Module
 
-from usb_construct.emitters    import DeviceDescriptorCollection
+from usb_construct.emitters import DeviceDescriptorCollection
 
-from sol_usb.cli               import cli
-from sol_usb.gateware.platform import NullPin
-from sol_usb.usb2              import USBDevice, USBStreamOutEndpoint
+from torii_usb.usb2         import USBDevice, USBStreamOutEndpoint
 
 class USBStreamOutDeviceExample(Elaboratable):
 	'''
@@ -40,7 +38,7 @@ class USBStreamOutDeviceExample(Elaboratable):
 			d.idVendor           = 0x16d0
 			d.idProduct          = 0xf3b
 
-			d.iManufacturer      = 'SOL'
+			d.iManufacturer      = 'Torii-USB'
 			d.iProduct           = 'User IO streamer'
 			d.iSerialNumber      = 'no serial'
 
@@ -79,8 +77,8 @@ class USBStreamOutDeviceExample(Elaboratable):
 		)
 		usb.add_endpoint(stream_ep)
 
-		leds    = Cat(platform.request_optional('led', i, default = NullPin()).o for i in range(6))
-		user_io = Cat(platform.request_optional('user_io', i, default = NullPin()).o for i in range(4))
+		leds    = Cat(platform.request('led', i).o for i in range(6))
+		user_io = Cat(platform.request('user_io', i).o for i in range(4))
 
 		# Always stream our USB data directly onto our User I/O and LEDS.
 		with m.If(stream_ep.stream.valid):
@@ -95,10 +93,7 @@ class USBStreamOutDeviceExample(Elaboratable):
 		# Connect our device as a high speed device by default.
 		m.d.comb += [
 			usb.connect.eq(1),
-			usb.full_speed_only.eq(1 if os.getenv('SOL_FULL_ONLY') else 0),
+			usb.full_speed_only.eq(1 if os.getenv('TORII_USB_FULL_ONLY') else 0),
 		]
 
 		return m
-
-if __name__ == '__main__':
-	cli(USBStreamOutDeviceExample)

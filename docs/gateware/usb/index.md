@@ -15,7 +15,7 @@ usb3/index
 
 ```{eval-rst}
 
-.. automodule:: sol_usb.gateware.usb
+.. automodule:: torii_usb.usb
 	:members:
 
 ```
