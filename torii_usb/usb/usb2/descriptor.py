@@ -543,6 +543,6 @@ class GetDescriptorHandlerBlock(Elaboratable):
 
 		# Convert our sync domain to the domain requested by the user, if necessary.
 		if self._domain != 'sync':
-			m = DomainRenamer({'sync': self._domain})(m)
+			m = DomainRenamer(sync = self._domain)(m)
 
 		return m

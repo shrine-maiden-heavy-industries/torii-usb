@@ -385,7 +385,7 @@ class AsyncPIPEInterface(PIPEInterface, Elaboratable):
 		]
 
 		# Rename the default domain to the MAC domain that was requested.
-		return DomainRenamer({'sync': self._domain})(m)
+		return DomainRenamer(sync = self._domain)(m)
 
 class GearedPIPEInterface(Elaboratable):
 	''' Module that presents a post-gearing PIPE interface, performing gearing in I/O hardware.

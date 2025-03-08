@@ -207,6 +207,6 @@ class TransactionalizedFIFO(Elaboratable):
 
 		# If we're not supposed to be in the sync domain, rename our sync domain to the target.
 		if self.domain != 'sync':
-			m = DomainRenamer({'sync': self.domain})(m)
+			m = DomainRenamer(sync = self.domain)(m)
 
 		return m

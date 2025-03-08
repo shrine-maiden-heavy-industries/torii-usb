@@ -254,5 +254,5 @@ class GetDescriptorSetHandler(Elaboratable):
 						m.next = 'IDLE'
 
 		if self._domain != 'sync':
-			m = DomainRenamer({'sync': self._domain})(m)
+			m = DomainRenamer(sync = self._domain)(m)
 		return m

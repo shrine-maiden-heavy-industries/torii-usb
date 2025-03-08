@@ -245,7 +245,7 @@ class USBOutStreamBoundaryDetector(Elaboratable):
 				m.next = 'WAIT_FOR_FIRST_BYTE'
 
 		if self._domain != 'usb':
-			m = DomainRenamer({'usb': self._domain})(m)
+			m = DomainRenamer(usb = self._domain)(m)
 
 		return m
 
