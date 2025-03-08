@@ -9,7 +9,7 @@
 from abc           import abstractmethod
 
 from torii.hdl     import Cat, Elaboratable, Module, Signal
-from torii.hdl.dsl import Operator
+from torii.hdl.ast import Operator
 
 from ...utils.bus  import OneHotMultiplexer
 from ..request     import SetupPacket
@@ -375,7 +375,7 @@ class USBRequestHandlerMultiplexer(Elaboratable):
 		# Connect up our transmit interface.
 		m.submodules.tx_mux = tx_mux = OneHotMultiplexer(
 			interface_type = USBInStreamInterface,
-			mux_signals = ('payload',),
+			mux_signals = ('data',),
 			or_signals = ('valid', 'first', 'last'),
 			pass_signals = ('ready',)
 		)

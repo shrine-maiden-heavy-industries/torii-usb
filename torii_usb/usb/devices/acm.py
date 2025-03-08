@@ -7,12 +7,12 @@
 ''' Pre-made gateware that implements CDC-ACM serial. '''
 
 from torii.hdl                          import Elaboratable, Module, Signal
+from torii.lib.stream.simple            import StreamInterface
 
 from usb_construct.emitters             import DeviceDescriptorCollection
 from usb_construct.emitters.descriptors import cdc
 from usb_construct.types                import USBRequestType
 
-from ...stream                          import StreamInterface
 from ..usb2.device                      import USBDevice
 from ..usb2.endpoints.stream            import USBStreamInEndpoint, USBStreamOutEndpoint
 from ..usb2.request                     import StallOnlyRequestHandler, USBRequestHandler

@@ -61,7 +61,7 @@ class StreamDeserializer(Elaboratable):
 		self.done = Signal()
 
 		self.data = Array(Signal(dataWidth, name = f'datum_{i}') for i in range(dataLength))
-		self.stream = streamType(payload_width = dataWidth)
+		self.stream = streamType(data_width = dataWidth)
 
 		# If we have a maximium length width, provide maxLength as a signal, otherwise it's a constant
 		if maxLengthWidth:
@@ -92,7 +92,7 @@ class StreamDeserializer(Elaboratable):
 			with m.State('STREAMING'):
 				# If the current data byte becomes valid, store it and move to the next
 				with m.If(self.stream.valid & self.stream.next):
-					m.d.sync += self.data[positionInData].eq(self.stream.payload)
+					m.d.sync += self.data[positionInData].eq(self.stream.data)
 
 					# Update the counter if we need to continue
 					with m.If(shouldContinue):

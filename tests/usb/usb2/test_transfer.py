@@ -34,7 +34,7 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 
 		# Once we start sending data to our packetizer...
 		yield transfer_stream.valid.eq(1)
-		yield transfer_stream.payload.eq(0x11)
+		yield transfer_stream.data.eq(0x11)
 		yield
 
 		# We still shouldn't see our packet stream start transmitting;
@@ -44,7 +44,7 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 
 		# Once we see a full packet...
 		for value in [0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88]:
-			yield transfer_stream.payload.eq(value)
+			yield transfer_stream.data.eq(value)
 			yield
 		yield transfer_stream.valid.eq(0)
 
@@ -57,7 +57,7 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 		yield transfer_stream.valid.eq(1)
 		self.assertEqual((yield transfer_stream.ready), 1)
 		for value in [0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x00]:
-			yield transfer_stream.payload.eq(value)
+			yield transfer_stream.data.eq(value)
 			yield
 
 		# Once we've filled up -both- buffers, our data should no longer be ready.
@@ -72,7 +72,7 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 
 		# ... we should see the full packet be emitted...
 		for value in [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88]:
-			self.assertEqual((yield packet_stream.payload), value)
+			self.assertEqual((yield packet_stream.data), value)
 			yield
 
 		# ... and then the packet should end.
@@ -91,7 +91,7 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 		yield self.assertEqual((yield dut.data_pid), 0)
 
 		for value in [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88]:
-			self.assertEqual((yield packet_stream.payload), value)
+			self.assertEqual((yield packet_stream.data), value)
 			yield
 
 		# If we do ACK...
@@ -104,7 +104,7 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 		#  ... and we should get our second packet.
 		yield from self.pulse(dut.tokenizer.ready_for_response, step_after = True)
 		for value in [0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x00]:
-			self.assertEqual((yield packet_stream.payload), value)
+			self.assertEqual((yield packet_stream.data), value)
 			yield
 
 	@usb_domain_test_case
@@ -135,14 +135,14 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 		# If we're sent a full packet _without the transfer stream ending_...
 		yield transfer_stream.valid.eq(1)
 		for value in [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88]:
-			yield transfer_stream.payload.eq(value)
+			yield transfer_stream.data.eq(value)
 			yield
 		yield transfer_stream.valid.eq(0)
 
 		# ... we should receive that data packet without a ZLP.
 		yield from self.pulse(dut.tokenizer.ready_for_response)
 		for value in [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88]:
-			self.assertEqual((yield packet_stream.payload), value)
+			self.assertEqual((yield packet_stream.data), value)
 			yield
 		self.assertEqual((yield dut.data_pid), 0)
 		yield from self.pulse(dut.handshakes_in.ack)
@@ -150,11 +150,11 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 		# If we send a full packet...
 		yield transfer_stream.valid.eq(1)
 		for value in [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77]:
-			yield transfer_stream.payload.eq(value)
+			yield transfer_stream.data.eq(value)
 			yield
 
 		# ... that _ends_ our transfer...
-		yield transfer_stream.payload.eq(0x88)
+		yield transfer_stream.data.eq(0x88)
 		yield transfer_stream.last.eq(1)
 		yield
 
@@ -164,7 +164,7 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 		# ... we should emit the relevant data packet...
 		yield from self.pulse(dut.tokenizer.ready_for_response)
 		for value in [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88]:
-			self.assertEqual((yield packet_stream.payload), value)
+			self.assertEqual((yield packet_stream.data), value)
 			yield
 		self.assertEqual((yield dut.data_pid), 1)
 		yield from self.pulse(dut.handshakes_in.ack)
@@ -178,9 +178,9 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 		# Finally, if we're sent a short packet that ends our stream...
 		yield transfer_stream.valid.eq(1)
 		for value in [0xAA, 0xBB, 0xCC]:
-			yield transfer_stream.payload.eq(value)
+			yield transfer_stream.data.eq(value)
 			yield
-		yield transfer_stream.payload.eq(0xDD)
+		yield transfer_stream.data.eq(0xDD)
 		yield transfer_stream.last.eq(1)
 
 		yield
@@ -190,7 +190,7 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 		# ... we should emit the relevant short packet...
 		yield from self.pulse(dut.tokenizer.ready_for_response)
 		for value in [0xAA, 0xBB, 0xCC, 0xDD]:
-			self.assertEqual((yield packet_stream.payload), value)
+			self.assertEqual((yield packet_stream.data), value)
 			yield
 		yield from self.pulse(dut.handshakes_in.ack)
 		self.assertEqual((yield dut.data_pid), 1)
@@ -214,11 +214,11 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 		# We queue up two full packets.
 		yield transfer_stream.valid.eq(1)
 		for value in [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88]:
-			yield transfer_stream.payload.eq(value)
+			yield transfer_stream.data.eq(value)
 			yield
 
 		for value in [0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x00]:
-			yield transfer_stream.payload.eq(value)
+			yield transfer_stream.data.eq(value)
 			yield
 		yield transfer_stream.valid.eq(0)
 
@@ -230,7 +230,7 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 
 		# ... and should see the full packet be emitted...
 		for value in [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88]:
-			self.assertEqual((yield packet_stream.payload), value)
+			self.assertEqual((yield packet_stream.data), value)
 			yield
 
 		# ... with DATA PID 0 ...
@@ -257,7 +257,7 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 		# If we send another full packet...
 		yield transfer_stream.valid.eq(1)
 		for value in [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88]:
-			yield transfer_stream.payload.eq(value)
+			yield transfer_stream.data.eq(value)
 			yield
 		yield transfer_stream.valid.eq(0)
 
@@ -269,7 +269,7 @@ class USBInTransferManagerTest(ToriiUSBGatewareTestCase):
 
 		# ... add should see the full packet be emitted...
 		for value in [0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88]:
-			self.assertEqual((yield packet_stream.payload), value)
+			self.assertEqual((yield packet_stream.data), value)
 			yield
 
 		# ... with the correct DATA PID.

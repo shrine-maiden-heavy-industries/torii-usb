@@ -6,9 +6,8 @@
 
 ''' Header Packet data interfacing definitions.'''
 
-from torii.hdl          import Cat, Elaboratable, Module, Record
-
-from ....stream.arbiter import StreamArbiter
+from torii.hdl               import Cat, Elaboratable, Module, Record
+from torii.lib.stream.simple import StreamArbiter
 
 class HeaderPacket(Record):
 	''' Container that represents a Header Packet. '''
@@ -98,7 +97,7 @@ class HeaderQueueArbiter(StreamArbiter):
 
 	def add_producer(self, interface: HeaderQueue):
 		''' Adds a HeaderQueue interface that will add packets into this mux. '''
-		self.add_stream(interface)
+		self.connect(interface)
 
 class HeaderQueueDemultiplexer(Elaboratable):
 	''' Gateware that accepts a single Header Queue, and routes it to multiple modules.

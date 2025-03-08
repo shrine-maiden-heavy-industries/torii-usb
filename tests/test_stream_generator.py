@@ -27,13 +27,13 @@ class ConstantStreamGeneratorTest(USBGatewareTestCase):
 		# and we should see our first byte of data.
 		yield from self.pulse(dut.start)
 		self.assertEqual((yield dut.stream.valid),   1)
-		self.assertEqual((yield dut.stream.payload), ord('H'))
+		self.assertEqual((yield dut.stream.data), ord('H'))
 		self.assertEqual((yield dut.stream.first),   1)
 
 		# That data should remain there until we accept it.
 		yield from self.advance_cycles(10)
 		self.assertEqual((yield dut.stream.valid),   1)
-		self.assertEqual((yield dut.stream.payload), ord('H'))
+		self.assertEqual((yield dut.stream.data), ord('H'))
 
 		# Once we indicate that we're accepting data...
 		yield dut.stream.ready.eq(1)
@@ -42,17 +42,17 @@ class ConstantStreamGeneratorTest(USBGatewareTestCase):
 		# ... we should start seeing the remainder of our transmission.
 		for i in 'ELLO':
 			yield
-			self.assertEqual((yield dut.stream.payload), ord(i))
+			self.assertEqual((yield dut.stream.data), ord(i))
 			self.assertEqual((yield dut.stream.first),   0)
 
 		# If we drop the 'accepted', we should still see the next byte...
 		yield dut.stream.ready.eq(0)
 		yield
-		self.assertEqual((yield dut.stream.payload), ord(','))
+		self.assertEqual((yield dut.stream.data), ord(','))
 
 		# ... but that byte shouldn't be accepted, so we should remain there.
 		yield
-		self.assertEqual((yield dut.stream.payload), ord(','))
+		self.assertEqual((yield dut.stream.data), ord(','))
 
 		# If we start accepting data again...
 		yield dut.stream.ready.eq(1)
@@ -61,7 +61,7 @@ class ConstantStreamGeneratorTest(USBGatewareTestCase):
 		# ... we should see the remainder of the stream.
 		for i in ' WORLD':
 			yield
-			self.assertEqual((yield dut.stream.payload), ord(i))
+			self.assertEqual((yield dut.stream.data), ord(i))
 
 		# On the last byte of data, we should see last = 1.
 		self.assertEqual((yield dut.stream.last),   1)
@@ -90,13 +90,13 @@ class ConstantStreamGeneratorTest(USBGatewareTestCase):
 		# and we should see our first byte of data.
 		yield from self.pulse(dut.start)
 		self.assertEqual((yield dut.stream.valid),   1)
-		self.assertEqual((yield dut.stream.payload), ord('L'))
+		self.assertEqual((yield dut.stream.data), ord('L'))
 		self.assertEqual((yield dut.stream.first),   1)
 
 		# That data should remain there until we accept it.
 		yield from self.advance_cycles(10)
 		self.assertEqual((yield dut.stream.valid),   1)
-		self.assertEqual((yield dut.stream.payload), ord('L'))
+		self.assertEqual((yield dut.stream.data), ord('L'))
 
 		# Once we indicate that we're accepting data...
 		yield dut.stream.ready.eq(1)
@@ -105,17 +105,17 @@ class ConstantStreamGeneratorTest(USBGatewareTestCase):
 		# ... we should start seeing the remainder of our transmission.
 		for i in 'LO':
 			yield
-			self.assertEqual((yield dut.stream.payload), ord(i))
+			self.assertEqual((yield dut.stream.data), ord(i))
 			self.assertEqual((yield dut.stream.first),   0)
 
 		# If we drop the 'accepted', we should still see the next byte...
 		yield dut.stream.ready.eq(0)
 		yield
-		self.assertEqual((yield dut.stream.payload), ord(','))
+		self.assertEqual((yield dut.stream.data), ord(','))
 
 		# ... but that byte shouldn't be accepted, so we should remain there.
 		yield
-		self.assertEqual((yield dut.stream.payload), ord(','))
+		self.assertEqual((yield dut.stream.data), ord(','))
 
 		# If we start accepting data again...
 		yield dut.stream.ready.eq(1)
@@ -124,7 +124,7 @@ class ConstantStreamGeneratorTest(USBGatewareTestCase):
 		# ... we should see the remainder of the stream.
 		for i in ' WORLD':
 			yield
-			self.assertEqual((yield dut.stream.payload), ord(i))
+			self.assertEqual((yield dut.stream.data), ord(i))
 
 		# On the last byte of data, we should see last = 1.
 		self.assertEqual((yield dut.stream.last),   1)
@@ -145,7 +145,7 @@ class ConstantStreamGeneratorTest(USBGatewareTestCase):
 
 		# ... we should start seeing the remainder of our transmission.
 		for i in 'HELLO':
-			self.assertEqual((yield dut.stream.payload), ord(i))
+			self.assertEqual((yield dut.stream.data), ord(i))
 			yield
 
 		# On the last byte of data, we should see last = 1.
@@ -181,13 +181,13 @@ class ConstantStreamGeneratorWideTest(USBSSGatewareTestCase):
 		# and we should see our first byte of data.
 		yield from self.pulse(dut.start)
 		self.assertEqual((yield dut.stream.valid),   0b1111)
-		self.assertEqual((yield dut.stream.payload), int.from_bytes(b'HELL', byteorder = 'little'))
+		self.assertEqual((yield dut.stream.data), int.from_bytes(b'HELL', byteorder = 'little'))
 		self.assertEqual((yield dut.stream.first),   1)
 
 		# That data should remain there until we accept it.
 		yield from self.advance_cycles(10)
 		self.assertEqual((yield dut.stream.valid),   0b1111)
-		self.assertEqual((yield dut.stream.payload), int.from_bytes(b'HELL', byteorder = 'little'))
+		self.assertEqual((yield dut.stream.data), int.from_bytes(b'HELL', byteorder = 'little'))
 
 		# Once we indicate that we're accepting data...
 		yield dut.stream.ready.eq(1)
@@ -196,12 +196,12 @@ class ConstantStreamGeneratorWideTest(USBSSGatewareTestCase):
 		# ... we should start seeing the remainder of our transmission.
 		yield
 		self.assertEqual((yield dut.stream.valid),   0b1111)
-		self.assertEqual((yield dut.stream.payload), int.from_bytes(b'O WO', byteorder = 'little'))
+		self.assertEqual((yield dut.stream.data), int.from_bytes(b'O WO', byteorder = 'little'))
 		self.assertEqual((yield dut.stream.first),   0)
 
 		yield
 		self.assertEqual((yield dut.stream.valid),   0b111)
-		self.assertEqual((yield dut.stream.payload), int.from_bytes(b'RLD', byteorder = 'little'))
+		self.assertEqual((yield dut.stream.data), int.from_bytes(b'RLD', byteorder = 'little'))
 		self.assertEqual((yield dut.stream.first),   0)
 
 		# On the last byte of data, we should see last = 1.
@@ -223,13 +223,13 @@ class ConstantStreamGeneratorWideTest(USBSSGatewareTestCase):
 		# and we should see our first byte of data.
 		yield from self.pulse(dut.start)
 		self.assertEqual((yield dut.stream.valid),   0b1111)
-		self.assertEqual((yield dut.stream.payload), int.from_bytes(b'HELL', byteorder = 'little'))
+		self.assertEqual((yield dut.stream.data), int.from_bytes(b'HELL', byteorder = 'little'))
 		self.assertEqual((yield dut.stream.first),   1)
 
 		# We should then see only two bytes of our remainder.
 		yield
 		self.assertEqual((yield dut.stream.valid),   0b0011)
-		self.assertEqual((yield dut.stream.payload), int.from_bytes(b'O WO', byteorder = 'little'))
+		self.assertEqual((yield dut.stream.data), int.from_bytes(b'O WO', byteorder = 'little'))
 		self.assertEqual((yield dut.stream.first),   0)
 		self.assertEqual((yield dut.stream.last),    1)
 
@@ -244,7 +244,7 @@ class ConstantStreamGeneratorWideTest(USBSSGatewareTestCase):
 		# and we should see our first word of data.
 		yield from self.pulse(dut.start)
 		self.assertEqual((yield dut.stream.valid),   0b0011)
-		self.assertEqual((yield dut.stream.payload), int.from_bytes(b'HELL', byteorder = 'little'))
+		self.assertEqual((yield dut.stream.data), int.from_bytes(b'HELL', byteorder = 'little'))
 		self.assertEqual((yield dut.stream.first),   1)
 		self.assertEqual((yield dut.stream.last),    1)
 
@@ -252,7 +252,7 @@ class ConstantStreamGeneratorWideTest(USBSSGatewareTestCase):
 		yield dut.stream.ready.eq(1)
 		yield
 		self.assertEqual((yield dut.stream.valid),   0b0011)
-		self.assertEqual((yield dut.stream.payload), int.from_bytes(b'HELL', byteorder = 'little'))
+		self.assertEqual((yield dut.stream.data), int.from_bytes(b'HELL', byteorder = 'little'))
 		self.assertEqual((yield dut.stream.first),   1)
 		self.assertEqual((yield dut.stream.last),    1)
 

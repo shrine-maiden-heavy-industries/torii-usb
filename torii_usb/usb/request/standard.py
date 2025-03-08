@@ -11,8 +11,7 @@ import unittest
 from collections.abc        import Callable, Iterable
 
 from torii.hdl              import Module, Signal
-from torii.hdl.ast          import Cat, Value
-from torii.hdl.dsl          import Operator
+from torii.hdl.ast          import Cat, Value, Operator
 
 from usb_construct.emitters import DeviceDescriptorCollection
 from usb_construct.types    import USBRequestRecipient, USBRequestType, USBStandardRequests

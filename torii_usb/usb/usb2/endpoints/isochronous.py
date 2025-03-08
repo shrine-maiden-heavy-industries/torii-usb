@@ -122,7 +122,7 @@ class USBIsochronousInEndpoint(Elaboratable):
 			# Always pass our ``value`` directly through to our transmitter.
 			# We'll provide ``address``/``next_address`` to our user code to help
 			# orchestrate this timing.
-			out_stream.payload.eq(self.value),
+			out_stream.data.eq(self.value),
 
 			# Provide our data pid through to to the transmitter.
 			interface.tx_pid_toggle.eq(next_data_pid)

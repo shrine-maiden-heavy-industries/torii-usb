@@ -21,7 +21,7 @@ class USBOutStreamBoundaryDetectorTest(USBGatewareTestCase):
 		# If our stream goes valid...
 		yield unprocesesed_stream.valid.eq(1)
 		yield unprocesesed_stream.next.eq(1)
-		yield unprocesesed_stream.payload.eq(0xAA)
+		yield unprocesesed_stream.data.eq(0xAA)
 		yield
 
 		# ... we shouldn't see anything this first cycle...
@@ -31,22 +31,22 @@ class USBOutStreamBoundaryDetectorTest(USBGatewareTestCase):
 		self.assertEqual((yield dut.last), 0)
 
 		# ... but after two cycles...
-		yield unprocesesed_stream.payload.eq(0xBB)
+		yield unprocesesed_stream.data.eq(0xBB)
 		yield
-		yield unprocesesed_stream.payload.eq(0xCC)
+		yield unprocesesed_stream.data.eq(0xCC)
 		yield
 
 		# ... we should see a valid stream's first byte.
 		self.assertEqual((yield processed_stream.valid), 1)
 		self.assertEqual((yield processed_stream.next),  1)
-		self.assertEqual((yield processed_stream.payload),  0xAA)
+		self.assertEqual((yield processed_stream.data),  0xAA)
 		self.assertEqual((yield dut.first), 1)
 		self.assertEqual((yield dut.last), 0)
-		yield unprocesesed_stream.payload.eq(0xDD)
+		yield unprocesesed_stream.data.eq(0xDD)
 
 		# ... followed by a byte that's neither first nor last...
 		yield
-		self.assertEqual((yield processed_stream.payload),  0xBB)
+		self.assertEqual((yield processed_stream.data),  0xBB)
 		self.assertEqual((yield dut.first), 0)
 		self.assertEqual((yield dut.last), 0)
 
@@ -57,6 +57,6 @@ class USBOutStreamBoundaryDetectorTest(USBGatewareTestCase):
 		yield
 
 		# ... we should see our final byte.
-		self.assertEqual((yield processed_stream.payload),  0xDD)
+		self.assertEqual((yield processed_stream.data),  0xDD)
 		self.assertEqual((yield dut.first), 0)
 		self.assertEqual((yield dut.last), 1)

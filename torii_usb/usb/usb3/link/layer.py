@@ -259,9 +259,9 @@ class USB3LinkLayer(Elaboratable):
 		m.submodules.stream_arbiter = arbiter = SuperSpeedStreamArbiter()
 
 		# Add each of our streams to our arbiter, from highest to lowest priority.
-		arbiter.add_stream(training_set_source)
-		arbiter.add_stream(header_rx.source)
-		arbiter.add_stream(transmitter.source)
+		arbiter.connect(training_set_source)
+		arbiter.connect(header_rx.source)
+		arbiter.connect(transmitter.source)
 
 		# If we're idle, send logical idle.
 		with m.If(arbiter.idle):

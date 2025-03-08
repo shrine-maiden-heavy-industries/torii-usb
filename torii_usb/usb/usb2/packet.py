@@ -787,7 +787,7 @@ class USBDataPacketReceiver(Elaboratable):
 
 					m.d.comb += [
 						# Emit the current packet...
-						self.stream.payload.eq(data_pipeline[0:8]),
+						self.stream.data.eq(data_pipeline[0:8]),
 						self.stream.next.eq(1),
 					]
 
@@ -1079,7 +1079,7 @@ class USBDataPacketGenerator(Elaboratable):
 			m.d.comb += [
 				crc.rx_valid.eq(0),
 
-				crc.tx_data.eq(self.stream.payload),
+				crc.tx_data.eq(self.stream.data),
 				crc.tx_valid.eq(self.tx.ready)
 			]
 

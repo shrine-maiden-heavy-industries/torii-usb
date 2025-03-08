@@ -6,12 +6,10 @@
 
 ''' Core stream definitions. '''
 
-from torii.hdl        import Elaboratable, Module, Signal
-from torii.hdl.rec    import Direction, Record
-from torii.hdl.xfrm   import DomainRenamer
-
-from ..stream         import StreamInterface
-from ..stream.arbiter import StreamArbiter
+from torii.hdl               import Elaboratable, Module, Signal
+from torii.hdl.rec           import Direction, Record
+from torii.hdl.xfrm          import DomainRenamer
+from torii.lib.stream.simple import StreamInterface, StreamArbiter
 
 class USBInStreamInterface(StreamInterface):
 	''' Variant of Torii-USB's StreamInterface optimized for USB IN transmission.
@@ -26,7 +24,7 @@ class USBInStreamInterface(StreamInterface):
 		Stream  | UTMI
 		--------|-----------
 		valid   | tx_valid
-		payload | tx_data
+		data    | tx_data
 		ready   | tx_ready
 	'''
 
@@ -35,7 +33,7 @@ class USBInStreamInterface(StreamInterface):
 
 		return [
 			utmi_tx.valid.eq(self.valid),
-			utmi_tx.data.eq(self.payload),
+			utmi_tx.data.eq(self.data),
 
 			self.ready.eq(utmi_tx.ready)
 		]
@@ -53,24 +51,24 @@ class USBOutStreamInterface(Record):
 		UTMI      | Stream
 		--------- |-----------
 		rx_active | valid
-		rx_data   | payload
+		rx_data   | data
 		rx_valid  | next
 
 	'''
 
-	def __init__(self, payload_width = 8):
+	def __init__(self, data_width = 8):
 		'''
 		Parameters
 		----------
-		payload_width
-			The width of the payload packets.
+		data_width
+			The width of the data packets.
 
 		'''
 		super().__init__([
 			('valid',    1,             Direction.FANOUT),
 			('next',     1,             Direction.FANOUT),
 
-			('payload',  payload_width, Direction.FANOUT),
+			('data',  data_width, Direction.FANOUT),
 		])
 
 	def bridge_to(self, utmi_rx):
@@ -79,7 +77,7 @@ class USBOutStreamInterface(Record):
 		return [
 			self.valid.eq(utmi_rx.rx_active),
 			self.next.eq(utmi_rx.rx_valid),
-			self.data.eq(utmi_rx.payload)
+			self.data.eq(utmi_rx.data)
 		]
 
 	def stream_eq(self, other):
@@ -180,7 +178,7 @@ class USBOutStreamBoundaryDetector(Elaboratable):
 				# Once we've received our first byte, buffer it, and mark it as our first byte.
 				with m.If(in_stream.valid & in_stream.next):
 					m.d.usb += [
-						buffered_byte.eq(in_stream.payload),
+						buffered_byte.eq(in_stream.data),
 						is_first_byte.eq(1)
 					]
 					m.next = 'RECEIVE_AND_TRANSMIT'
@@ -205,14 +203,14 @@ class USBOutStreamBoundaryDetector(Elaboratable):
 				with m.If(in_stream.valid & in_stream.next):
 					m.d.usb += [
 						# Output our buffered byte...
-						out_stream.payload.eq(buffered_byte),
+						out_stream.data.eq(buffered_byte),
 						out_stream.next.eq(1),
 
 						# indicate whether our current byte was the first byte captured...
 						self.first.eq(is_first_byte),
 
 						# ... and store the new, incoming byte.
-						buffered_byte.eq(in_stream.payload),
+						buffered_byte.eq(in_stream.data),
 						is_first_byte.eq(0)
 					]
 
@@ -222,7 +220,7 @@ class USBOutStreamBoundaryDetector(Elaboratable):
 					m.d.usb += [
 
 						# Output our buffered byte...
-						out_stream.payload.eq(buffered_byte),
+						out_stream.data.eq(buffered_byte),
 						out_stream.next.eq(1),
 						self.first.eq(is_first_byte),
 
@@ -260,12 +258,12 @@ class USBRawSuperSpeedStream(StreamInterface):
 
 	Parameters
 	----------
-	payload_words: int
-		The number of payload words (1 byte data, 1 bit control) to include in the current stream.
+	data_width: int
+		The number of data words (1 byte data, 1 bit control) to include in the current stream.
 	'''
 
-	def __init__(self, payload_words = 4):
-		super().__init__(payload_width = 8 * payload_words, extra_fields = [('ctrl', payload_words)])
+	def __init__(self, data_words = 4):
+		super().__init__(data_width = 8 * data_words, extra = [('ctrl', data_words)])
 
 	def stream_eq(self, interface, *, endian_swap = False, omit = None, **kwargs):
 		''' Extend the global ``stream_eq`` operator to swap endianness. '''
@@ -316,4 +314,4 @@ class SuperSpeedStreamInterface(StreamInterface):
 	''' Convenience variant of our StreamInterface sized to work with SuperSpeed streams. '''
 
 	def __init__(self):
-		super().__init__(payload_width = 32, valid_width = 4)
+		super().__init__(data_width = 32, valid_width = 4)

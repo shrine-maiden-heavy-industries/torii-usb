@@ -11,10 +11,11 @@ The endpoint interfaces in this module provide endpoint interfaces suitable for
 connecting streams to USB endpoints.
 '''
 
-from torii.hdl  import Elaboratable, Module, Signal
+from torii.hdl               import Elaboratable, Module, Signal
+from torii.lib.stream.simple import StreamInterface
 
 from ....memory import TransactionalizedFIFO
-from ...stream  import StreamInterface, USBOutStreamBoundaryDetector
+from ...stream  import USBOutStreamBoundaryDetector
 from ..endpoint import EndpointInterface
 from ..transfer import USBInTransferManager
 
@@ -142,7 +143,7 @@ class USBMultibyteStreamInEndpoint(Elaboratable):
 		#
 		# I/O port
 		#
-		self.stream          = StreamInterface(payload_width = byte_width * 8)
+		self.stream          = StreamInterface(data_width = byte_width * 8)
 		self.interface       = EndpointInterface()
 
 	def elaborate(self, platform):
@@ -162,7 +163,7 @@ class USBMultibyteStreamInEndpoint(Elaboratable):
 
 		# We'll put each word to be sent through an shift register
 		# that shifts out words a byte at a time.
-		data_shift = Signal.like(word_stream.payload)
+		data_shift = Signal.like(word_stream.data)
 
 		# Latched versions of our first and last signals.
 		first_latched = Signal()
@@ -172,7 +173,7 @@ class USBMultibyteStreamInEndpoint(Elaboratable):
 		bytes_to_send = Signal(range(0, self._byte_width + 1))
 
 		# Always provide our inner transmitter with the least byte of our shift register.
-		m.d.comb += byte_stream.payload.eq(data_shift[0:8])
+		m.d.comb += byte_stream.data.eq(data_shift[0:8])
 
 		with m.FSM(domain = 'usb'):
 
@@ -183,7 +184,7 @@ class USBMultibyteStreamInEndpoint(Elaboratable):
 				# Once we get a send request, fill in our shift register, and start shifting.
 				with m.If(word_stream.valid):
 					m.d.usb += [
-						data_shift.eq(word_stream.payload),
+						data_shift.eq(word_stream.data),
 						first_latched.eq(word_stream.first),
 						last_latched.eq(word_stream.last),
 
@@ -221,7 +222,7 @@ class USBMultibyteStreamInEndpoint(Elaboratable):
 						# If we still have data to send, move to the next byte...
 						with m.If(self.stream.valid):
 							m.d.usb += [
-								data_shift.eq(word_stream.payload),
+								data_shift.eq(word_stream.data),
 								first_latched.eq(word_stream.first),
 								last_latched.eq(word_stream.last),
 
@@ -337,7 +338,7 @@ class USBStreamOutEndpoint(Elaboratable):
 		m.d.comb += [
 			# We'll always populate our FIFO directly from the receive stream; but we'll also include our
 			# 'short packet detected' signal, as this indicates that we're detecting the last byte of a transfer.
-			fifo.write_data[0:8].eq(rx.payload),
+			fifo.write_data[0:8].eq(rx.data),
 			fifo.write_data[8].eq(rx_last & ~full_packet),
 			fifo.write_data[9].eq(rx_first & ~transfer_active),
 			fifo.write_en.eq(okay_to_receive & rx.next & rx.valid & ~fifo.full),
@@ -366,7 +367,7 @@ class USBStreamOutEndpoint(Elaboratable):
 			# Our stream data always comes directly out of the FIFO; and is valid
 			# whenever our FIFO actually has data for us to read.
 			stream.valid.eq(~fifo.empty),
-			stream.payload.eq(fifo.read_data[0:8]),
+			stream.data.eq(fifo.read_data[0:8]),
 
 			# Our `last` bit comes directly from the FIFO; and we know a `first` bit immediately
 			# follows a `last` one.

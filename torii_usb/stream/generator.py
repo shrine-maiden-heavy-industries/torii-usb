@@ -6,11 +6,15 @@
 
 ''' Stream generators. '''
 
-from torii.hdl import Array, Const, DomainRenamer, Elaboratable, Memory, Module, Signal
+from typing                  import Generic, TypeVar, Literal
 
-from .         import StreamInterface
+from torii.hdl               import Array, Const, DomainRenamer, Elaboratable, Memory, Module, Signal
+from torii.lib.stream.simple import StreamInterface
 
-class ConstantStreamGenerator(Elaboratable):
+T = TypeVar('T', bound = StreamInterface)
+
+# TODO(aki): Migrate into Torii proper eventually:tm:
+class ConstantStreamGenerator(Generic[T], Elaboratable):
 	'''
 	Gateware that generates stream of constant data.
 
@@ -40,20 +44,32 @@ class ConstantStreamGenerator(Elaboratable):
 	constant_data: bytes, or equivalent
 		The constant data for the stream to be generated.
 		Should be an iterable of integers; or, if data_width is divisible by 8, a bytes-like object.
-	domain: string
-		The clock domain this generator should belong to. Defaults to 'sync'.
+
+	domain: str
+		The clock domain this generator should belong to.
+		(default: 'sync')
+
 	stream_type: StreamInterface, or subclass
 		The type of stream we'll be multiplexing.
-	data_width: int, optional
+
+	data_width: int | None
 		The width of the constant payload. If not provided; will be taken from the stream's payload width.
-	max_length_width: int
+		(default: None)
+
+	max_length_width: int | None
 		If provided, a `max_length` signal will be present that can limit the total length transmitted.
-	data_endianness: little
-		If bytes are provided, and our data width is greater
+		(default: None)
+
+	data_endianness: 'little' | 'big'
+		If bytes are provided, and our data width is greater.
+		(default: 'little')
 	'''
 
-	def __init__(self, constant_data, domain = 'sync', stream_type = StreamInterface,
-			max_length_width = None, data_width = None, data_endianness = 'little'):
+	def __init__(
+		self, constant_data, domain: str = 'sync', stream_type: type[T] = StreamInterface,
+		max_length_width: int | None = None, data_width: int | None = None,
+		data_endianness: Literal['little', 'big'] = 'little'
+	):
 
 		self._domain           = domain
 		self._data             = constant_data
@@ -69,7 +85,7 @@ class ConstantStreamGenerator(Elaboratable):
 
 		# If we have a data width, apply it to our stream type; otherwise, use its defaults.
 		if data_width:
-			self.stream      = stream_type(payload_width = data_width)
+			self.stream      = stream_type(data_width = data_width)
 			self._data_width = data_width
 		else:
 			self.stream      = stream_type()
@@ -230,7 +246,7 @@ class ConstantStreamGenerator(Elaboratable):
 				m.d.comb += [
 					# Always drive the stream from our current memory output...
 					rom_read_port.addr.eq(position_in_stream),
-					self.stream.payload.eq(rom_read_port.data),
+					self.stream.data.eq(rom_read_port.data),
 
 					# ... and base First and Last based on our current position in the stream.
 					self.stream.first.eq(on_first_packet),
@@ -328,7 +344,7 @@ class ConstantStreamGenerator(Elaboratable):
 
 		return m
 
-class StreamSerializer(Elaboratable):
+class StreamSerializer(Generic[T], Elaboratable):
 	'''
 	Gateware that serializes a short Array input onto a stream.
 
@@ -345,8 +361,8 @@ class StreamSerializer(Elaboratable):
 	'''
 
 	def __init__(
-		self, data_length, domain = 'sync', data_width = 8, stream_type = StreamInterface,
-		max_length_width = None
+		self, data_length: int, domain: str = 'sync', data_width: int = 8, stream_type: type[T] = StreamInterface,
+		max_length_width: int | None = None
 	):
 		'''
 		Parameters
@@ -380,7 +396,7 @@ class StreamSerializer(Elaboratable):
 		self.done        = Signal()
 
 		self.data        = Array(Signal(data_width, name = f'datum_{i}') for i in range(data_length))
-		self.stream      = stream_type(payload_width = data_width)
+		self.stream      = stream_type(data_width = data_width)
 
 		# If we have a maximum length width, include it in our I/O port.
 		# Otherwise, use a constant.
@@ -423,7 +439,7 @@ class StreamSerializer(Elaboratable):
 
 			# STREAMING -- we're actively transmitting data
 			with m.State('STREAMING'):
-				m.d.comb += self.stream.payload.eq(self.data[position_in_stream])
+				m.d.comb += self.stream.data.eq(self.data[position_in_stream])
 
 				# If the current data byte is accepted, move past it.
 				with m.If(self.stream.ready):

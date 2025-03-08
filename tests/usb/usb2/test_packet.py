@@ -181,14 +181,14 @@ class USBDataPacketReceiverTest(USBPacketizerTest):
 
 		# ... and we should see the first byte on our stream.
 		self.assertEqual((yield stream.next),       1)
-		self.assertEqual((yield stream.payload), 0x00)
+		self.assertEqual((yield stream.data), 0x00)
 
 		# If we pause RxValid, we nothing should advance.
 		yield self.utmi.rx_valid.eq(0)
 
 		yield from self.provide_byte(0x08)
 		self.assertEqual((yield stream.next),       0)
-		self.assertEqual((yield stream.payload), 0x00)
+		self.assertEqual((yield stream.data), 0x00)
 
 		# Resuming should continue our advance...
 		yield self.utmi.rx_valid.eq(1)
@@ -199,7 +199,7 @@ class USBDataPacketReceiverTest(USBPacketizerTest):
 
 		# ... remaining two bytes behind.
 		self.assertEqual((yield stream.next),       1)
-		self.assertEqual((yield stream.payload), 0x00)
+		self.assertEqual((yield stream.data), 0x00)
 
 		# When we stop our packet, we should see our stream stop as well.
 		# The last two bytes, our CRC, shouldn't be included.
@@ -311,7 +311,7 @@ class USBDataPacketGeneratorTest(ToriiUSBGatewareTestCase):
 		# Start sending our first byte.
 		yield stream.first.eq(1)
 		yield stream.valid.eq(1)
-		yield stream.payload.eq(0x00)
+		yield stream.data.eq(0x00)
 		yield
 
 		# Once our first byte has been provided, our transmission should
@@ -336,12 +336,12 @@ class USBDataPacketGeneratorTest(ToriiUSBGatewareTestCase):
 		# Provide the remainder of our data, and make sure that our
 		# output value mirrors it.
 		for datum in [0x05, 0x08, 0x00, 0x00, 0x00, 0x00]:
-			yield stream.payload.eq(datum)
+			yield stream.data.eq(datum)
 			yield
 			self.assertEqual((yield tx.data), datum)
 
 		# Finally, provide our last data value.
-		yield stream.payload.eq(0x00)
+		yield stream.data.eq(0x00)
 		yield stream.last.eq(1)
 		yield
 
@@ -373,7 +373,7 @@ class USBDataPacketGeneratorTest(ToriiUSBGatewareTestCase):
 		yield stream.first.eq(1)
 		yield stream.last.eq(1)
 		yield stream.valid.eq(1)
-		yield stream.payload.eq(0xAB)
+		yield stream.data.eq(0xAB)
 		yield from self.wait_until(stream.ready)
 
 		# Drop our last back to zero, immediately.

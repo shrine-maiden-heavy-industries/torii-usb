@@ -176,9 +176,9 @@ class SuperSpeedStreamInEndpoint(Elaboratable):
 		# we can just unconditionally connect these.
 		m.d.comb += [
 			# We'll only ever -write- data from our input stream...
-			buffer_write_ports[0].data.eq(in_stream.payload),
+			buffer_write_ports[0].data.eq(in_stream.data),
 			buffer_write_ports[0].addr.eq(write_fill_count >> 2),
-			buffer_write_ports[1].data.eq(in_stream.payload),
+			buffer_write_ports[1].data.eq(in_stream.data),
 			buffer_write_ports[1].addr.eq(write_fill_count >> 2),
 
 			# ... and we'll only ever -send- data from the Read buffer; in the SEND_PACKET state.
@@ -310,7 +310,7 @@ class SuperSpeedStreamInEndpoint(Elaboratable):
 					m.d.ss += [
 						# Block RAM often has a large clock-to-dout delay; register the output to
 						# improve timings.
-						out_stream.payload.eq(buffer_read.data),
+						out_stream.data.eq(buffer_read.data),
 
 						# Let our transmitter know the packet boundaries.
 						out_stream.first.eq(first_word),

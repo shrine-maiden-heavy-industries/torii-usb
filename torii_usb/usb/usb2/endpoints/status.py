@@ -98,7 +98,7 @@ class USBSignalInEndpoint(Elaboratable):
 			index_to_transmit = bytes_in_signal - bytes_transmitted - 1
 
 		# Always transmit the part of the latched signal byte that corresponds to our
-		m.d.comb += tx.payload.eq(signal_bytes[index_to_transmit])
+		m.d.comb += tx.data.eq(signal_bytes[index_to_transmit])
 
 		#
 		# Core control FSM.

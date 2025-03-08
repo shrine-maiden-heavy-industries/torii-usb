@@ -9,12 +9,12 @@ This module contains gateware designed to assist with endpoint/transfer state ma
 Its components facilitate data transfer longer than a single packet.
 '''
 
-from torii.hdl     import Array, Elaboratable, Module, Signal
-from torii.hdl.mem import Memory
+from torii.hdl               import Array, Elaboratable, Module, Signal
+from torii.hdl.mem           import Memory
+from torii.lib.stream.simple import StreamInterface
 
-from ...stream     import StreamInterface
-from ..stream      import USBInStreamInterface
-from .packet       import HandshakeExchangeInterface, TokenDetectorInterface
+from ..stream                import USBInStreamInterface
+from .packet                 import HandshakeExchangeInterface, TokenDetectorInterface
 
 class USBInTransferManager(Elaboratable):
 	''' Sequencer that converts a long data stream (a USB *transfer*) into a burst of USB packets.
@@ -180,14 +180,14 @@ class USBInTransferManager(Elaboratable):
 		m.d.comb += [
 
 			# We'll only ever -write- data from our input stream...
-			buffer_write_ports[0].data.eq(in_stream.payload),
+			buffer_write_ports[0].data.eq(in_stream.data),
 			buffer_write_ports[0].addr.eq(write_fill_count),
-			buffer_write_ports[1].data.eq(in_stream.payload),
+			buffer_write_ports[1].data.eq(in_stream.data),
 			buffer_write_ports[1].addr.eq(write_fill_count),
 
 			# ... and we'll only ever -send- data from the Read buffer.
 			buffer_read.addr.eq(send_position),
-			out_stream.payload.eq(buffer_read.data),
+			out_stream.data.eq(buffer_read.data),
 
 			# We're ready to receive data iff we have space in the buffer we're currently filling.
 			in_stream.ready.eq((write_fill_count != self._max_packet_size) & ~write_stream_ended),

@@ -42,7 +42,7 @@ class GetDescriptorHandlerBlockTest(USBGatewareTestCase):
 	def traces_of_interest(self):
 		dut = self.dut
 		return (dut.value, dut.length, dut.start_position, dut.start, dut.stall,
-				dut.tx.ready, dut.tx.first, dut.tx.last, dut.tx.payload, dut.tx.valid)
+				dut.tx.ready, dut.tx.first, dut.tx.last, dut.tx.data, dut.tx.valid)
 
 	def _test_descriptor(self, type_number, index, raw_descriptor, start_position, max_length, delay_ready = 0):
 		''' Triggers a read and checks if correct data is transmitted. '''
@@ -86,7 +86,7 @@ class GetDescriptorHandlerBlockTest(USBGatewareTestCase):
 				self.assertEqual((yield self.dut.tx.first),   1 if (i == 0) else 0)
 				self.assertEqual((yield self.dut.tx.last),    1 if (i == expected_bytes - 1) else 0)
 				self.assertEqual((yield self.dut.tx.valid),   1)
-				self.assertEqual((yield self.dut.tx.payload), expected_data[i])
+				self.assertEqual((yield self.dut.tx.data), expected_data[i])
 				self.assertEqual((yield self.dut.stall),      0)
 				yield
 
