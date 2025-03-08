@@ -11,7 +11,7 @@ Please see the [installation instructions] on the [online documentation]
 ## License
 
 The Torii-USB gateware is released under the [BSD-3-Clause], the full text of which can be found in the [`LICENSE`] file.
-`
+
 The Torii-USB documentation is released under the [CC-BY-4.0], the full text of which can be found in the [`LICENSE.docs`] file.
 
 [Luna]: https://github.com/greatscottgadgets/luna/
