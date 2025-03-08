@@ -3,6 +3,8 @@
 import shutil
 from os             import getenv
 from pathlib        import Path
+from sys            import implementation
+
 
 import nox
 from nox.sessions   import Session
@@ -15,8 +17,9 @@ CNTRB_DIR = (ROOT_DIR  / 'contrib')
 DOCS_DIR  = (ROOT_DIR  / 'docs')
 DIST_DIR  = (BUILD_DIR / 'dist')
 
+IS_PYPY         = implementation.name == 'pypy'
 IN_CI           = getenv('GITHUB_WORKSPACE') is not None
-ENABLE_COVERAGE = IN_CI or getenv('TORII_TEST_COVERAGE') is not None
+ENABLE_COVERAGE = (IN_CI or getenv('TORII_TEST_COVERAGE') is not None) and not IS_PYPY
 
 # Default sessions to run
 nox.options.sessions = (
