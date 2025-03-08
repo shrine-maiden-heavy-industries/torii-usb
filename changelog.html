@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog &mdash; Torii-USB 0.1.dev806 documentation</title>
+  <title>Changelog &mdash; Torii-USB 0.7.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
       <link rel="stylesheet" type="text/css" href="_static/css/styles.css?v=e585626c" />
       <link rel="stylesheet" type="text/css" href="_static/platformpicker.css" />
@@ -16,7 +16,7 @@
     <link rel="canonical" href="https://torii-usb.shmdn.link/changelog.html" />
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=b18395b7"></script>
+      <script src="_static/documentation_options.js?v=423e15eb"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/platformpicker.js"></script>
@@ -71,6 +71,12 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#updating-imports">Updating Imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#soc-support">SoC Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#the-streams-module">The <code class="docutils literal notranslate"><span class="pre">streams</span></code> Module</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#prerequisites">Prerequisites</a></li>
 </ul>
@@ -121,13 +127,9 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="gateware/stream/index.html">Stream</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#arbiter">Arbiter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#module-torii_usb.stream.generator">Generator</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.generator.ConstantStreamGenerator"><code class="docutils literal notranslate"><span class="pre">ConstantStreamGenerator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.generator.StreamSerializer"><code class="docutils literal notranslate"><span class="pre">StreamSerializer</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="gateware/stream/index.html">Generator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.generator.ConstantStreamGenerator"><code class="docutils literal notranslate"><span class="pre">ConstantStreamGenerator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.generator.StreamSerializer"><code class="docutils literal notranslate"><span class="pre">StreamSerializer</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="gateware/usb/index.html">USB</a><ul>
@@ -195,6 +197,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#fixed">Fixed</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#v0-7-0">v0.7.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Removed</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/">Source Code</a></li>
@@ -256,6 +263,38 @@ Unreleased template stuff
 </section>
 <section id="fixed">
 <h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading"></a></h3>
+</section>
+</section>
+<section id="v0-7-0">
+<h2><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/e84197f...v0.7.0">v0.7.0</a><a class="headerlink" href="#v0-7-0" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>[!IMPORTANT]
+This is the first release after the split from <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/sol">SOL</a>, This is primarily a release to set things up</p>
+</div></blockquote>
+<section id="id1">
+<h3>Changed<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sol_usb</span></code> and <code class="docutils literal notranslate"><span class="pre">sol_usb.gateware</span></code> are now just <code class="docutils literal notranslate"><span class="pre">torii_usb</span></code></p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Removed<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Built in <code class="docutils literal notranslate"><span class="pre">StreamInterface</span></code> and <code class="docutils literal notranslate"><span class="pre">StreamArbiter</span></code> in favor of Torii’s</p></li>
+<li><p>Existing examples (for now)</p></li>
+<li><p>SoC components</p></li>
+<li><p>ILA components</p></li>
+<li><p>Platform components</p></li>
+<li><p>USB Analyzer component</p></li>
+<li><p>Applet components</p></li>
+<li><p>cli runner</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eptri</span></code> interface</p></li>
+<li><p>flash interface</p></li>
+<li><p>jtag interface</p></li>
+<li><p>psram interface</p></li>
+<li><p>spi interface</p></li>
+<li><p>uart interface</p></li>
+</ul>
 </section>
 </section>
 </section>

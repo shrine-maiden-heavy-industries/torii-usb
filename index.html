@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Torii-USB: USB Gateware Library &mdash; Torii-USB 0.1.dev806 documentation</title>
+  <title>Torii-USB: USB Gateware Library &mdash; Torii-USB 0.7.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
       <link rel="stylesheet" type="text/css" href="_static/css/styles.css?v=e585626c" />
       <link rel="stylesheet" type="text/css" href="_static/platformpicker.css" />
@@ -16,7 +16,7 @@
     <link rel="canonical" href="https://torii-usb.shmdn.link/index.html" />
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=b18395b7"></script>
+      <script src="_static/documentation_options.js?v=423e15eb"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/platformpicker.js"></script>
@@ -71,6 +71,12 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#updating-imports">Updating Imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#soc-support">SoC Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#the-streams-module">The <code class="docutils literal notranslate"><span class="pre">streams</span></code> Module</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#prerequisites">Prerequisites</a></li>
 </ul>
@@ -121,13 +127,9 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="gateware/stream/index.html">Stream</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#arbiter">Arbiter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#module-torii_usb.stream.generator">Generator</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.generator.ConstantStreamGenerator"><code class="docutils literal notranslate"><span class="pre">ConstantStreamGenerator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.generator.StreamSerializer"><code class="docutils literal notranslate"><span class="pre">StreamSerializer</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="gateware/stream/index.html">Generator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.generator.ConstantStreamGenerator"><code class="docutils literal notranslate"><span class="pre">ConstantStreamGenerator</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.generator.StreamSerializer"><code class="docutils literal notranslate"><span class="pre">StreamSerializer</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="gateware/usb/index.html">USB</a><ul>
@@ -195,6 +197,11 @@
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#fixed">Fixed</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-7-0">v0.7.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id1">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id2">Removed</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/">Source Code</a></li>
@@ -232,8 +239,9 @@
 <p class="admonition-title">Warning</p>
 <p>This documentation is a work in progress and is seriously incomplete!</p>
 </div>
-<p>Torii-USB is a fork of the <a class="reference external" href="https://github.com/greatscottgadgets/luna">Luna</a> USB platform for <a class="reference external" href="https://github.com/amaranth-lang/amaranth">Amaranth</a>, it was ported to <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-hdl">Torii</a> originally under the name [SOL] where it retained all of the platform and SoC machinery.</p>
-<p>Later it was broken out into Torii-USB which is just purely the USB gateware, all of the hardware and SoC support has been retained by [SOL], but breaking it out into it’s own dedicated library allows for isolating dependencies as needed.</p>
+<p>Torii-USB is a fork of the <a class="reference external" href="https://github.com/greatscottgadgets/luna">Luna</a> USB platform for <a class="reference external" href="https://github.com/amaranth-lang/amaranth">Amaranth</a>, it was ported to <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-hdl">Torii</a> originally under the name <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/sol">SOL</a> where it retained all of the platform and SoC machinery.</p>
+<p>Later it was broken out into Torii-USB which is just purely the USB gateware, all of the hardware and SoC support has been retained by <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/sol">SOL</a>, but breaking it out into it’s own dedicated library allows for isolating dependencies as needed.</p>
+<p>See the Torii-USB to SOL <a class="reference internal" href="migration.html"><span class="std std-doc">migration guide</span></a> for information on migrating from SOL to Torii-USB.</p>
 <p>For more information on Torii-USB, see the <a class="reference internal" href="intro.html"><span class="std std-doc">Introduction</span></a> and check out the <a class="reference internal" href="getting_started.html"><span class="std std-doc">Getting Started</span></a> guide for how to get up and running with Torii-USB.</p>
 </section>
 

@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting Started &mdash; Torii-USB 0.7.0 documentation</title>
+  <title>Migration Guide &mdash; Torii-USB 0.7.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
       <link rel="stylesheet" type="text/css" href="_static/css/styles.css?v=e585626c" />
       <link rel="stylesheet" type="text/css" href="_static/platformpicker.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/styles.css?v=e585626c" />
 
   
-    <link rel="canonical" href="https://torii-usb.shmdn.link/getting_started.html" />
+    <link rel="canonical" href="https://torii-usb.shmdn.link/migration.html" />
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=423e15eb"></script>
@@ -27,8 +27,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tutorials" href="tutorials/index.html" />
-    <link rel="prev" title="Migration Guide" href="migration.html" /> 
+    <link rel="next" title="Getting Started" href="getting_started.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -72,14 +72,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="migration.html#updating-imports">Updating Imports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="migration.html#soc-support">SoC Support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="migration.html#the-streams-module">The <code class="docutils literal notranslate"><span class="pre">streams</span></code> Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Migration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#updating-imports">Updating Imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#soc-support">SoC Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-streams-module">The <code class="docutils literal notranslate"><span class="pre">streams</span></code> Module</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#prerequisites">Prerequisites</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a></li>
@@ -222,9 +222,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="breadcrumb-item active">Migration Guide</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/shrine-maiden-heavy-industries/torii-usb/blob/main/docs/getting_started.md" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/shrine-maiden-heavy-industries/torii-usb/blob/main/docs/migration.md" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -232,16 +232,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>The rest of this documentation needs to be written.</p>
+  <section id="migration-guide">
+<h1>Migration Guide<a class="headerlink" href="#migration-guide" title="Link to this heading"></a></h1>
+<p>The migration from <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/sol">SOL</a> <code class="docutils literal notranslate"><span class="pre">v0.5.0</span></code> to Torii-USB is very simple. There are just a few minor differences.</p>
+<ul class="simple">
+<li><p>Updated name from <code class="docutils literal notranslate"><span class="pre">sol_usb</span></code> to <code class="docutils literal notranslate"><span class="pre">torii_usb</span></code>.</p></li>
+<li><p>Dropping the <code class="docutils literal notranslate"><span class="pre">.gateware</span></code> module.</p></li>
+<li><p>Dropping SoC support.</p></li>
+<li><p>Removal of a chunk of the <code class="docutils literal notranslate"><span class="pre">streams</span></code> module.</p></li>
+</ul>
+<section id="updating-imports">
+<h2>Updating Imports<a class="headerlink" href="#updating-imports" title="Link to this heading"></a></h2>
+<p>If you were not doing anything super involved, then replacing all instances of <code class="docutils literal notranslate"><span class="pre">sol_usb</span></code> and <code class="docutils literal notranslate"><span class="pre">sol_usb.gateware</span></code> with <code class="docutils literal notranslate"><span class="pre">torii_usb</span></code> will be enough.</p>
+<p>For instance, the code below:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sol_usb.usb2</span><span class="w">                      </span><span class="kn">import</span> <span class="n">USBDevice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sol_usb.gateware.usb.usb2.request</span><span class="w"> </span><span class="kn">import</span> <span class="n">USBRequestHandler</span><span class="p">,</span> <span class="n">SetupPacket</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sol_usb.gateware.usb.stream</span><span class="w">       </span><span class="kn">import</span> <span class="n">USBInStreamInterface</span><span class="p">,</span> <span class="n">USBOutStreamInterface</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sol_usb.gateware.stream.generator</span><span class="w"> </span><span class="kn">import</span> <span class="n">StreamSerializer</span>
+</pre></div>
 </div>
-<p>This section demonstrates the basic Torii workflow to provide a cursory overview of the language and the toolchain. See the <a class="reference internal" href="tutorials/index.html"><span class="std std-doc">Tutorials</span></a> section for a step-by-step introduction to Torii-USB.</p>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
-<p>Before you get started, you should <a class="reference internal" href="install.html"><span class="std std-doc">install Torii-USB</span></a> and its dependencies. You should also install a supported FPGA toolchain.</p>
+<p>Becomes:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">torii_usb.usb2</span><span class="w">             </span><span class="kn">import</span> <span class="n">USBDevice</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torii_usb.usb.usb2.request</span><span class="w"> </span><span class="kn">import</span> <span class="n">USBRequestHandler</span><span class="p">,</span> <span class="n">SetupPacket</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torii_usb.usb.stream</span><span class="w">       </span><span class="kn">import</span> <span class="n">USBInStreamInterface</span><span class="p">,</span> <span class="n">USBOutStreamInterface</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torii_usb.stream.generator</span><span class="w"> </span><span class="kn">import</span> <span class="n">StreamSerializer</span>
+
+</pre></div>
+</div>
+</section>
+<section id="soc-support">
+<h2>SoC Support<a class="headerlink" href="#soc-support" title="Link to this heading"></a></h2>
+<p>If you were using the SoC support parts of SOL, then continue to do so, SOL is being updated to use <code class="docutils literal notranslate"><span class="pre">torii_usb</span></code> on the backend, but it will retain all public facing API for the SoC components.</p>
+</section>
+<section id="the-streams-module">
+<h2>The <code class="docutils literal notranslate"><span class="pre">streams</span></code> Module<a class="headerlink" href="#the-streams-module" title="Link to this heading"></a></h2>
+<p>The built-in streams module has mostly been subsumed by <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-hdl">Torii</a>’s <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-hdl/blob/main/torii/lib/stream/simple.py"><code class="docutils literal notranslate"><span class="pre">torii.lib.streams.simple</span></code></a>.</p>
+<p>For the most part it’s a drop-in replacement, it has <code class="docutils literal notranslate"><span class="pre">StreamInterface</span></code> and <code class="docutils literal notranslate"><span class="pre">StreamArbiter</span></code>, so the <code class="docutils literal notranslate"><span class="pre">.stream.arbiter</span></code> module has been dropped.</p>
+<p>For the moment, we still retain the <code class="docutils literal notranslate"><span class="pre">.stream.generators</span></code> module and it’s contents, as they have yet to be integrated into Torii.</p>
 </section>
 </section>
 
@@ -255,8 +282,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="migration.html" class="btn btn-neutral float-left" title="Migration Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tutorials/index.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
