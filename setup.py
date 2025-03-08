@@ -71,6 +71,11 @@ setup(
 		'dev': [
 			'nox',
 		],
+		'examples': [
+			'torii-boards>=0.7.5,<1.0',
+			'libusb1',
+			'pyusb',
+		]
 	},
 
 	packages = find_packages(
