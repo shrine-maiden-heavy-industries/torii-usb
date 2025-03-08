@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stream &mdash; Torii-USB 0.1.dev800 documentation</title>
+  <title>Stream &mdash; Torii-USB 0.1.dev804 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/styles.css?v=e585626c" />
       <link rel="stylesheet" type="text/css" href="../../_static/platformpicker.css" />
@@ -16,7 +16,7 @@
     <link rel="canonical" href="https://torii-usb.shmdn.link/gateware/stream/index.html" />
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=3052726e"></script>
+      <script src="../../_static/documentation_options.js?v=781c353f"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../_static/platformpicker.js"></script>
@@ -123,16 +123,7 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Stream</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#torii_usb.stream.StreamInterface"><code class="docutils literal notranslate"><span class="pre">StreamInterface</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#torii_usb.stream.StreamInterface.stream_eq"><code class="docutils literal notranslate"><span class="pre">StreamInterface.stream_eq()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#torii_usb.stream.StreamInterface.tap"><code class="docutils literal notranslate"><span class="pre">StreamInterface.tap()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-torii_usb.stream.arbiter">Arbiter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#torii_usb.stream.arbiter.StreamMultiplexer"><code class="docutils literal notranslate"><span class="pre">StreamMultiplexer</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#torii_usb.stream.arbiter.StreamArbiter"><code class="docutils literal notranslate"><span class="pre">StreamArbiter</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#arbiter">Arbiter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-torii_usb.stream.generator">Generator</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#torii_usb.stream.generator.ConstantStreamGenerator"><code class="docutils literal notranslate"><span class="pre">ConstantStreamGenerator</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#torii_usb.stream.generator.StreamSerializer"><code class="docutils literal notranslate"><span class="pre">StreamSerializer</span></code></a></li>
@@ -242,103 +233,8 @@
   <section id="module-torii_usb.stream">
 <span id="stream"></span><h1>Stream<a class="headerlink" href="#module-torii_usb.stream" title="Link to this heading"></a></h1>
 <p>Core stream definitions.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="torii_usb.stream.StreamInterface">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">torii_usb.stream.</span></span><span class="sig-name descname"><span class="pre">StreamInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.stream.StreamInterface" title="Link to this definition"></a></dt>
-<dd><p>Simple record implementing a unidirectional data stream.</p>
-<p>This class is similar to LiteX’s streams; but instances may be optimized for
-interaction with USB PHYs. Accordingly, some uses may add restrictions; this
-is typically indicated by subclassing this interface.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>valid</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>from originator</em>) – Indicates that the current payload bytes are valid pieces of the current transaction.</p></li>
-<li><p><strong>first</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>from originator</em>) – Indicates that the payload byte is the first byte of a new packet.</p></li>
-<li><p><strong>last</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>from originator</em>) – Indicates that the payload byte is the last byte of the current packet.</p></li>
-<li><p><strong>payload</strong> (<em>Signal</em><em>(</em><em>payload_width</em><em>)</em><em>, </em><em>from originator</em>) – The data payload to be transmitted.</p></li>
-<li><p><strong>ready</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>from receiver</em>) – Indicates that the receiver will accept the payload byte at the next active
-clock edge. Can be de-asserted to put backpressure on the transmitter.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>payload_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The width of the stream’s payload, in bits.</p></li>
-<li><p><strong>extra_fields</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><em>tuples</em><em>, </em><em>optional</em>) – A flat (non-nested) list of tuples indicating any extra fields present.
-Similar to a record’s layout field; but cannot be nested.</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="torii_usb.stream.StreamInterface.stream_eq">
-<span class="sig-name descname"><span class="pre">stream_eq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interface</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">omit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.stream.StreamInterface.stream_eq" title="Link to this definition"></a></dt>
-<dd><p>A hopefully more clear version of.connect() that more clearly indicates data_flow direction.</p>
-<p>This will either solve a common footgun or introduce a new one. We’ll see and adapt accordingly.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="torii_usb.stream.StreamInterface.tap">
-<span class="sig-name descname"><span class="pre">tap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interface</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">tap_ready</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.stream.StreamInterface.tap" title="Link to this definition"></a></dt>
-<dd><p>Simple extension to stream_eq() that captures a read-only view of the stream.</p>
-<p>This connects all signals from <code class="docutils literal notranslate"><span class="pre">interface</span></code> to their equivalents in this stream.</p>
-</dd></dl>
-
-</dd></dl>
-
-<section id="module-torii_usb.stream.arbiter">
-<span id="arbiter"></span><h2>Arbiter<a class="headerlink" href="#module-torii_usb.stream.arbiter" title="Link to this heading"></a></h2>
-<p>Stream multiplexers/arbiters.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="torii_usb.stream.arbiter.StreamMultiplexer">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">torii_usb.stream.arbiter.</span></span><span class="sig-name descname"><span class="pre">StreamMultiplexer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_loc_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.stream.arbiter.StreamMultiplexer" title="Link to this definition"></a></dt>
-<dd><p>Gateware that merges a collection of StreamInterfaces into a single interface.</p>
-<p>This variant performs no scheduling. Assumes that only one stream will be communicating at once.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>output</strong> (<a class="reference internal" href="#torii_usb.stream.StreamInterface" title="torii_usb.stream.StreamInterface"><em>StreamInterface</em></a><em>(</em><em>)</em><em>, </em><em>output stream</em>) – Our output interface; has all of the active busses merged together.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="torii_usb.stream.arbiter.StreamMultiplexer.add_input">
-<span class="sig-name descname"><span class="pre">add_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_interface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.stream.arbiter.StreamMultiplexer.add_input" title="Link to this definition"></a></dt>
-<dd><p>Adds a transmit interface to the multiplexer.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="torii_usb.stream.arbiter.StreamArbiter">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">torii_usb.stream.arbiter.</span></span><span class="sig-name descname"><span class="pre">StreamArbiter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_loc_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.stream.arbiter.StreamArbiter" title="Link to this definition"></a></dt>
-<dd><p>Gateware that merges a collection of StreamInterfaces into a single interface.</p>
-<p>This variant uses a simple priority scheduler; and will use a standard valid/ready handshake
-to schedule a single stream to communicate at a time. Bursts of <code class="docutils literal notranslate"><span class="pre">valid</span></code> will never be interrupted,
-so streams will only be switched once the current transmitter drops <code class="docutils literal notranslate"><span class="pre">valid</span></code> low.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<a class="reference internal" href="#torii_usb.stream.StreamInterface" title="torii_usb.stream.StreamInterface"><em>StreamInterface</em></a><em>(</em><em>)</em><em>, </em><em>output stream</em>) – Our output interface; has all of the active busses merged together.</p></li>
-<li><p><strong>idle</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Asserted when none of our streams is currently active.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>stream_type</strong> (<em>subclass</em><em> of </em><a class="reference internal" href="#torii_usb.stream.StreamInterface" title="torii_usb.stream.StreamInterface"><em>StreamInterface</em></a>) – If provided, sets the type of stream we’ll be multiplexing (and thus our output type).</p></li>
-<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The name of the domain in which this arbiter should operate. Defaults to ‘      sync’   .</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="torii_usb.stream.arbiter.StreamArbiter.add_stream">
-<span class="sig-name descname"><span class="pre">add_stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.stream.arbiter.StreamArbiter.add_stream" title="Link to this definition"></a></dt>
-<dd><p>Adds a stream to our arbiter.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>stream</strong> (<em>StreamInterface subclass</em>) – The stream to be added. Streams added first will have higher priority.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<section id="arbiter">
+<h2>Arbiter<a class="headerlink" href="#arbiter" title="Link to this heading"></a></h2>
 </section>
 <section id="module-torii_usb.stream.generator">
 <span id="generator"></span><h2>Generator<a class="headerlink" href="#module-torii_usb.stream.generator" title="Link to this heading"></a></h2>
@@ -365,11 +261,15 @@ Only present if the <cite>max_length_width</cite> parameter is provided on creat
 <dd class="field-even"><ul class="simple">
 <li><p><strong>constant_data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.13)"><em>bytes</em></a><em>, or </em><em>equivalent</em>) – The constant data for the stream to be generated.
 Should be an iterable of integers; or, if data_width is divisible by 8, a bytes-like object.</p></li>
-<li><p><strong>domain</strong> (<em>string</em>) – The clock domain this generator should belong to. Defaults to ‘sync’.</p></li>
-<li><p><strong>stream_type</strong> (<a class="reference internal" href="#torii_usb.stream.StreamInterface" title="torii_usb.stream.StreamInterface"><em>StreamInterface</em></a><em>, or </em><em>subclass</em>) – The type of stream we’ll be multiplexing.</p></li>
-<li><p><strong>data_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – The width of the constant payload. If not provided; will be taken from the stream’s payload width.</p></li>
-<li><p><strong>max_length_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – If provided, a <cite>max_length</cite> signal will be present that can limit the total length transmitted.</p></li>
-<li><p><strong>data_endianness</strong> (<em>little</em>) – If bytes are provided, and our data width is greater</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The clock domain this generator should belong to.
+(default: ‘sync’)</p></li>
+<li><p><strong>stream_type</strong> (<em>StreamInterface</em><em>, or </em><em>subclass</em>) – The type of stream we’ll be multiplexing.</p></li>
+<li><p><strong>data_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em> | </em><em>None</em>) – The width of the constant payload. If not provided; will be taken from the stream’s payload width.
+(default: None)</p></li>
+<li><p><strong>max_length_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em> | </em><em>None</em>) – If provided, a <cite>max_length</cite> signal will be present that can limit the total length transmitted.
+(default: None)</p></li>
+<li><p><strong>data_endianness</strong> (<em>'little'</em><em> | </em><em>'big'</em>) – If bytes are provided, and our data width is greater.
+(default: ‘little’)</p></li>
 </ul>
 </dd>
 </dl>

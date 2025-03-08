@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Torii-USB 0.1.dev800 documentation</title>
+  <title>Index &mdash; Torii-USB 0.1.dev804 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5349f25f" />
       <link rel="stylesheet" type="text/css" href="_static/css/styles.css?v=e585626c" />
       <link rel="stylesheet" type="text/css" href="_static/platformpicker.css" />
@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://torii-usb.shmdn.link/genindex.html" />
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=3052726e"></script>
+      <script src="_static/documentation_options.js?v=781c353f"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/platformpicker.js"></script>
@@ -120,16 +120,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="gateware/stream/index.html">Stream</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.StreamInterface"><code class="docutils literal notranslate"><span class="pre">StreamInterface</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.StreamInterface.stream_eq"><code class="docutils literal notranslate"><span class="pre">StreamInterface.stream_eq()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.StreamInterface.tap"><code class="docutils literal notranslate"><span class="pre">StreamInterface.tap()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#module-torii_usb.stream.arbiter">Arbiter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.arbiter.StreamMultiplexer"><code class="docutils literal notranslate"><span class="pre">StreamMultiplexer</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.arbiter.StreamArbiter"><code class="docutils literal notranslate"><span class="pre">StreamArbiter</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#arbiter">Arbiter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gateware/stream/index.html#module-torii_usb.stream.generator">Generator</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.generator.ConstantStreamGenerator"><code class="docutils literal notranslate"><span class="pre">ConstantStreamGenerator</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="gateware/stream/index.html#torii_usb.stream.generator.StreamSerializer"><code class="docutils literal notranslate"><span class="pre">StreamSerializer</span></code></a></li>
@@ -282,8 +273,6 @@
       </ul></li>
       <li><a href="gateware/interface/ulpi.html#torii_usb.interface.ulpi.UTMITranslator.add_extra_register">add_extra_register() (torii_usb.interface.ulpi.UTMITranslator method)</a>
 </li>
-      <li><a href="gateware/stream/index.html#torii_usb.stream.arbiter.StreamMultiplexer.add_input">add_input() (torii_usb.stream.arbiter.StreamMultiplexer method)</a>
-</li>
       <li><a href="gateware/usb/usb2/endpoint.html#torii_usb.usb.usb2.endpoint.USBEndpointMultiplexer.add_interface">add_interface() (torii_usb.usb.usb2.endpoint.USBEndpointMultiplexer method)</a>
 
       <ul>
@@ -324,8 +313,6 @@
         <li><a href="gateware/usb/usb3/endpoints.html#torii_usb.usb.usb3.endpoints.USB3ControlEndpoint.add_standard_request_handlers">(torii_usb.usb.usb3.endpoints.USB3ControlEndpoint method)</a>
 </li>
       </ul></li>
-      <li><a href="gateware/stream/index.html#torii_usb.stream.arbiter.StreamArbiter.add_stream">add_stream() (torii_usb.stream.arbiter.StreamArbiter method)</a>
-</li>
       <li><a href="gateware/interface/pipe.html#torii_usb.interface.pipe.AsyncPIPEInterface">AsyncPIPEInterface (class in torii_usb.interface.pipe)</a>
 </li>
       <li><a href="gateware/interface/utmi.html#torii_usb.interface.utmi.UTMITransmitInterface.attach">attach() (torii_usb.interface.utmi.UTMITransmitInterface method)</a>
@@ -620,8 +607,6 @@
 </li>
         <li><a href="gateware/stream/index.html#module-torii_usb.stream">torii_usb.stream</a>
 </li>
-        <li><a href="gateware/stream/index.html#module-torii_usb.stream.arbiter">torii_usb.stream.arbiter</a>
-</li>
         <li><a href="gateware/stream/index.html#module-torii_usb.stream.generator">torii_usb.stream.generator</a>
 </li>
         <li><a href="gateware/usb/index.html#module-torii_usb.usb">torii_usb.usb</a>
@@ -847,29 +832,21 @@
       </ul></li>
       <li><a href="gateware/usb/usb3/protocol.html#torii_usb.usb.usb3.protocol.transaction.StatusHeaderPacket">StatusHeaderPacket (class in torii_usb.usb.usb3.protocol.transaction)</a>
 </li>
-      <li><a href="gateware/stream/index.html#torii_usb.stream.StreamInterface.stream_eq">stream_eq() (torii_usb.stream.StreamInterface method)</a>
+      <li><a href="gateware/usb/stream.html#torii_usb.usb.stream.USBOutStreamInterface.stream_eq">stream_eq() (torii_usb.usb.stream.USBOutStreamInterface method)</a>
 
       <ul>
-        <li><a href="gateware/usb/stream.html#torii_usb.usb.stream.USBOutStreamInterface.stream_eq">(torii_usb.usb.stream.USBOutStreamInterface method)</a>
-</li>
         <li><a href="gateware/usb/stream.html#torii_usb.usb.stream.USBRawSuperSpeedStream.stream_eq">(torii_usb.usb.stream.USBRawSuperSpeedStream method)</a>
 </li>
         <li><a href="gateware/usb/usb3/link.html#torii_usb.usb.usb3.link.header.HeaderQueue.stream_eq">(torii_usb.usb.usb3.link.header.HeaderQueue method)</a>
 </li>
       </ul></li>
-      <li><a href="gateware/usb/usb3/physical.html#torii_usb.usb.usb3.physical.coding.stream_matches_symbols">stream_matches_symbols() (in module torii_usb.usb.usb3.physical.coding)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="gateware/usb/usb3/physical.html#torii_usb.usb.usb3.physical.coding.stream_matches_symbols">stream_matches_symbols() (in module torii_usb.usb.usb3.physical.coding)</a>
+</li>
       <li><a href="gateware/usb/usb3/physical.html#torii_usb.usb.usb3.physical.coding.stream_word_matches_symbol">stream_word_matches_symbol() (in module torii_usb.usb.usb3.physical.coding)</a>
 </li>
-      <li><a href="gateware/stream/index.html#torii_usb.stream.arbiter.StreamArbiter">StreamArbiter (class in torii_usb.stream.arbiter)</a>
-</li>
       <li><a href="gateware/usb/usb2/deserializer.html#torii_usb.usb.usb2.deserializer.StreamDeserializer">StreamDeserializer (class in torii_usb.usb.usb2.deserializer)</a>
-</li>
-      <li><a href="gateware/stream/index.html#torii_usb.stream.StreamInterface">StreamInterface (class in torii_usb.stream)</a>
-</li>
-      <li><a href="gateware/stream/index.html#torii_usb.stream.arbiter.StreamMultiplexer">StreamMultiplexer (class in torii_usb.stream.arbiter)</a>
 </li>
       <li><a href="gateware/stream/index.html#torii_usb.stream.generator.StreamSerializer">StreamSerializer (class in torii_usb.stream.generator)</a>
 </li>
@@ -899,8 +876,6 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="gateware/stream/index.html#torii_usb.stream.StreamInterface.tap">tap() (torii_usb.stream.StreamInterface method)</a>
-</li>
       <li><a href="gateware/usb/usb3/protocol.html#torii_usb.usb.usb3.protocol.timestamp.TimestampPacketReceiver">TimestampPacketReceiver (class in torii_usb.usb.usb3.protocol.timestamp)</a>
 </li>
       <li><a href="gateware/usb/usb2/packet.html#torii_usb.usb.usb2.packet.TokenDetectorInterface">TokenDetectorInterface (class in torii_usb.usb.usb2.packet)</a>
@@ -1001,13 +976,6 @@
 
       <ul>
         <li><a href="gateware/stream/index.html#module-torii_usb.stream">module</a>
-</li>
-      </ul></li>
-      <li>
-    torii_usb.stream.arbiter
-
-      <ul>
-        <li><a href="gateware/stream/index.html#module-torii_usb.stream.arbiter">module</a>
 </li>
       </ul></li>
       <li>

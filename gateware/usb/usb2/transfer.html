@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transfer &mdash; Torii-USB 0.1.dev800 documentation</title>
+  <title>Transfer &mdash; Torii-USB 0.1.dev804 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5349f25f" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/styles.css?v=e585626c" />
       <link rel="stylesheet" type="text/css" href="../../../_static/platformpicker.css" />
@@ -16,7 +16,7 @@
     <link rel="canonical" href="https://torii-usb.shmdn.link/gateware/usb/usb2/transfer.html" />
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=3052726e"></script>
+      <script src="../../../_static/documentation_options.js?v=781c353f"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/platformpicker.js"></script>
@@ -123,16 +123,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../stream/index.html">Stream</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.StreamInterface"><code class="docutils literal notranslate"><span class="pre">StreamInterface</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.StreamInterface.stream_eq"><code class="docutils literal notranslate"><span class="pre">StreamInterface.stream_eq()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.StreamInterface.tap"><code class="docutils literal notranslate"><span class="pre">StreamInterface.tap()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../stream/index.html#module-torii_usb.stream.arbiter">Arbiter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.arbiter.StreamMultiplexer"><code class="docutils literal notranslate"><span class="pre">StreamMultiplexer</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.arbiter.StreamArbiter"><code class="docutils literal notranslate"><span class="pre">StreamArbiter</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="../../stream/index.html#arbiter">Arbiter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../stream/index.html#module-torii_usb.stream.generator">Generator</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.generator.ConstantStreamGenerator"><code class="docutils literal notranslate"><span class="pre">ConstantStreamGenerator</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.generator.StreamSerializer"><code class="docutils literal notranslate"><span class="pre">StreamSerializer</span></code></a></li>
@@ -255,7 +246,7 @@ Its components facilitate data transfer longer than a single packet.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>active</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Held high to enable this module to send packets to the host, and interpret tokens from the host.
 This is typically equivalent to the relevant endpoint being addressed by the host.</p></li>
-<li><p><strong>transfer_stream</strong> (<a class="reference internal" href="../../stream/index.html#torii_usb.stream.StreamInterface" title="torii_usb.stream.StreamInterface"><em>StreamInterface</em></a><em>, </em><em>input stream</em>) – <p>Input stream; accepts transfer data to be sent on the endpoint. This stream represents
+<li><p><strong>transfer_stream</strong> (<em>StreamInterface</em><em>, </em><em>input stream</em>) – <p>Input stream; accepts transfer data to be sent on the endpoint. This stream represents
 a USB transfer, and can be as long as is desired; and will be sent in max-packet-size chunks.</p>
 <p>For this stream: <code class="docutils literal notranslate"><span class="pre">first</span></code> is ignored; and thus entirely optional. <code class="docutils literal notranslate"><span class="pre">last</span></code> is optional;
 if it is not provided; this module will send only max-length-packets, sending a new packet

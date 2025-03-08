@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Link &mdash; Torii-USB 0.1.dev800 documentation</title>
+  <title>Link &mdash; Torii-USB 0.1.dev804 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5349f25f" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/styles.css?v=e585626c" />
       <link rel="stylesheet" type="text/css" href="../../../_static/platformpicker.css" />
@@ -16,7 +16,7 @@
     <link rel="canonical" href="https://torii-usb.shmdn.link/gateware/usb/usb3/link.html" />
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=3052726e"></script>
+      <script src="../../../_static/documentation_options.js?v=781c353f"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/platformpicker.js"></script>
@@ -123,16 +123,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../stream/index.html">Stream</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.StreamInterface"><code class="docutils literal notranslate"><span class="pre">StreamInterface</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.StreamInterface.stream_eq"><code class="docutils literal notranslate"><span class="pre">StreamInterface.stream_eq()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.StreamInterface.tap"><code class="docutils literal notranslate"><span class="pre">StreamInterface.tap()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../../stream/index.html#module-torii_usb.stream.arbiter">Arbiter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.arbiter.StreamMultiplexer"><code class="docutils literal notranslate"><span class="pre">StreamMultiplexer</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.arbiter.StreamArbiter"><code class="docutils literal notranslate"><span class="pre">StreamArbiter</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="../../stream/index.html#arbiter">Arbiter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../stream/index.html#module-torii_usb.stream.generator">Generator</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.generator.ConstantStreamGenerator"><code class="docutils literal notranslate"><span class="pre">ConstantStreamGenerator</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../stream/index.html#torii_usb.stream.generator.StreamSerializer"><code class="docutils literal notranslate"><span class="pre">StreamSerializer</span></code></a></li>
@@ -392,7 +383,7 @@ Header Packet Receiver.</p>
 <li><p><strong>header</strong> (<a class="reference internal" href="#torii_usb.usb.usb3.link.header.HeaderPacket" title="torii_usb.usb.usb3.link.header.HeaderPacket"><em>HeaderPacket</em></a><em>(</em><em>)</em><em>, </em><em>output</em>) – The header packet accompanying the current data packet. Valid once a packet begins
 to be received.</p></li>
 <li><p><strong>new_header</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; indicates that :attr:<code class="docutils literal notranslate"><span class="pre">header</span></code> has been updated.</p></li>
-<li><p><strong>source</strong> (<a class="reference internal" href="../../stream/index.html#torii_usb.stream.StreamInterface" title="torii_usb.stream.StreamInterface"><em>StreamInterface</em></a><em>(</em><em>)</em><em>, </em><em>output stream</em>) – A stream carrying the data received. Note that the data is not fully validated until
+<li><p><strong>source</strong> (<em>StreamInterface</em><em>(</em><em>)</em><em>, </em><em>output stream</em>) – A stream carrying the data received. Note that the data is not fully validated until
 the packet has been fully received; so this cannot be assumed</p></li>
 <li><p><strong>packet_good</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; indicates that the packet received passed validations and can be considered good.</p></li>
 <li><p><strong>packet_bad</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; indicates that the packet failed CRC checks, or did not end properly.</p></li>
