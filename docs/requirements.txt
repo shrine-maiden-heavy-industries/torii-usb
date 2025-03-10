@@ -1,7 +1,9 @@
 setuptools_scm
 sphinx
-sphinx-rtd-theme
-sphinxcontrib-platformpicker
-wavedrom
-sphinxcontrib-wavedrom
+furo
+sphinx-inline-tabs
+sphinx-autodoc-typehints
+sphinxext-opengraph
+sphinxcontrib-mermaid
+matplotlib
 myst-parser

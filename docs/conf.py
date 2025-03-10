@@ -1,11 +1,7 @@
 # SPDX-License-Identifier: BSD-2-Clause
 
 import datetime
-import os
-import sys
 from pathlib import Path
-
-sys.path.insert(0, os.path.abspath('.'))
 
 from torii_usb import __version__ as torii_usb_version
 
@@ -21,27 +17,27 @@ extensions = [
 	'sphinx.ext.autodoc',
 	'sphinx.ext.doctest',
 	'sphinx.ext.githubpages',
+	'sphinx.ext.graphviz',
 	'sphinx.ext.intersphinx',
 	'sphinx.ext.napoleon',
 	'sphinx.ext.todo',
-	'sphinxcontrib.platformpicker',
-	'sphinxcontrib.wavedrom',
+	'sphinxcontrib.mermaid',
 	'myst_parser',
-	'sphinx_rtd_theme',
+	'sphinx_inline_tabs',
+	'sphinxext.opengraph',
 ]
 
-with (ROOT_DIR / '.gitignore').open('r') as f:
-	exclude_patterns = [line.strip() for line in f.readlines()]
 
 source_suffix = {
 	'.rst': 'restructuredtext',
 	'.md': 'markdown',
 }
 
-pygments_style         = 'monokai'
-autodoc_member_order   = 'bysource'
-graphviz_output_format = 'svg'
-todo_include_todos     = True
+pygments_style              = 'monokai'
+autodoc_member_order        = 'bysource'
+autodoc_docstring_signature = False
+graphviz_output_format      = 'svg'
+todo_include_todos          = True
 
 intersphinx_mapping = {
 	'python': ('https://docs.python.org/3', None),
@@ -49,37 +45,21 @@ intersphinx_mapping = {
 	'usb_construct': ('https://usb-construct.shmdn.link/', None)
 }
 
-napoleon_google_docstring = False
-napoleon_numpy_docstring  = True
-napoleon_use_ivar         = True
+napoleon_google_docstring              = True
+napoleon_numpy_docstring               = True
+napoleon_use_ivar                      = True
+napoleon_use_admonition_for_notes      = True
+napoleon_use_admonition_for_examples   = True
+napoleon_use_admonition_for_references = True
 
 myst_heading_anchors = 3
 
-templates_path = [
-	'_templates',
-]
-
-html_context = {
-	'display_lower_left': False,
-	'current_language'  : language,
-	'current_version'   : torii_usb_version,
-	'version'           : torii_usb_version,
-	'display_github'    : True,
-	'github_user'       : 'shrine-maiden-heavy-industries',
-	'github_repo'       : 'torii-usb',
-	'github_version'    : 'main/docs/',
-	'versions'          : [
-		('latest', '/latest')
-	]
-}
-
-html_baseurl     = 'https://torii-usb.shmdn.link/'
-html_theme       = 'sphinx_rtd_theme'
+html_baseurl     = 'https://torii-usb.shmdn.link'
+html_theme       = 'furo'
 html_copy_source = False
 
 html_theme_options = {
-	'collapse_navigation' : False,
-	'style_external_links': True,
+	'top_of_page_buttons': [],
 }
 
 html_static_path = [
@@ -90,12 +70,8 @@ html_css_files = [
 	'css/styles.css'
 ]
 
-html_js_files = [
-	'js/wavedrom.min.js',
-	'js/wavedrom.skin.js',
-]
+# OpenGraph config bits
+ogp_site_url = html_baseurl
+ogp_image    = f'{html_baseurl}/_images/og-image.png'
 
-html_style = 'css/styles.css'
-
-offline_skin_js_path     = '_static/js/wavedrom.skin.js'
-offline_wavedrom_js_path = '_static/js/wavedrom.min.js'
+autosectionlabel_prefix_document = True
