@@ -27,7 +27,6 @@ from torii_usb.usb2             import USBDevice
 from torii_usb.usb.usb2.request import USBRequestHandler, SetupPacket
 from torii_usb.usb.stream       import USBInStreamInterface, USBOutStreamInterface
 from torii_usb.stream.generator import StreamSerializer
-
 ```
 
 ## SoC Support
