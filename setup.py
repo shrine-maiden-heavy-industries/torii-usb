@@ -63,7 +63,7 @@ setup(
 	],
 
 	install_requires = [
-		'torii>=0.7.6,<1.0',
+		'torii>=0.7.7,<1.0',
 		'usb-construct>=0.2.1,<1.0',
 	],
 

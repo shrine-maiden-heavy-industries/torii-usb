@@ -29,6 +29,12 @@ Unreleased template stuff
 
 ### Fixed
 
+## [v0.7.1]
+
+## Changed
+
+- Bumped Torii minimum version from `v0.7.6` to `v0.7.7`
+
 ## [v0.7.0]
 
 > [!IMPORTANT]
@@ -55,5 +61,6 @@ Unreleased template stuff
 - spi interface
 - uart interface
 
-[Unreleased]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/main...main
+[Unreleased]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.1...main
+[v0.7.1]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.0..v0.7.1
 [v0.7.0]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/e84197f...v0.7.0
