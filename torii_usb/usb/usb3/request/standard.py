@@ -8,12 +8,11 @@
 
 import unittest
 
-from torii.hdl                import Elaboratable, Module, Signal
+from torii.hdl                import Elaboratable, Fell, Module, Signal
 
 from usb_construct.emitters   import DeviceDescriptorCollection
 from usb_construct.types      import USBRequestType, USBStandardRequests
 
-from ....utils                import falling_edge_detected
 from ...stream                import SuperSpeedStreamInterface
 from ..application.descriptor import GetDescriptorHandler
 from ..application.request    import SuperSpeedRequestHandlerInterface
@@ -214,7 +213,7 @@ class StandardRequestHandler(Elaboratable):
 					# TODO: use the actual latencies once we support USB3 power states
 
 					# ACK the data that's coming in, once we get it; but ignore it for now
-					data_received = falling_edge_detected(m, interface.rx.valid, domain = 'ss')
+					data_received = Fell(interface.rx.valid, domain = 'ss')
 					with m.If(data_received):
 						m.d.comb += self.interface.handshakes_out.send_ack.eq(1)
 
@@ -227,7 +226,7 @@ class StandardRequestHandler(Elaboratable):
 				with m.State('UNHANDLED'):
 
 					# When we next have an opportunity to stall, do so, and then return to idle.
-					data_received = falling_edge_detected(m, interface.rx.valid, domain = 'ss')
+					data_received = Fell(interface.rx.valid, domain = 'ss')
 					with m.If(interface.data_requested | interface.status_requested | data_received):
 						m.d.comb += handshake_generator.send_stall.eq(1)
 						m.next = 'IDLE'

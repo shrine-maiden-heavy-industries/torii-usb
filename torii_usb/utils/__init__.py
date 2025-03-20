@@ -5,6 +5,8 @@
 
 ''' Simple utility constructs for Torii-USB. '''
 
+from warnings  import warn
+
 from torii.hdl import Signal
 
 from .cdc      import synchronize
@@ -37,6 +39,12 @@ def _single_edge_detector(m, signal, *, domain, edge = 'rising'):
 def past_value_of(m, signal, *, domain):
 	''' Generates and returns a signal that represents the value of another signal a cycle ago. '''
 
+	warn(
+		'past_value_of has been deprecated and will be removed in a future release, '
+		'please use the \'torii.hdl.Past\' construct instead',
+		DeprecationWarning,
+		stacklevel = 2
+	)
 	# Create a one-cycle delayed version of our input signal.
 	delayed = Signal()
 	m.d[domain] += delayed.eq(signal)
@@ -45,12 +53,33 @@ def past_value_of(m, signal, *, domain):
 
 def rising_edge_detected(m, signal, *, domain = 'sync'):
 	''' Generates and returns a signal that goes high for a cycle each rising edge of a given signal. '''
+
+	warn(
+		'rising_edge_detected has been deprecated and will be removed in a future release, '
+		'please use the \'torii.hdl.Rose\' construct instead',
+		DeprecationWarning,
+		stacklevel = 2
+	)
 	return _single_edge_detector(m, signal, edge = 'rising', domain = domain)
 
 def falling_edge_detected(m, signal, *, domain = 'sync'):
 	''' Generates and returns a signal that goes high for a cycle each rising edge of a given signal. '''
+
+	warn(
+		'falling_edge_detected has been deprecated and will be removed in a future release, '
+		'please use the \'torii.hdl.Fell\' construct instead',
+		DeprecationWarning,
+		stacklevel = 2
+	)
 	return _single_edge_detector(m, signal, edge = 'falling', domain = domain)
 
 def any_edge_detected(m, signal, *, domain = 'sync'):
 	''' Generates and returns a signal that goes high for a cycle each rising edge of a given signal. '''
+
+	warn(
+		'any_edge_detected has been deprecated and will be removed in a future release, '
+		'please use the \'torii.hdl.Edge\' construct instead',
+		DeprecationWarning,
+		stacklevel = 2
+	)
 	return _single_edge_detector(m, signal, edge = 'any', domain = domain)

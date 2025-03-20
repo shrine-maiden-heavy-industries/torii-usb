@@ -30,9 +30,9 @@ and to detect RX electrical idle.
 
 from math      import ceil
 
-from torii.hdl import Elaboratable, Module, Signal
+from torii.hdl import Elaboratable, Module, Rose, Signal
 
-from ....utils import rising_edge_detected, synchronize
+from ....utils import synchronize
 
 __all__ = (
 	'LFPSTransceiver',
@@ -141,7 +141,7 @@ class LFPSDetector(Elaboratable):
 				m.d.ss += last_iteration_matched.eq(0)
 
 				# If we've just seen the start of a burst, start measuring it.
-				with m.If(rising_edge_detected(m, present, domain = 'ss')):
+				with m.If(Rose(present, domain = 'ss')):
 					m.d.ss += count.eq(1),
 					m.next = 'MEASURE_BURST'
 

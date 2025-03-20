@@ -6,9 +6,8 @@
 
 ''' Control-request interfacing and gateware for USB3. '''
 
-from torii.hdl              import Elaboratable, Module, Signal
+from torii.hdl              import Elaboratable, Fell, Module, Signal
 
-from ....utils              import falling_edge_detected
 from ...request             import SetupPacket
 from ...stream              import SuperSpeedStreamInterface
 from ..link.data            import DataHeaderPacket
@@ -377,7 +376,7 @@ class StallOnlyRequestHandler(Elaboratable):
 		interface = self.interface
 
 		# If we have the opportunity to stall ...
-		data_received = falling_edge_detected(m, interface.rx.valid, domain = 'ss')
+		data_received = Fell(interface.rx.valid, domain = 'ss')
 		with m.If(interface.data_requested | interface.status_requested | data_received):
 
 			# ... and our stall condition is met ...
