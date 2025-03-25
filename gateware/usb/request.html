@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://torii-usb.shmdn.link/gateware/usb/request.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
-        <title>Request - Torii-USB 0.7.2.dev2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
+        <title>Request - Torii-USB 0.7.2.dev3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=302659d7" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/styles.css?v=582b5d23" />
@@ -28,20 +28,20 @@
 
 <style>
   body {
-    --color-code-background: #272822;
-  --color-code-foreground: #f8f8f2;
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
   
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
   
       }
     }
@@ -178,7 +178,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">Torii-USB 0.7.2.dev2 documentation</div></a>
+      <a href="../../index.html"><div class="brand">Torii-USB 0.7.2.dev3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -202,7 +202,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
-  <span class="sidebar-brand-text">Torii-USB 0.7.2.dev2 documentation</span>
+  <span class="sidebar-brand-text">Torii-USB 0.7.2.dev3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -269,8 +269,13 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/blob/main/CONTRIBUTING.md">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">Licenses</a></li>
 </ul>
 
 </div>
@@ -495,22 +500,22 @@ descriptors in this manner.</p>
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">torii_usb.usb.request.windows.descriptorSet.</span></span><span class="sig-name descname"><span class="pre">GetDescriptorSetHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_loc_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.usb.request.windows.descriptorSet.GetDescriptorSetHandler" title="Link to this definition">¶</a></dt>
 <dd><p>Gateware that handles responding to Windows GET_DESCRIPTOR_SET requests.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>request</strong> (<em>Signal</em><em>(</em><em>8</em><em>)</em><em>, </em><em>input</em>) – The request field associated with the Get Descriptor Set request.
+<li><p><strong>request</strong> (<em>Signal(8), input</em>) – The request field associated with the Get Descriptor Set request.
 Contains the descriptor set’s vendor code.</p></li>
-<li><p><strong>length</strong> (<em>Signal</em><em>(</em><em>16</em><em>)</em><em>, </em><em>input</em>) – The length field associated with the Get Descriptor Set request.
+<li><p><strong>length</strong> (<em>Signal(16), input</em>) – The length field associated with the Get Descriptor Set request.
 Determines the maximum amount allowed in a response.</p></li>
-<li><p><strong>start</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe that indicates when a descriptor should be transmitted.</p></li>
-<li><p><strong>startPosition</strong> (<em>Signal</em><em>(</em><em>11</em><em>)</em><em>, </em><em>input</em>) – Specifies the starting position of the descriptor data to be transmitted.</p></li>
-<li><p><strong>tx</strong> (<a class="reference internal" href="stream.html#torii_usb.usb.stream.USBInStreamInterface" title="torii_usb.usb.stream.USBInStreamInterface"><em>USBInStreamInterface</em></a><em>(</em><em>)</em><em>, </em><em>inout</em>) – The USBInStreamInterface that streams our descriptor data.</p></li>
-<li><p><strong>stall</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Pulsed if a STALL handshake should be generated, instead of a response.</p></li>
+<li><p><strong>start</strong> (<em>Signal(), input</em>) – Strobe that indicates when a descriptor should be transmitted.</p></li>
+<li><p><strong>startPosition</strong> (<em>Signal(11), input</em>) – Specifies the starting position of the descriptor data to be transmitted.</p></li>
+<li><p><strong>tx</strong> (<em>USBInStreamInterface(), inout</em>) – The USBInStreamInterface that streams our descriptor data.</p></li>
+<li><p><strong>stall</strong> (<em>Signal(), output</em>) – Pulsed if a STALL handshake should be generated, instead of a response.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="torii_usb.usb.request.windows.descriptorSet.GetDescriptorSetHandler.generateROM">
-<span class="sig-name descname"><span class="pre">generateROM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://torii.shmdn.link/api/hdl/mem.html#torii.hdl.mem.Memory" title="(in Torii-HDL v0.7.8.dev24+gfe67996a)"><span class="pre">Memory</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#torii_usb.usb.request.windows.descriptorSet.GetDescriptorSetHandler.generateROM" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">generateROM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://torii.shmdn.link/api/hdl/mem.html#torii.hdl.mem.Memory" title="(in Torii-HDL v0.7.8.dev43+g4411058f)"><span class="pre">Memory</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#torii_usb.usb.request.windows.descriptorSet.GetDescriptorSetHandler.generateROM" title="Link to this definition">¶</a></dt>
 <dd><p>Generates a ROM used to hold descriptor sets.</p>
 <div class="admonition-notes admonition">
 <p class="admonition-title">Notes</p>
@@ -579,7 +584,7 @@ The memory object uses 32-bit entries which the descriptor gateware accesses acc
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> [ <a class="reference external" href="https://torii.shmdn.link/api/hdl/mem.html#torii.hdl.mem.Memory" title="(in Torii-HDL v0.7.8.dev24+gfe67996a)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torii.hdl.mem.Memory</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> ]</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> [ <a class="reference external" href="https://torii.shmdn.link/api/hdl/mem.html#torii.hdl.mem.Memory" title="(in Torii-HDL v0.7.8.dev43+g4411058f)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torii.hdl.mem.Memory</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> ]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -702,10 +707,12 @@ The memory object uses 32-bit entries which the descriptor gateware accesses acc
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=92918f91"></script>
+</div><script src="../../_static/documentation_options.js?v=f65e5fd5"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/tabs.js?v=3ee01567"></script>
     </body>
 </html>

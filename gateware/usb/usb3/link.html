@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://torii-usb.shmdn.link/gateware/usb/usb3/link.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
-        <title>Link - Torii-USB 0.7.2.dev2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5349f25f" />
+        <title>Link - Torii-USB 0.7.2.dev3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=302659d7" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/styles.css?v=582b5d23" />
@@ -28,20 +28,20 @@
 
 <style>
   body {
-    --color-code-background: #272822;
-  --color-code-foreground: #f8f8f2;
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
   
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
   
       }
     }
@@ -178,7 +178,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">Torii-USB 0.7.2.dev2 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">Torii-USB 0.7.2.dev3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -202,7 +202,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
   
-  <span class="sidebar-brand-text">Torii-USB 0.7.2.dev2 documentation</span>
+  <span class="sidebar-brand-text">Torii-USB 0.7.2.dev3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -269,8 +269,13 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/blob/main/CONTRIBUTING.md">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">Licenses</a></li>
 </ul>
 
 </div>
@@ -325,14 +330,14 @@ from place to place.</p>
 <dd><p>USB3 Link Command Detector.</p>
 <p>This module detects USB3 link commands as they’re received on the bus.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sink</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBRawSuperSpeedStream" title="torii_usb.usb.stream.USBRawSuperSpeedStream"><em>USBRawSuperSpeedStream</em></a><em>, </em><em>input stream</em>) – The (aligned and descrambled) data stream captured from the physical layer.</p></li>
-<li><p><strong>command</strong> (<em>Signal</em><em>(</em><em>4</em><em>)</em><em>, </em><em>output</em>) – The link command; including its two-bit class and two-bit type.</p></li>
-<li><p><strong>command_class</strong> (<em>Signal</em><em>(</em><em>2</em><em>)</em><em>, </em><em>output</em>) – The link command’s class; equivalent to the first two bits of :attr:<code class="docutils literal notranslate"><span class="pre">command</span></code>.</p></li>
-<li><p><strong>command_type</strong> (<em>Signal</em><em>(</em><em>2</em><em>)</em><em>, </em><em>output</em>) – The link command’s type; equivalent to the second two bits of :attr:<code class="docutils literal notranslate"><span class="pre">command</span></code>.</p></li>
-<li><p><strong>subtype</strong> (<em>Signal</em><em>(</em><em>4</em><em>)</em><em>, </em><em>output</em>) – The link command’s subtype.</p></li>
-<li><p><strong>new_command</strong> (<em>signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; indicates that a new link command has been received, and the details of this command
+<li><p><strong>sink</strong> (<em>USBRawSuperSpeedStream, input stream</em>) – The (aligned and descrambled) data stream captured from the physical layer.</p></li>
+<li><p><strong>command</strong> (<em>Signal(4), output</em>) – The link command; including its two-bit class and two-bit type.</p></li>
+<li><p><strong>command_class</strong> (<em>Signal(2), output</em>) – The link command’s class; equivalent to the first two bits of :attr:<code class="docutils literal notranslate"><span class="pre">command</span></code>.</p></li>
+<li><p><strong>command_type</strong> (<em>Signal(2), output</em>) – The link command’s type; equivalent to the second two bits of :attr:<code class="docutils literal notranslate"><span class="pre">command</span></code>.</p></li>
+<li><p><strong>subtype</strong> (<em>Signal(4), output</em>) – The link command’s subtype.</p></li>
+<li><p><strong>new_command</strong> (<em>signal(), output</em>) – Strobe; indicates that a new link command has been received, and the details of this command
 are ready to be read.</p></li>
 </ul>
 </dd>
@@ -345,13 +350,13 @@ are ready to be read.</p></li>
 <dd><p>USB3 Link Command Generator.</p>
 <p>This module generates link commands on the USB3 bus.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBRawSuperSpeedStream" title="torii_usb.usb.stream.USBRawSuperSpeedStream"><em>USBRawSuperSpeedStream</em></a><em>(</em><em>)</em><em>, </em><em>output stream</em>) – The data generated in sending our link commands.</p></li>
-<li><p><strong>command</strong> (<em>Signal</em><em>(</em><em>4</em><em>)</em><em>, </em><em>output</em>) – The link command; including its two-bit class and two-bit type.</p></li>
-<li><p><strong>subtype</strong> (<em>Signal</em><em>(</em><em>4</em><em>)</em><em>, </em><em>output</em>) – The link command’s subtype.</p></li>
-<li><p><strong>generate</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe; indicates that a link command should be generated.</p></li>
-<li><p><strong>done</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Indicates that the link command will be complete this cycle; and thus this unit will
+<li><p><strong>source</strong> (<em>USBRawSuperSpeedStream(), output stream</em>) – The data generated in sending our link commands.</p></li>
+<li><p><strong>command</strong> (<em>Signal(4), output</em>) – The link command; including its two-bit class and two-bit type.</p></li>
+<li><p><strong>subtype</strong> (<em>Signal(4), output</em>) – The link command’s subtype.</p></li>
+<li><p><strong>generate</strong> (<em>Signal(), input</em>) – Strobe; indicates that a link command should be generated.</p></li>
+<li><p><strong>done</strong> (<em>Signal(), output</em>) – Indicates that the link command will be complete this cycle; and thus this unit will
 be ready to send another link command next cycle.</p></li>
 </ul>
 </dd>
@@ -385,12 +390,12 @@ be ready to send another link command next cycle.</p></li>
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">torii_usb.usb.usb3.link.crc.</span></span><span class="sig-name descname"><span class="pre">HeaderPacketCRC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_loc_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.usb.usb3.link.crc.HeaderPacketCRC" title="Link to this definition">¶</a></dt>
 <dd><p>Gateware that computes a running CRC-16 for the first three words of a header packet.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>clear</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe; clears the CRC, restoring it to its Initial Value.</p></li>
-<li><p><strong>data_input</strong> (<em>Signal</em><em>(</em><em>32</em><em>)</em><em>, </em><em>input</em>) – Data word to add to our running CRC.</p></li>
-<li><p><strong>advance_crc</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – When asserted, the current data input will be added to the CRC.</p></li>
-<li><p><strong>crc</strong> (<em>Signal</em><em>(</em><em>16</em><em>)</em><em>, </em><em>output</em>) – The current CRC value.</p></li>
+<li><p><strong>clear</strong> (<em>Signal(), input</em>) – Strobe; clears the CRC, restoring it to its Initial Value.</p></li>
+<li><p><strong>data_input</strong> (<em>Signal(32), input</em>) – Data word to add to our running CRC.</p></li>
+<li><p><strong>advance_crc</strong> (<em>Signal(), input</em>) – When asserted, the current data input will be added to the CRC.</p></li>
+<li><p><strong>crc</strong> (<em>Signal(16), output</em>) – The current CRC value.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
@@ -407,18 +412,18 @@ be ready to send another link command next cycle.</p></li>
 required to end on a word boundary. Accordingly, we’ll need to handle cases
 where we have an incomplete word of 1, 2, or 3 bytes.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>clear</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe; clears the CRC, restoring it to its Initial Value.</p></li>
-<li><p><strong>data_input</strong> (<em>Signal</em><em>(</em><em>32</em><em>)</em><em>, </em><em>input</em>) – Data word to add to our running CRC.</p></li>
-<li><p><strong>advance_word</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – When asserted, the current data word will be added to our CRC.</p></li>
-<li><p><strong>advance_3B</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – When asserted, the last three bytes of the current data word will be added to our CRC.</p></li>
-<li><p><strong>advance_2B</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – When asserted, the last two bytes of the current data word will be added to our CRC.</p></li>
-<li><p><strong>advance_1B</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – When asserted, the last byte of the current data word will be added to our CRC.</p></li>
-<li><p><strong>crc</strong> (<em>Signal</em><em>(</em><em>32</em><em>)</em><em>, </em><em>output</em>) – The current CRC value.</p></li>
-<li><p><strong>next_crc_3B</strong> (<em>Signal</em><em>(</em><em>32</em><em>)</em><em>, </em><em>output</em>) – The CRC value for the next cycle, assuming we advance 3B.</p></li>
-<li><p><strong>next_crc_2B</strong> (<em>Signal</em><em>(</em><em>32</em><em>)</em><em>, </em><em>output</em>) – The CRC value for the next cycle, assuming we advance 2B.</p></li>
-<li><p><strong>next_crc_1B</strong> (<em>Signal</em><em>(</em><em>32</em><em>)</em><em>, </em><em>output</em>) – The CRC value for the next cycle, assuming we advance 1B.</p></li>
+<li><p><strong>clear</strong> (<em>Signal(), input</em>) – Strobe; clears the CRC, restoring it to its Initial Value.</p></li>
+<li><p><strong>data_input</strong> (<em>Signal(32), input</em>) – Data word to add to our running CRC.</p></li>
+<li><p><strong>advance_word</strong> (<em>Signal(), input</em>) – When asserted, the current data word will be added to our CRC.</p></li>
+<li><p><strong>advance_3B</strong> (<em>Signal(), input</em>) – When asserted, the last three bytes of the current data word will be added to our CRC.</p></li>
+<li><p><strong>advance_2B</strong> (<em>Signal(), input</em>) – When asserted, the last two bytes of the current data word will be added to our CRC.</p></li>
+<li><p><strong>advance_1B</strong> (<em>Signal(), input</em>) – When asserted, the last byte of the current data word will be added to our CRC.</p></li>
+<li><p><strong>crc</strong> (<em>Signal(32), output</em>) – The current CRC value.</p></li>
+<li><p><strong>next_crc_3B</strong> (<em>Signal(32), output</em>) – The CRC value for the next cycle, assuming we advance 3B.</p></li>
+<li><p><strong>next_crc_2B</strong> (<em>Signal(32), output</em>) – The CRC value for the next cycle, assuming we advance 2B.</p></li>
+<li><p><strong>next_crc_1B</strong> (<em>Signal(32), output</em>) – The CRC value for the next cycle, assuming we advance 1B.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
@@ -450,16 +455,16 @@ data packet payload.</p>
 <p>Header sequence number is not checked, here, as a sequence error will force recovery in the
 Header Packet Receiver.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sink</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBRawSuperSpeedStream" title="torii_usb.usb.stream.USBRawSuperSpeedStream"><em>USBRawSuperSpeedStream</em></a><em>(</em><em>)</em><em>, </em><em>input</em><em> (</em><em>monitor only</em><em>)</em>) – Stream that the USB data to be monitored.</p></li>
-<li><p><strong>header</strong> (<a class="reference internal" href="#torii_usb.usb.usb3.link.header.HeaderPacket" title="torii_usb.usb.usb3.link.header.HeaderPacket"><em>HeaderPacket</em></a><em>(</em><em>)</em><em>, </em><em>output</em>) – The header packet accompanying the current data packet. Valid once a packet begins
+<li><p><strong>sink</strong> (<em>USBRawSuperSpeedStream(), input (monitor only)</em>) – Stream that the USB data to be monitored.</p></li>
+<li><p><strong>header</strong> (<em>HeaderPacket(), output</em>) – The header packet accompanying the current data packet. Valid once a packet begins
 to be received.</p></li>
-<li><p><strong>new_header</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; indicates that :attr:<code class="docutils literal notranslate"><span class="pre">header</span></code> has been updated.</p></li>
-<li><p><strong>source</strong> (<em>StreamInterface</em><em>(</em><em>)</em><em>, </em><em>output stream</em>) – A stream carrying the data received. Note that the data is not fully validated until
+<li><p><strong>new_header</strong> (<em>Signal(), output</em>) – Strobe; indicates that :attr:<code class="docutils literal notranslate"><span class="pre">header</span></code> has been updated.</p></li>
+<li><p><strong>source</strong> (<em>StreamInterface(), output stream</em>) – A stream carrying the data received. Note that the data is not fully validated until
 the packet has been fully received; so this cannot be assumed</p></li>
-<li><p><strong>packet_good</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; indicates that the packet received passed validations and can be considered good.</p></li>
-<li><p><strong>packet_bad</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; indicates that the packet failed CRC checks, or did not end properly.</p></li>
+<li><p><strong>packet_good</strong> (<em>Signal(), output</em>) – Strobe; indicates that the packet received passed validations and can be considered good.</p></li>
+<li><p><strong>packet_bad</strong> (<em>Signal(), output</em>) – Strobe; indicates that the packet failed CRC checks, or did not end properly.</p></li>
 </ul>
 </dd>
 </dl>
@@ -471,17 +476,17 @@ the packet has been fully received; so this cannot be assumed</p></li>
 <dd><p>Gateware that generates a Data Packet Header, and orchestrates sending it and a payload.</p>
 <p>The actual sending is handled by our transmitter gateware.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data_sink</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.SuperSpeedStreamInterface" title="torii_usb.usb.stream.SuperSpeedStreamInterface"><em>SuperSpeedStreamInterface</em></a><em>(</em><em>)</em><em>, </em><em>input stream</em>) – The data stream to be send as a data packet. The length of this stream should match thee
+<li><p><strong>data_sink</strong> (<em>SuperSpeedStreamInterface(), input stream</em>) – The data stream to be send as a data packet. The length of this stream should match thee
 length parameter.</p></li>
-<li><p><strong>send_zlp</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe; triggers sending of a zero-length packet.</p></li>
-<li><p><strong>sequence_number</strong> (<em>Signal</em><em>(</em><em>5</em><em>)</em><em>, </em><em>input</em>) – The sequence number associated with the relevant data packet. Latched in once :attr:<code class="docutils literal notranslate"><span class="pre">data_sink</span></code> goes valid.</p></li>
-<li><p><strong>endpoint_number</strong> (<em>Signal</em><em>(</em><em>4</em><em>)</em><em>, </em><em>input</em>) – The endpoint number associated with the relevant data stream. Latched in once :attr:<code class="docutils literal notranslate"><span class="pre">data_sink</span></code> goes valid.</p></li>
-<li><p><strong>data_length</strong> (<em>Signal</em><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#range" title="(in Python v3.13)"><em>range</em></a><em>(</em><em>1024 + 1</em><em>)</em><em>)</em>) – The length of the data packet to be sent; in bytes. Latched in once :attr:<code class="docutils literal notranslate"><span class="pre">data_sink</span></code> goes valid.</p></li>
-<li><p><strong>direction</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – The direction to indicate in the data header packet. Typically Direction.IN; but will be Direction.OUT
+<li><p><strong>send_zlp</strong> (<em>Signal(), input</em>) – Strobe; triggers sending of a zero-length packet.</p></li>
+<li><p><strong>sequence_number</strong> (<em>Signal(5), input</em>) – The sequence number associated with the relevant data packet. Latched in once :attr:<code class="docutils literal notranslate"><span class="pre">data_sink</span></code> goes valid.</p></li>
+<li><p><strong>endpoint_number</strong> (<em>Signal(4), input</em>) – The endpoint number associated with the relevant data stream. Latched in once :attr:<code class="docutils literal notranslate"><span class="pre">data_sink</span></code> goes valid.</p></li>
+<li><p><strong>data_length</strong> (<em>Signal(range(1024 + 1))</em>) – The length of the data packet to be sent; in bytes. Latched in once :attr:<code class="docutils literal notranslate"><span class="pre">data_sink</span></code> goes valid.</p></li>
+<li><p><strong>direction</strong> (<em>Signal(), input</em>) – The direction to indicate in the data header packet. Typically Direction.IN; but will be Direction.OUT
 when data is sent to the host as part of a control transfer.</p></li>
-<li><p><strong>address</strong> (<em>Signal</em><em>(</em><em>7</em><em>)</em><em>, </em><em>input</em>) – The current address of the USB device.</p></li>
+<li><p><strong>address</strong> (<em>Signal(7), input</em>) – The current address of the USB device.</p></li>
 </ul>
 </dd>
 </dl>
@@ -514,11 +519,11 @@ when data is sent to the host as part of a control transfer.</p></li>
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">torii_usb.usb.usb3.link.header.</span></span><span class="sig-name descname"><span class="pre">HeaderQueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_type=&lt;class</span> <span class="pre">'torii_usb.usb.usb3.link.header.HeaderPacket'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.usb.usb3.link.header.HeaderQueue" title="Link to this definition">¶</a></dt>
 <dd><p>Record representing a header, and stream-link control signals.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>valid</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>producer to consumer</em>) – Indicates that the data in :attr:<code class="docutils literal notranslate"><span class="pre">header</span></code> is valid and ready to be consumed.</p></li>
-<li><p><strong>header</strong> (<a class="reference internal" href="#torii_usb.usb.usb3.link.header.HeaderPacket" title="torii_usb.usb.usb3.link.header.HeaderPacket"><em>HeaderPacket</em></a><em>(</em><em>)</em><em>, </em><em>producer to consumer</em>) – Contains a full set of header packet data.</p></li>
-<li><p><strong>ready</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>consumer to producer</em>) – Strobed by the consumer to indicate that it has accepted the given header.</p></li>
+<li><p><strong>valid</strong> (<em>Signal(), producer to consumer</em>) – Indicates that the data in :attr:<code class="docutils literal notranslate"><span class="pre">header</span></code> is valid and ready to be consumed.</p></li>
+<li><p><strong>header</strong> (<em>HeaderPacket(), producer to consumer</em>) – Contains a full set of header packet data.</p></li>
+<li><p><strong>ready</strong> (<em>Signal(), consumer to producer</em>) – Strobed by the consumer to indicate that it has accepted the given header.</p></li>
 </ul>
 </dd>
 </dl>
@@ -548,8 +553,8 @@ when data is sent to the host as part of a control transfer.</p></li>
 <dd><p>Gateware that accepts a collection of header queues, and merges them into a single queue.</p>
 <p>Add produces using <code class="docutils literal notranslate"><span class="pre">add_producer</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>source</strong> (<a class="reference internal" href="#torii_usb.usb.usb3.link.header.HeaderQueue" title="torii_usb.usb.usb3.link.header.HeaderQueue"><em>HeaderQueue</em></a><em>(</em><em>)</em><em>, </em><em>output queue</em>) – A single header queue that carries data from all producer queues.</p>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source</strong> (<em>HeaderQueue(), output queue</em>) – A single header queue that carries data from all producer queues.</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -568,8 +573,8 @@ when data is sent to the host as part of a control transfer.</p></li>
 will assert :attr:<code class="docutils literal notranslate"><span class="pre">ready</span></code> at the same time.</p>
 <p>Add consumers using <code class="docutils literal notranslate"><span class="pre">add_consumer</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>sink</strong> (<a class="reference internal" href="#torii_usb.usb.usb3.link.header.HeaderQueue" title="torii_usb.usb.usb3.link.header.HeaderQueue"><em>HeaderQueue</em></a><em>(</em><em>)</em><em>, </em><em>input queue</em>) – The single header queue to be distributed to all of our consumers.</p>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sink</strong> (<em>HeaderQueue(), input queue</em>) – The single header queue to be distributed to all of our consumers.</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -591,15 +596,15 @@ will assert :attr:<code class="docutils literal notranslate"><span class="pre">r
 <p>The Idle Handshake occurs after link training; and is the first step of
 post-training link initialization.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>enable</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Indicates that the idle handshake has started; which is used to create the
+<li><p><strong>enable</strong> (<em>Signal(), input</em>) – Indicates that the idle handshake has started; which is used to create the
 :attr:<code class="docutils literal notranslate"><span class="pre">idle_handshake_complete</span></code> signal. It should be asserted once we enter
 Polling.Idle.</p></li>
-<li><p><strong>sink</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBRawSuperSpeedStream" title="torii_usb.usb.stream.USBRawSuperSpeedStream"><em>USBRawSuperSpeedStream</em></a><em>(</em><em>)</em><em>, </em><em>input stream</em>) – Raw post-descrambling stream from the physical layer.</p></li>
-<li><p><strong>idle_detected</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Asserted when the last eight word-aligned symbols detected have been logical
+<li><p><strong>sink</strong> (<em>USBRawSuperSpeedStream(), input stream</em>) – Raw post-descrambling stream from the physical layer.</p></li>
+<li><p><strong>idle_detected</strong> (<em>Signal(), output</em>) – Asserted when the last eight word-aligned symbols detected have been logical
 idle; identifying a completed idle handshake.</p></li>
-<li><p><strong>idle_handshake_complete</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Asserted when we’ve seen IDLE at least once, and we’ve been enabled for at least
+<li><p><strong>idle_handshake_complete</strong> (<em>Signal(), output</em>) – Asserted when we’ve seen IDLE at least once, and we’ve been enabled for at least
 16 cycles, as required by the USB3 Idle Handshake [USB3.2r1: 7.5.4.10].</p></li>
 </ul>
 </dd>
@@ -629,17 +634,17 @@ from place to place.</p>
 <p>This state machine orchestrates USB bringup, link training, and power saving.
 It is implemented according to chapter 7.5 of the USB 3.2 specification [USB3.2r1; 7.5].</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>link_ready</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Asserted when the link is ready to perform normal USB operations starting
+<li><p><strong>link_ready</strong> (<em>Signal(), output</em>) – Asserted when the link is ready to perform normal USB operations starting
 at the link layer. When de-asserted, data should not flow above the link layer.</p></li>
-<li><p><strong>in_usb_reset</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Should be asserted whenever a USB reset is detected; including a power-on reset (e.g.
+<li><p><strong>in_usb_reset</strong> (<em>Signal(), input</em>) – Should be asserted whenever a USB reset is detected; including a power-on reset (e.g.
 the PHY has yet to start up), or LFPS warm reset signaling.</p></li>
-<li><p><strong>engage_terminations</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – When asserted, the physical layer should be applying link terminations.</p></li>
-<li><p><strong>invert_rx_polarity</strong> (<em>Signal</em><em>(</em><em>)</em><em>. output</em>) – When asserted, indicates that the physical layer should invert all received data at the I/O
+<li><p><strong>engage_terminations</strong> (<em>Signal(), output</em>) – When asserted, the physical layer should be applying link terminations.</p></li>
+<li><p><strong>invert_rx_polarity</strong> (<em>Signal(). output</em>) – When asserted, indicates that the physical layer should invert all received data at the I/O
 boundary to counter a swapped Rx differential pair.</p></li>
-<li><p><strong>perform_rx_detection</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Asserted to request that the physical layer perform receiver detection, in which the link</p></li>
-<li><p><strong>enable_scrambling</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Asserted when the physical layer should be performing scrambling.</p></li>
+<li><p><strong>perform_rx_detection</strong> (<em>Signal(), output</em>) – Asserted to request that the physical layer perform receiver detection, in which the link</p></li>
+<li><p><strong>enable_scrambling</strong> (<em>Signal(), output</em>) – Asserted when the physical layer should be performing scrambling.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
@@ -700,15 +705,15 @@ control/status signals.</p>
 <p>This class performs the validations required at the link layer of the USB specification;
 which include checking the CRC-5 and CRC-16 embedded within the header packet.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sink</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBRawSuperSpeedStream" title="torii_usb.usb.stream.USBRawSuperSpeedStream"><em>USBRawSuperSpeedStream</em></a><em>(</em><em>)</em><em>, </em><em>input</em><em> (</em><em>monitor only</em><em>)</em>) – Stream that the USB data to be monitored.</p></li>
-<li><p><strong>packet</strong> (<a class="reference internal" href="#torii_usb.usb.usb3.link.header.HeaderPacket" title="torii_usb.usb.usb3.link.header.HeaderPacket"><em>HeaderPacket</em></a><em>(</em><em>)</em><em>, </em><em>output</em>) – The de-serialized form of our header packet.</p></li>
-<li><p><strong>new_packet</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; indicates that a new, valid header packet has been received. The new
+<li><p><strong>sink</strong> (<em>USBRawSuperSpeedStream(), input (monitor only)</em>) – Stream that the USB data to be monitored.</p></li>
+<li><p><strong>packet</strong> (<em>HeaderPacket(), output</em>) – The de-serialized form of our header packet.</p></li>
+<li><p><strong>new_packet</strong> (<em>Signal(), output</em>) – Strobe; indicates that a new, valid header packet has been received. The new
 packet is now available on :attr:<code class="docutils literal notranslate"><span class="pre">packet</span></code>.</p></li>
-<li><p><strong>bad_packet</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; indicates that a corrupted, invalid header packet has been received.
+<li><p><strong>bad_packet</strong> (<em>Signal(), output</em>) – Strobe; indicates that a corrupted, invalid header packet has been received.
 :attr:<code class="docutils literal notranslate"><span class="pre">packet</span></code> has not been updated.</p></li>
-<li><p><strong>expected_sequence</strong> (<em>Signal</em><em>(</em><em>3</em><em>)</em><em>, </em><em>input</em>) – Indicates the next expected sequence number; used to validate the received packet.</p></li>
+<li><p><strong>expected_sequence</strong> (<em>Signal(3), input</em>) – Indicates the next expected sequence number; used to validate the received packet.</p></li>
 </ul>
 </dd>
 </dl>
@@ -721,27 +726,27 @@ packet is now available on :attr:<code class="docutils literal notranslate"><spa
 <p>This module handles all header-packet-reception related logic for the link layer; including
 header packet reception, buffering, flow control (credit management), and link command transmission.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sink</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBRawSuperSpeedStream" title="torii_usb.usb.stream.USBRawSuperSpeedStream"><em>USBRawSuperSpeedStream</em></a><em>(</em><em>)</em><em>, </em><em>input stream</em><em> [</em><em>monitor only</em><em>]</em>) – Stream that carries data from the physical layer, to be monitored.</p></li>
-<li><p><strong>source</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBRawSuperSpeedStream" title="torii_usb.usb.stream.USBRawSuperSpeedStream"><em>USBRawSuperSpeedStream</em></a><em>(</em><em>)</em><em>, </em><em>output stream</em>) – Stream that carries link commands from this unit down down to the physical layer.</p></li>
-<li><p><strong>enable</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – When asserted, this unit will be enabled; and will be allowed to start
+<li><p><strong>sink</strong> (<em>USBRawSuperSpeedStream(), input stream [monitor only]</em>) – Stream that carries data from the physical layer, to be monitored.</p></li>
+<li><p><strong>source</strong> (<em>USBRawSuperSpeedStream(), output stream</em>) – Stream that carries link commands from this unit down down to the physical layer.</p></li>
+<li><p><strong>enable</strong> (<em>Signal(), input</em>) – When asserted, this unit will be enabled; and will be allowed to start
 transmitting link commands. Asserting this signal after a reset will perform
 a header sequence and link credit advertisement.</p></li>
-<li><p><strong>usb_reset</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe; can be asserted to indicate that a USB reset has occurred, and sequencing
+<li><p><strong>usb_reset</strong> (<em>Signal(), input</em>) – Strobe; can be asserted to indicate that a USB reset has occurred, and sequencing
 should be restarted.</p></li>
-<li><p><strong>queue</strong> (<a class="reference internal" href="#torii_usb.usb.usb3.link.header.HeaderQueue" title="torii_usb.usb.usb3.link.header.HeaderQueue"><em>HeaderQueue</em></a><em>(</em><em>)</em><em>, </em><em>output stream</em>) – Stream carrying any header packets to be transmitted.</p></li>
-<li><p><strong>retry_received</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe; should be asserted when the transmitter has seen a RETRY handshake.</p></li>
-<li><p><strong>retry_required</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; pulsed to indicate that we should send a RETRY handshake.</p></li>
-<li><p><strong>link_command_sent</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; pulses each time a link command is completed.</p></li>
-<li><p><strong>keepalive_required</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe; when asserted; a keepalive packet will be generated.</p></li>
-<li><p><strong>packet_received</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; pulsed when an event occurs that should reset the USB3 ‘packet received’ timers.
+<li><p><strong>queue</strong> (<em>HeaderQueue(), output stream</em>) – Stream carrying any header packets to be transmitted.</p></li>
+<li><p><strong>retry_received</strong> (<em>Signal(), input</em>) – Strobe; should be asserted when the transmitter has seen a RETRY handshake.</p></li>
+<li><p><strong>retry_required</strong> (<em>Signal(), output</em>) – Strobe; pulsed to indicate that we should send a RETRY handshake.</p></li>
+<li><p><strong>link_command_sent</strong> (<em>Signal(), output</em>) – Strobe; pulses each time a link command is completed.</p></li>
+<li><p><strong>keepalive_required</strong> (<em>Signal(), input</em>) – Strobe; when asserted; a keepalive packet will be generated.</p></li>
+<li><p><strong>packet_received</strong> (<em>Signal(), output</em>) – Strobe; pulsed when an event occurs that should reset the USB3 ‘packet received’ timers.
 This does <em>not</em> indicate valid data is present on the output :attr:<code class="docutils literal notranslate"><span class="pre">queue</span></code>; this has its
 own valid signal.</p></li>
-<li><p><strong>bad_packet_received</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; pulsed when a receive error occurs. For error counting at the link level.</p></li>
-<li><p><strong>accept_power_state</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe; when pulsed, a LAU (Link-state acceptance) will be generated.</p></li>
-<li><p><strong>reject_power_state</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe; when pulsed, a LXU (Link-state rejection) will be generated.</p></li>
-<li><p><strong>acknowledge_power_state</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe; when pulsed, a LPMA (Link-state acknowledgement) will be generated.</p></li>
+<li><p><strong>bad_packet_received</strong> (<em>Signal(), output</em>) – Strobe; pulsed when a receive error occurs. For error counting at the link level.</p></li>
+<li><p><strong>accept_power_state</strong> (<em>Signal(), input</em>) – Strobe; when pulsed, a LAU (Link-state acceptance) will be generated.</p></li>
+<li><p><strong>reject_power_state</strong> (<em>Signal(), input</em>) – Strobe; when pulsed, a LXU (Link-state rejection) will be generated.</p></li>
+<li><p><strong>acknowledge_power_state</strong> (<em>Signal(), input</em>) – Strobe; when pulsed, a LPMA (Link-state acknowledgement) will be generated.</p></li>
 </ul>
 </dd>
 </dl>
@@ -769,12 +774,12 @@ to perform link recovery.</p></li>
 </dd>
 </dl>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>link_command_received</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe that should be asserted when a link command is received.</p></li>
-<li><p><strong>link_command_transmitted</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe that should be asserted when a link command is transmitted.</p></li>
-<li><p><strong>schedule_keepalive</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe that indicates that we’ll need to send a keepalive packet.</p></li>
-<li><p><strong>transition_to_recovery</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe that indicates that our link is no longer stable; and we’ll
+<li><p><strong>link_command_received</strong> (<em>Signal(), input</em>) – Strobe that should be asserted when a link command is received.</p></li>
+<li><p><strong>link_command_transmitted</strong> (<em>Signal(), input</em>) – Strobe that should be asserted when a link command is transmitted.</p></li>
+<li><p><strong>schedule_keepalive</strong> (<em>Signal(), output</em>) – Strobe that indicates that we’ll need to send a keepalive packet.</p></li>
+<li><p><strong>transition_to_recovery</strong> (<em>Signal(), output</em>) – Strobe that indicates that our link is no longer stable; and we’ll
 need to perform link recovery.</p></li>
 </ul>
 </dd>
@@ -796,17 +801,17 @@ need to perform link recovery.</p></li>
 which include checking the CRC-5 and CRC-16 embedded within the header packet, and
 the CRC-32 embedded within any associated payloads.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBRawSuperSpeedStream" title="torii_usb.usb.stream.USBRawSuperSpeedStream"><em>USBRawSuperSpeedStream</em></a><em>(</em><em>)</em><em>, </em><em>output stream</em>) – Stream that carries the generated packets.</p></li>
-<li><p><strong>header</strong> (<a class="reference internal" href="#torii_usb.usb.usb3.link.header.HeaderPacket" title="torii_usb.usb.usb3.link.header.HeaderPacket"><em>HeaderPacket</em></a><em>(</em><em>)</em><em>, </em><em>input</em>) – The header packet to be sent. The CRC fields do not need to be valid, and will
+<li><p><strong>source</strong> (<em>USBRawSuperSpeedStream(), output stream</em>) – Stream that carries the generated packets.</p></li>
+<li><p><strong>header</strong> (<em>HeaderPacket(), input</em>) – The header packet to be sent. The CRC fields do not need to be valid, and will
 be ignored and replaced with a computed CRC. If the header packet is of type data,
 :attr:<code class="docutils literal notranslate"><span class="pre">data_sink</span></code> will be allowed to provide a follow-up Data Packet Payload.</p></li>
-<li><p><strong>data_sink</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.SuperSpeedStreamInterface" title="torii_usb.usb.stream.SuperSpeedStreamInterface"><em>SuperSpeedStreamInterface</em></a><em>(</em><em>)</em><em>, </em><em>input stream</em>) – If the provided :attr:<code class="docutils literal notranslate"><span class="pre">header</span></code> is a Data Header, and :attr:<code class="docutils literal notranslate"><span class="pre">data_sink</span></code> is valid
+<li><p><strong>data_sink</strong> (<em>SuperSpeedStreamInterface(), input stream</em>) – If the provided :attr:<code class="docutils literal notranslate"><span class="pre">header</span></code> is a Data Header, and :attr:<code class="docutils literal notranslate"><span class="pre">data_sink</span></code> is valid
 when the packet’s transmission is sent, this data stream will be used to provide a
 follow-up Data Packet Payload.</p></li>
-<li><p><strong>generate</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – Strobe; indicates that a packet should be generated.</p></li>
-<li><p><strong>done</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Indicates that the packet will be complete this cycle; and thus this unit will
+<li><p><strong>generate</strong> (<em>Signal(), input</em>) – Strobe; indicates that a packet should be generated.</p></li>
+<li><p><strong>done</strong> (<em>Signal(), output</em>) – Indicates that the packet will be complete this cycle; and thus this unit will
 be ready to send another packet next cycle.</p></li>
 </ul>
 </dd>
@@ -820,18 +825,18 @@ be ready to send another packet next cycle.</p></li>
 <p>This module handles all header-packet-transmission related logic for the link layer; including
 header packet generation, partner buffer tracking / flow control, and link command reception.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sink</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBRawSuperSpeedStream" title="torii_usb.usb.stream.USBRawSuperSpeedStream"><em>USBRawSuperSpeedStream</em></a><em>(</em><em>)</em><em>, </em><em>input stream</em><em> [</em><em>monitor only</em><em>]</em>) – Stream that monitors the data received on the physical layer for link commands.</p></li>
-<li><p><strong>source</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBRawSuperSpeedStream" title="torii_usb.usb.stream.USBRawSuperSpeedStream"><em>USBRawSuperSpeedStream</em></a><em>(</em><em>)</em><em>, </em><em>output stream</em>) – Stream that carries our transmissions down to the physical layer.</p></li>
-<li><p><strong>enable</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input</em>) – When asserted, this unit will be enabled; and will be allowed to start transmitting.</p></li>
-<li><p><strong>queue</strong> (<a class="reference internal" href="#torii_usb.usb.usb3.link.header.HeaderQueue" title="torii_usb.usb.usb3.link.header.HeaderQueue"><em>HeaderQueue</em></a><em>(</em><em>)</em><em>, </em><em>input stream</em>) – Stream of header packets received received from the protocol layer to be transmitted.</p></li>
-<li><p><strong>retry_received</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; pulsed high when we receive a link retry request.</p></li>
-<li><p><strong>retry_required</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; pulsed high when we need to send a retry request.</p></li>
-<li><p><strong>lgo_received</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; indicates that we’ve received a request to move to a new power state.</p></li>
-<li><p><strong>output</strong> (<em>lgo_target; Signal</em><em>(</em><em>2</em><em>)</em><em>,</em>) – Indicates the power-state associated with a given LGO event; valid when :attr:<code class="docutils literal notranslate"><span class="pre">lgo_received</span></code>
+<li><p><strong>sink</strong> (<em>USBRawSuperSpeedStream(), input stream [monitor only]</em>) – Stream that monitors the data received on the physical layer for link commands.</p></li>
+<li><p><strong>source</strong> (<em>USBRawSuperSpeedStream(), output stream</em>) – Stream that carries our transmissions down to the physical layer.</p></li>
+<li><p><strong>enable</strong> (<em>Signal(), input</em>) – When asserted, this unit will be enabled; and will be allowed to start transmitting.</p></li>
+<li><p><strong>queue</strong> (<em>HeaderQueue(), input stream</em>) – Stream of header packets received received from the protocol layer to be transmitted.</p></li>
+<li><p><strong>retry_received</strong> (<em>Signal(), output</em>) – Strobe; pulsed high when we receive a link retry request.</p></li>
+<li><p><strong>retry_required</strong> (<em>Signal(), output</em>) – Strobe; pulsed high when we need to send a retry request.</p></li>
+<li><p><strong>lgo_received</strong> (<em>Signal(), output</em>) – Strobe; indicates that we’ve received a request to move to a new power state.</p></li>
+<li><p><strong>lgo_target; Signal(2), output</strong> – Indicates the power-state associated with a given LGO event; valid when :attr:<code class="docutils literal notranslate"><span class="pre">lgo_received</span></code>
 is asserted.</p></li>
-<li><p><strong>recovery_required</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output</em>) – Strobe; pulsed when a condition that requires link recovery occurs.</p></li>
+<li><p><strong>recovery_required</strong> (<em>Signal(), output</em>) – Strobe; pulsed when a condition that requires link recovery occurs.</p></li>
 </ul>
 </dd>
 </dl>
@@ -979,10 +984,12 @@ is asserted.</p></li>
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=92918f91"></script>
+</div><script src="../../../_static/documentation_options.js?v=f65e5fd5"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/tabs.js?v=3ee01567"></script>
     </body>
 </html>

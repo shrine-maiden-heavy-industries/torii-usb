@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://torii-usb.shmdn.link/gateware/usb/usb2/endpoint.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
-        <title>Endpoint - Torii-USB 0.7.2.dev2 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5349f25f" />
+        <title>Endpoint - Torii-USB 0.7.2.dev3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=302659d7" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/styles.css?v=582b5d23" />
@@ -28,20 +28,20 @@
 
 <style>
   body {
-    --color-code-background: #272822;
-  --color-code-foreground: #f8f8f2;
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
   
   }
   @media not print {
     body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
   
     }
     @media (prefers-color-scheme: dark) {
       body:not([data-theme="light"]) {
-        --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
   
       }
     }
@@ -178,7 +178,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">Torii-USB 0.7.2.dev2 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">Torii-USB 0.7.2.dev3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -202,7 +202,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
   
   
-  <span class="sidebar-brand-text">Torii-USB 0.7.2.dev2 documentation</span>
+  <span class="sidebar-brand-text">Torii-USB 0.7.2.dev3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -269,8 +269,13 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/blob/main/CONTRIBUTING.md">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">Licenses</a></li>
 </ul>
 
 </div>
@@ -340,30 +345,30 @@ interface handles a given endpoint or request type.</p>
 <p>Many non-control endpoints won’t need to use the latter half of this structure;
 it will be automatically removed by the relevant synthesis tool.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tokenizer</strong> (<a class="reference internal" href="packet.html#torii_usb.usb.usb2.packet.TokenDetectorInterface" title="torii_usb.usb.usb2.packet.TokenDetectorInterface"><em>TokenDetectorInterface</em></a><em>, </em><em>to detector</em>) – Interface to our TokenDetector; notifies us of USB tokens.</p></li>
-<li><p><strong>rx</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBOutStreamInterface" title="torii_usb.usb.stream.USBOutStreamInterface"><em>USBOutStreamInterface</em></a><em>, </em><em>input stream to endpoint</em>) – Receive interface for this endpoint.</p></li>
-<li><p><strong>rx_complete</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input to endpoint</em>) – Strobe that indicates that the concluding rx-stream was valid (CRC check passed).</p></li>
-<li><p><strong>rx_ready_for_response</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input to endpoint</em>) – Strobe that indicates that we’re ready to respond to a complete transmission.
+<li><p><strong>tokenizer</strong> (<em>TokenDetectorInterface, to detector</em>) – Interface to our TokenDetector; notifies us of USB tokens.</p></li>
+<li><p><strong>rx</strong> (<em>USBOutStreamInterface, input stream to endpoint</em>) – Receive interface for this endpoint.</p></li>
+<li><p><strong>rx_complete</strong> (<em>Signal(), input to endpoint</em>) – Strobe that indicates that the concluding rx-stream was valid (CRC check passed).</p></li>
+<li><p><strong>rx_ready_for_response</strong> (<em>Signal(), input to endpoint</em>) – Strobe that indicates that we’re ready to respond to a complete transmission.
 Indicates that an interpacket delay has passed after an <cite>rx_complete</cite> strobe.</p></li>
-<li><p><strong>rx_invalid</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input to endpoint</em>) – Strobe that indicates that the concluding rx-stream was invalid (CRC check failed).</p></li>
-<li><p><strong>rx_pid_toggle</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>input to endpoint</em>) – Value for the data PID toggle; 0 indicates we’re receiving a DATA0; 1 indicates Data1.</p></li>
-<li><p><strong>tx</strong> (<a class="reference internal" href="../stream.html#torii_usb.usb.stream.USBInStreamInterface" title="torii_usb.usb.stream.USBInStreamInterface"><em>USBInStreamInterface</em></a><em>, </em><em>output stream from endpoint</em>) – Transmit interface for this endpoint.</p></li>
-<li><p><strong>tx_pid_toggle</strong> (<em>Signal</em><em>(</em><em>2</em><em>)</em><em>, </em><em>output from endpoint</em>) – Value for the data PID toggle; 0 indicates we’ll send DATA0; 1 indicates DATA1.
+<li><p><strong>rx_invalid</strong> (<em>Signal(), input to endpoint</em>) – Strobe that indicates that the concluding rx-stream was invalid (CRC check failed).</p></li>
+<li><p><strong>rx_pid_toggle</strong> (<em>Signal(), input to endpoint</em>) – Value for the data PID toggle; 0 indicates we’re receiving a DATA0; 1 indicates Data1.</p></li>
+<li><p><strong>tx</strong> (<em>USBInStreamInterface, output stream from endpoint</em>) – Transmit interface for this endpoint.</p></li>
+<li><p><strong>tx_pid_toggle</strong> (<em>Signal(2), output from endpoint</em>) – Value for the data PID toggle; 0 indicates we’ll send DATA0; 1 indicates DATA1.
 2 indicates we’ll send DATA2, while 3 indicates we’ll send DATAM.</p></li>
-<li><p><strong>handshakes_in</strong> (<a class="reference internal" href="packet.html#torii_usb.usb.usb2.packet.HandshakeExchangeInterface" title="torii_usb.usb.usb2.packet.HandshakeExchangeInterface"><em>HandshakeExchangeInterface</em></a><em>, </em><em>input to endpoint</em>) – Carries handshakes detected from the host.</p></li>
-<li><p><strong>handshakes_out</strong> (<a class="reference internal" href="packet.html#torii_usb.usb.usb2.packet.HandshakeExchangeInterface" title="torii_usb.usb.usb2.packet.HandshakeExchangeInterface"><em>HandshakeExchangeInterface</em></a><em>, </em><em>output from endpoint</em>) – Carries handshakes generate by this endpoint.</p></li>
-<li><p><strong>speed</strong> (<em>Signal</em><em>(</em><em>2</em><em>)</em><em>, </em><em>input to endpoint</em>) – The device’s current operating speed. Should be a USBSpeed enumeration value –
+<li><p><strong>handshakes_in</strong> (<em>HandshakeExchangeInterface, input to endpoint</em>) – Carries handshakes detected from the host.</p></li>
+<li><p><strong>handshakes_out</strong> (<em>HandshakeExchangeInterface, output from endpoint</em>) – Carries handshakes generate by this endpoint.</p></li>
+<li><p><strong>speed</strong> (<em>Signal(2), input to endpoint</em>) – The device’s current operating speed. Should be a USBSpeed enumeration value –
 0 for high, 1 for full, 2 for low.</p></li>
-<li><p><strong>active_address</strong> (<em>Signal</em><em>(</em><em>7</em><em>)</em><em>, </em><em>input to endpoint</em>) – Contains the device’s current address.</p></li>
-<li><p><strong>address_changed</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output from endpoint.</em>) – Strobe; pulses high when the device’s address should be changed.</p></li>
-<li><p><strong>new_address</strong> (<em>Signal</em><em>(</em><em>7</em><em>)</em><em>, </em><em>output from endpoint</em>) – When <code class="xref py py-attr docutils literal notranslate"><span class="pre">address_changed</span></code> is high, this field contains the address that should be adopted.</p></li>
-<li><p><strong>active_config</strong> (<em>Signal</em><em>(</em><em>8</em><em>)</em><em>, </em><em>input to endpoint</em>) – The configuration number of the active configuration.</p></li>
-<li><p><strong>config_changed</strong> (<em>Signal</em><em>(</em><em>)</em><em>, </em><em>output from endpoint</em>) – Strobe; pulses high when the device’s configuration should be changed.</p></li>
-<li><p><strong>new_config</strong> (<em>Signal</em><em>(</em><em>8</em><em>)</em>) – When <cite>config_changed</cite> is high, this field contains the configuration that should be applied.</p></li>
-<li><p><strong>timer</strong> (<a class="reference internal" href="packet.html#torii_usb.usb.usb2.packet.InterpacketTimerInterface" title="torii_usb.usb.usb2.packet.InterpacketTimerInterface"><em>InterpacketTimerInterface</em></a>) – Interface to our interpacket timer.</p></li>
-<li><p><strong>data_crc</strong> (<a class="reference internal" href="packet.html#torii_usb.usb.usb2.packet.DataCRCInterface" title="torii_usb.usb.usb2.packet.DataCRCInterface"><em>DataCRCInterface</em></a>) – Control connection for our data-CRC unit.</p></li>
+<li><p><strong>active_address</strong> (<em>Signal(7), input to endpoint</em>) – Contains the device’s current address.</p></li>
+<li><p><strong>address_changed</strong> (<em>Signal(), output from endpoint.</em>) – Strobe; pulses high when the device’s address should be changed.</p></li>
+<li><p><strong>new_address</strong> (<em>Signal(7), output from endpoint</em>) – When <code class="xref py py-attr docutils literal notranslate"><span class="pre">address_changed</span></code> is high, this field contains the address that should be adopted.</p></li>
+<li><p><strong>active_config</strong> (<em>Signal(8), input to endpoint</em>) – The configuration number of the active configuration.</p></li>
+<li><p><strong>config_changed</strong> (<em>Signal(), output from endpoint</em>) – Strobe; pulses high when the device’s configuration should be changed.</p></li>
+<li><p><strong>new_config</strong> (<em>Signal(8)</em>) – When <cite>config_changed</cite> is high, this field contains the configuration that should be applied.</p></li>
+<li><p><strong>timer</strong> (<em>InterpacketTimerInterface</em>) – Interface to our interpacket timer.</p></li>
+<li><p><strong>data_crc</strong> (<em>DataCRCInterface</em>) – Control connection for our data-CRC unit.</p></li>
 </ul>
 </dd>
 </dl>
@@ -375,8 +380,8 @@ Indicates that an interpacket delay has passed after an <cite>rx_complete</cite>
 <dd><p>Multiplexes access to the resources shared between multiple endpoint interfaces.</p>
 <p>Interfaces are added using <a class="reference internal" href="#torii_usb.usb.usb2.endpoint.USBEndpointMultiplexer.add_interface" title="torii_usb.usb.usb2.endpoint.USBEndpointMultiplexer.add_interface"><code class="xref py py-attr docutils literal notranslate"><span class="pre">add_interface</span></code></a>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>shared</strong> (<a class="reference internal" href="#torii_usb.usb.usb2.endpoint.EndpointInterface" title="torii_usb.usb.usb2.endpoint.EndpointInterface"><em>EndpointInterface</em></a>) – The post-multiplexer endpoint interface.</p>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shared</strong> (<em>EndpointInterface</em>) – The post-multiplexer endpoint interface.</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -447,10 +452,12 @@ driving the transmit lines at a time.</p>
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=92918f91"></script>
+</div><script src="../../../_static/documentation_options.js?v=f65e5fd5"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/tabs.js?v=3ee01567"></script>
     </body>
 </html>
