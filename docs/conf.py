@@ -16,27 +16,31 @@ language  = 'en'
 extensions = [
 	'sphinx.ext.autodoc',
 	'sphinx.ext.doctest',
+	'sphinx.ext.extlinks',
 	'sphinx.ext.githubpages',
-	'sphinx.ext.graphviz',
 	'sphinx.ext.intersphinx',
 	'sphinx.ext.napoleon',
 	'sphinx.ext.todo',
-	'sphinxcontrib.mermaid',
 	'myst_parser',
+	'sphinx_copybutton',
 	'sphinx_inline_tabs',
 	'sphinxext.opengraph',
 ]
 
+extlinks = {
+	'issue': ('https://github.com/shrine-maiden-heavy-industries/torii-usb/issues/%s', 'torii-usb/%s'),
+	'pypi':  ('https://pypi.org/project/%s/', '%s'),
+}
 
 source_suffix = {
 	'.rst': 'restructuredtext',
 	'.md': 'markdown',
 }
 
-pygments_style              = 'monokai'
+pygments_style              = 'default'
+pygments_dark_style         = 'monokai'
 autodoc_member_order        = 'bysource'
 autodoc_docstring_signature = False
-graphviz_output_format      = 'svg'
 todo_include_todos          = True
 
 intersphinx_mapping = {
@@ -45,12 +49,15 @@ intersphinx_mapping = {
 	'usb_construct': ('https://usb-construct.shmdn.link/', None)
 }
 
-napoleon_google_docstring              = True
+napoleon_google_docstring              = False
 napoleon_numpy_docstring               = True
 napoleon_use_ivar                      = True
 napoleon_use_admonition_for_notes      = True
 napoleon_use_admonition_for_examples   = True
 napoleon_use_admonition_for_references = True
+napoleon_custom_sections  = [
+	('Attributes', 'params_style'),
+]
 
 myst_heading_anchors = 3
 

@@ -8,10 +8,16 @@ migration
 getting_started
 tutorials/index
 gateware/index
+```
 
-changelog
+```{toctree}
+:caption: Development
+:hidden:
 
 Source Code <https://github.com/shrine-maiden-heavy-industries/torii-usb/>
+Contributing <https://github.com/shrine-maiden-heavy-industries/torii-usb/blob/main/CONTRIBUTING.md>
+changelog
+license
 ```
 
 # Torii-USB: USB Gateware Library

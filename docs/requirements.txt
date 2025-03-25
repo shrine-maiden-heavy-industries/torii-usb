@@ -4,6 +4,6 @@ furo
 sphinx-inline-tabs
 sphinx-autodoc-typehints
 sphinxext-opengraph
-sphinxcontrib-mermaid
 matplotlib
 myst-parser
+sphinx-copybutton
