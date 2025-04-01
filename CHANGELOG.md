@@ -27,6 +27,8 @@ Unreleased template stuff
 
 ### Removed
 
+- Removed the `torii_usb.utils.io` module, as the only member `delay` was FPGA specific, and not used elsewhere within the codebase, it was moved over to [SOL], where it was the only known consumer.
+
 ### Fixed
 
 ## [v0.7.1]
