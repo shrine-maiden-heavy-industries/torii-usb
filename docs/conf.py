@@ -82,3 +82,7 @@ ogp_site_url = html_baseurl
 ogp_image    = f'{html_baseurl}/_images/og-image.png'
 
 autosectionlabel_prefix_document = True
+
+linkcheck_retries = 2
+linkcheck_workers = 1 # At the cost of speed try to prevent rate-limiting
+linkcheck_ignore  = []
