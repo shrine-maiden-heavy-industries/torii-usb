@@ -32,13 +32,13 @@ Unreleased template stuff
 
 ### Fixed
 
-## [v0.7.1]
+## [v0.7.1] - 2025-03-11
 
 ## Changed
 
 - Bumped Torii minimum version from `v0.7.6` to `v0.7.7`
 
-## [v0.7.0]
+## [v0.7.0] - 2025-03-07
 
 > [!IMPORTANT]
 > This is the first release after the split from [SOL](https://github.com/shrine-maiden-heavy-industries/sol), This is primarily a release to set things up
