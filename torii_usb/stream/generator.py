@@ -7,6 +7,7 @@
 ''' Stream generators. '''
 
 from typing                  import Generic, TypeVar, Literal
+from warnings                import warn
 
 from torii.hdl               import Array, Const, DomainRenamer, Elaboratable, Memory, Module, Signal
 from torii.lib.stream.simple import StreamInterface
@@ -70,6 +71,11 @@ class ConstantStreamGenerator(Generic[T], Elaboratable):
 		max_length_width: int | None = None, data_width: int | None = None,
 		data_endianness: Literal['little', 'big'] = 'little'
 	):
+		warn(
+			'torii_usb.stream.generator.ConstantStreamGenerator is deprecated and will be moved to '
+			'torii.lib.stream.simple.generator in a future release.',
+			DeprecationWarning, stacklevel = 2
+		)
 
 		self._domain           = domain
 		self._data             = constant_data
@@ -384,6 +390,12 @@ class StreamSerializer(Generic[T], Elaboratable):
 			transmitted.
 
 		'''
+
+		warn(
+			'torii_usb.stream.generator.StreamSerializer is deprecated and will be moved to '
+			'torii.lib.stream.simple.generator in a future release.',
+			DeprecationWarning, stacklevel = 2
+		)
 
 		self.domain      = domain
 		self.data_width  = data_width

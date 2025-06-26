@@ -26,6 +26,8 @@ Unreleased template stuff
 
 ### Deprecated
 
+- Preemptively deprecated `torii_usb.stream.generator` as the contents will be merged into the [Torii] `torii.lib.streams.simple` library in the near future.
+
 ### Removed
 
 - Removed the `torii_usb.utils.io` module, as the only member `delay` was FPGA specific, and not used elsewhere within the codebase, it was moved over to [SOL], where it was the only known consumer.
@@ -41,7 +43,7 @@ Unreleased template stuff
 ## [v0.7.0] - 2025-03-07
 
 > [!IMPORTANT]
-> This is the first release after the split from [SOL](https://github.com/shrine-maiden-heavy-industries/sol), This is primarily a release to set things up
+> This is the first release after the split from [SOL], This is primarily a release to set things up
 
 ### Changed
 
@@ -67,3 +69,5 @@ Unreleased template stuff
 [Unreleased]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.1...main
 [v0.7.1]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.0..v0.7.1
 [v0.7.0]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/e84197f...v0.7.0
+[SOL]: https://github.com/shrine-maiden-heavy-industries/sol
+[Torii]: https://github.com/shrine-maiden-heavy-industries/torii-hdl
