@@ -20,6 +20,21 @@ Unreleased template stuff
 
 ## [Unreleased]
 
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+## [0.8.0] - 2025-06-26
+
+This is a maintenance release, syncs the minimum [Torii] version to `0.8.0` in preparation for
+the Torii `1.0.0` release in the future.
+
 ## Changed
 
 - Bumped Torii minimum version from `0.7.7` to `0.8.0`
@@ -64,7 +79,8 @@ Unreleased template stuff
 - spi interface
 - uart interface
 
-[Unreleased]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.1...main
+[Unreleased]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.8.0...main
+[0.8.0]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.1..v0.8.0
 [0.7.1]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.0..v0.7.1
 [0.7.0]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/e84197f...v0.7.0
 [SOL]: https://github.com/shrine-maiden-heavy-industries/sol
