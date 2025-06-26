@@ -20,9 +20,9 @@ Unreleased template stuff
 
 ## [Unreleased]
 
-### Added
+## Changed
 
-### Changed
+- Bumped Torii minimum version from `0.7.7` to `0.8.0`
 
 ### Deprecated
 
