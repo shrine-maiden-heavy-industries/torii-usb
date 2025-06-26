@@ -32,15 +32,13 @@ Unreleased template stuff
 
 - Removed the `torii_usb.utils.io` module, as the only member `delay` was FPGA specific, and not used elsewhere within the codebase, it was moved over to [SOL], where it was the only known consumer.
 
-### Fixed
-
-## [v0.7.1] - 2025-03-11
+## [0.7.1] - 2025-03-11
 
 ## Changed
 
-- Bumped Torii minimum version from `v0.7.6` to `v0.7.7`
+- Bumped Torii minimum version from `0.7.6` to `0.7.7`
 
-## [v0.7.0] - 2025-03-07
+## [0.7.0] - 2025-03-07
 
 > [!IMPORTANT]
 > This is the first release after the split from [SOL], This is primarily a release to set things up
@@ -67,7 +65,7 @@ Unreleased template stuff
 - uart interface
 
 [Unreleased]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.1...main
-[v0.7.1]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.0..v0.7.1
-[v0.7.0]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/e84197f...v0.7.0
+[0.7.1]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.0..v0.7.1
+[0.7.0]: https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/e84197f...v0.7.0
 [SOL]: https://github.com/shrine-maiden-heavy-industries/sol
 [Torii]: https://github.com/shrine-maiden-heavy-industries/torii-hdl
