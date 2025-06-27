@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://torii-usb.shmdn.link/changelog.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
-        <title>Changelog - Torii-USB 0.7.2.dev11 documentation</title>
+        <title>Changelog - Torii-USB 0.8.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -178,7 +178,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Torii-USB 0.7.2.dev11 documentation</div></a>
+      <a href="index.html"><div class="brand">Torii-USB 0.8.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -202,7 +202,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">Torii-USB 0.7.2.dev11 documentation</span>
+  <span class="sidebar-brand-text">Torii-USB 0.8.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -328,7 +328,7 @@ Unreleased template stuff
 ### Security
 -->
 <section id="unreleased">
-<h2><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.1...main">Unreleased</a><a class="headerlink" href="#unreleased" title="Link to this heading">¶</a></h2>
+<h2><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.8.0...main">Unreleased</a><a class="headerlink" href="#unreleased" title="Link to this heading">¶</a></h2>
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
 </section>
@@ -340,37 +340,57 @@ Unreleased template stuff
 </section>
 <section id="removed">
 <h3>Removed<a class="headerlink" href="#removed" title="Link to this heading">¶</a></h3>
-<ul class="simple">
-<li><p>Removed the <code class="docutils literal notranslate"><span class="pre">torii_usb.utils.io</span></code> module, as the only member <code class="docutils literal notranslate"><span class="pre">delay</span></code> was FPGA specific, and not used elsewhere within the codebase, it was moved over to [SOL], where it was the only known consumer.</p></li>
-</ul>
 </section>
 <section id="fixed">
 <h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">¶</a></h3>
 </section>
 </section>
-<section id="v0-7-1-2025-03-11">
-<h2><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.0..v0.7.1">v0.7.1</a> - 2025-03-11<a class="headerlink" href="#v0-7-1-2025-03-11" title="Link to this heading">¶</a></h2>
-</section>
 <section id="id1">
-<h2>Changed<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<h2><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.1..v0.8.0">0.8.0</a> - 2025-06-26<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>This is a maintenance release, syncs the minimum <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-hdl">Torii</a> version to <code class="docutils literal notranslate"><span class="pre">0.8.0</span></code> in preparation for
+the Torii <code class="docutils literal notranslate"><span class="pre">1.0.0</span></code> release in the future.</p>
+</section>
+<section id="id2">
+<h2>Changed<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Bumped Torii minimum version from <code class="docutils literal notranslate"><span class="pre">v0.7.6</span></code> to <code class="docutils literal notranslate"><span class="pre">v0.7.7</span></code></p></li>
+<li><p>Bumped Torii minimum version from <code class="docutils literal notranslate"><span class="pre">0.7.7</span></code> to <code class="docutils literal notranslate"><span class="pre">0.8.0</span></code></p></li>
+</ul>
+<section id="id3">
+<h3>Deprecated<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Preemptively deprecated <code class="docutils literal notranslate"><span class="pre">torii_usb.stream.generator</span></code> as the contents will be merged into the <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-hdl">Torii</a> <code class="docutils literal notranslate"><span class="pre">torii.lib.streams.simple</span></code> library in the near future.</p></li>
 </ul>
 </section>
-<section id="v0-7-0-2025-03-07">
-<h2><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/e84197f...v0.7.0">v0.7.0</a> - 2025-03-07<a class="headerlink" href="#v0-7-0-2025-03-07" title="Link to this heading">¶</a></h2>
+<section id="id4">
+<h3>Removed<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Removed the <code class="docutils literal notranslate"><span class="pre">torii_usb.utils.io</span></code> module, as the only member <code class="docutils literal notranslate"><span class="pre">delay</span></code> was FPGA specific, and not used elsewhere within the codebase, it was moved over to <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/sol">SOL</a>, where it was the only known consumer.</p></li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/v0.7.0..v0.7.1">0.7.1</a> - 2025-03-11<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+</section>
+<section id="id6">
+<h2>Changed<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Bumped Torii minimum version from <code class="docutils literal notranslate"><span class="pre">0.7.6</span></code> to <code class="docutils literal notranslate"><span class="pre">0.7.7</span></code></p></li>
+</ul>
+</section>
+<section id="id7">
+<h2><a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/torii-usb/compare/e84197f...v0.7.0">0.7.0</a> - 2025-03-07<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><p>[!IMPORTANT]
 This is the first release after the split from <a class="reference external" href="https://github.com/shrine-maiden-heavy-industries/sol">SOL</a>, This is primarily a release to set things up</p>
 </div></blockquote>
-<section id="id2">
-<h3>Changed<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<section id="id8">
+<h3>Changed<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sol_usb</span></code> and <code class="docutils literal notranslate"><span class="pre">sol_usb.gateware</span></code> are now just <code class="docutils literal notranslate"><span class="pre">torii_usb</span></code></p></li>
 </ul>
 </section>
-<section id="id3">
-<h3>Removed<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<section id="id9">
+<h3>Removed<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Built in <code class="docutils literal notranslate"><span class="pre">StreamInterface</span></code> and <code class="docutils literal notranslate"><span class="pre">StreamArbiter</span></code> in favor of Torii’s</p></li>
 <li><p>Existing examples (for now)</p></li>
@@ -455,11 +475,17 @@ This is the first release after the split from <a class="reference external" hre
 <li><a class="reference internal" href="#fixed">Fixed</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#v0-7-1-2025-03-11">v0.7.1 - 2025-03-11</a></li>
-<li><a class="reference internal" href="#id1">Changed</a></li>
-<li><a class="reference internal" href="#v0-7-0-2025-03-07">v0.7.0 - 2025-03-07</a><ul>
-<li><a class="reference internal" href="#id2">Changed</a></li>
-<li><a class="reference internal" href="#id3">Removed</a></li>
+<li><a class="reference internal" href="#id1">0.8.0 - 2025-06-26</a></li>
+<li><a class="reference internal" href="#id2">Changed</a><ul>
+<li><a class="reference internal" href="#id3">Deprecated</a></li>
+<li><a class="reference internal" href="#id4">Removed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">0.7.1 - 2025-03-11</a></li>
+<li><a class="reference internal" href="#id6">Changed</a></li>
+<li><a class="reference internal" href="#id7">0.7.0 - 2025-03-07</a><ul>
+<li><a class="reference internal" href="#id8">Changed</a></li>
+<li><a class="reference internal" href="#id9">Removed</a></li>
 </ul>
 </li>
 </ul>
@@ -473,7 +499,7 @@ This is the first release after the split from <a class="reference external" hre
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=fa14ebf5"></script>
+</div><script src="_static/documentation_options.js?v=a85d417d"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=5fa4622c"></script>
