@@ -35,7 +35,7 @@ Unreleased template stuff
 This is a maintenance release, syncs the minimum [Torii] version to `0.8.0` in preparation for
 the Torii `1.0.0` release in the future.
 
-## Changed
+### Changed
 
 - Bumped Torii minimum version from `0.7.7` to `0.8.0`
 
