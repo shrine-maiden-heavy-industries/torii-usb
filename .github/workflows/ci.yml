@@ -1,5 +1,21 @@
-name: 'torii-usb CI'
-on: [ push, pull_request ]
+name: 'Torii USB CI'
+on:
+  push:
+    branches-ignore:
+      - 'gh-pages'
+    paths:
+      - '.github/workflows/ci.yml'
+      - 'docs/**'
+      - 'examples/**'
+      - 'tests/**'
+      - 'torii_usb/**'
+      - 'noxfile.py'
+      - 'pyproject.toml'
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+  pull_request:
+    branches:
+      - main
 
 env:
   TOOL_PYTHON_VERSION: '3.11'
@@ -7,7 +23,7 @@ env:
 jobs:
   lint-torii-usb:
     runs-on: ubuntu-latest
-    name: 'Lint torii-usb'
+    name: 'Lint Torii USB'
     steps:
       - name: 'Setup Python (${{ env.TOOL_PYTHON_VERSION }})'
         uses: actions/setup-python@v5
@@ -42,24 +58,23 @@ jobs:
         shell: bash
         continue-on-error: true
         run: |
-          nox -s typecheck
+          nox -s typecheck-mypy
+          nox -s typecheck-pyright
 
   test-torii-usb:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ '3.10', '3.11', '3.12', '3.13', ]
+        python-version: [ '3.11', '3.12', '3.13', ]
         allow-failure:
          - false
         include:
           - python-version: '3.14-dev'
             allow-failure: true
-          - python-version: 'pypy3.10'
-            allow-failure: true
           - python-version: 'pypy3.11'
             allow-failure: true
 
-    name: 'Test torii-usb (Python ${{ matrix.python-version }})'
+    name: 'Test Torii USB (Python ${{ matrix.python-version }})'
     continue-on-error: ${{ matrix.allow-failure }}
     steps:
       - name: 'Setup Python (${{ matrix.python-version }})'
@@ -74,7 +89,6 @@ jobs:
         run: |
           echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
           echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
-          echo "COVERAGE_CORE=sysmon" >> $GITHUB_ENV
 
       - name: 'Install Dependencies'
         shell: bash
@@ -106,7 +120,7 @@ jobs:
 
   linkcheck-docs:
     runs-on: ubuntu-latest
-    name: 'torii-usb Docs - Link-check'
+    name: 'Torii USB Docs - Link-check'
     steps:
       - name: 'Setup Python (${{ env.TOOL_PYTHON_VERSION }})'
         uses: actions/setup-python@v5
@@ -139,7 +153,7 @@ jobs:
 
   build-docs:
     runs-on: ubuntu-latest
-    name: 'torii-usb Docs - Build'
+    name: 'Torii USB Docs - Build'
     steps:
       - name: 'Setup Python (${{ env.TOOL_PYTHON_VERSION }})'
         uses: actions/setup-python@v5
@@ -179,7 +193,7 @@ jobs:
           retention-days: 1
 
   docs:
-    name: 'torii-usb Docs (Meta Job)'
+    name: 'Torii USB Docs (Meta Job)'
     needs:
       - linkcheck-docs
       - build-docs
@@ -188,7 +202,7 @@ jobs:
       - run: ${{ contains(needs.*.result, 'failure') && 'false' || 'true' }}
 
   ci-checkpoint:
-    name: 'torii-usb CI Checkpoint (Meta Job)'
+    name: 'Torii USB CI Checkpoint (Meta Job)'
     needs:
       - lint-torii-usb
       - test-torii-usb
@@ -198,7 +212,7 @@ jobs:
       - run: ${{ contains(needs.*.result, 'failure') && 'false' || 'true' }}
 
   publish-docs:
-    name: 'Publish torii-usb Docs'
+    name: 'Publish Torii USB Docs'
     if: github.repository == 'shrine-maiden-heavy-industries/torii-usb' && (github.event.ref == 'refs/heads/main' || startsWith(github.event.ref, 'refs/tags/v')) && github.event_name == 'push'
     needs:
       - ci-checkpoint
@@ -223,7 +237,7 @@ jobs:
           clean: true
 
   publish-pypi:
-    name: 'torii-usb - Publish PyPi package'
+    name: 'Torii USB - Publish PyPi package'
     if: github.repository == 'shrine-maiden-heavy-industries/torii-usb' && github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v') && !contains(github.event.ref, 'dev')
     needs:
       - publish-docs
