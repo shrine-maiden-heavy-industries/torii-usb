@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD041 -->
 ```{toctree}
 :hidden:
 
@@ -34,6 +35,12 @@ See the Torii-USB to SOL [migration guide] for information on migrating from SOL
 
 For more information on Torii-USB, see the [Introduction] and check out the [Getting Started] guide for how to get up and running with Torii-USB.
 
+## Community
+
+The two primary community spots for Torii and by extension Torii USB are the `#torii` IRC channel on [libera.chat] (`irc.libera.chat:6697`) which you can join via your favorite IRC client or the [web chat], and the [discussion forum] on GitHub.
+
+Please do join and share your projects using Torii, ask questions, get help with problems, or discuss development.
+
 [Torii]: https://github.com/shrine-maiden-heavy-industries/torii-hdl
 [SOL]: https://github.com/shrine-maiden-heavy-industries/sol
 [LUNA]: https://github.com/greatscottgadgets/luna
@@ -41,3 +48,6 @@ For more information on Torii-USB, see the [Introduction] and check out the [Get
 [migration guide]: ./migration.md
 [Introduction]: ./intro.md
 [Getting Started]: ./getting_started.md
+[libera.chat]: https://libera.chat/
+[web chat]: https://web.libera.chat/#torii
+[discussion forum]: https://github.com/shrine-maiden-heavy-industries/torii-usb/discussions
