@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: BSD-2-Clause
-
-import datetime
-from pathlib import Path
+from datetime  import date
+from pathlib   import Path
 
 from torii     import __version__ as torii_version
 from torii_usb import __version__ as torii_usb_version
@@ -11,7 +10,7 @@ ROOT_DIR = (Path(__file__).parent).parent
 project   = 'Torii-USB'
 version   = torii_usb_version
 release   = version.split('+')[0]
-copyright = f'{datetime.date.today().year}, Shrine Maiden Heavy Industries'
+copyright = f'{date.today().year}, Shrine Maiden Heavy Industries'
 language  = 'en'
 
 extensions = [
