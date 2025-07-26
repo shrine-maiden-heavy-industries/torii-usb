@@ -3,6 +3,7 @@
 import datetime
 from pathlib import Path
 
+from torii     import __version__ as torii_version
 from torii_usb import __version__ as torii_usb_version
 
 ROOT_DIR = (Path(__file__).parent).parent
@@ -45,7 +46,7 @@ todo_include_todos          = True
 
 intersphinx_mapping = {
 	'python': ('https://docs.python.org/3', None),
-	'torii': ('https://torii.shmdn.link/', None),
+	'torii': (f'https://torii.shmdn.link/v{torii_version}', None),
 	'usb_construct': ('https://usb-construct.shmdn.link/', None)
 }
 
