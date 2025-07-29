@@ -1,1 +1,5 @@
-docs linguist-documentation
+# SPDX-License-Identifier: BSD-3-Clause
+
+* text=auto eol=lf
+
+docs/** linguist-documentation
