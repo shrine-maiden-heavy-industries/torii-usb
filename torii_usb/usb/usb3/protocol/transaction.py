@@ -256,36 +256,38 @@ class TransactionPacketGenerator(Elaboratable):
 
 			# SEND_ACK -- actively send an ACK packet to our link partner; and wait for that to complete.
 			with m.State('SEND_ACK'):
-				send_packet(ACKHeaderPacket,
+				send_packet(
+					ACKHeaderPacket,
 					subtype           = TransactionPacketSubtype.ACK,
 					direction         = USBDirection.OUT,
 					retry             = data_error,
 					data_sequence     = next_sequence,
-
 					# TODO: eventually support bursting?
 					number_of_packets = 1,
 				)
 
 			# SEND_NRDY -- actively send an NRDY packet to our link partner; and wait for that to complete.
 			with m.State('SEND_NRDY'):
-				send_packet(NRDYHeaderPacket,
+				send_packet(
+					NRDYHeaderPacket,
 					subtype           = TransactionPacketSubtype.NRDY,
 					direction         = USBDirection.IN,
 				)
 
 			# SEND_NRDY -- actively send an NRDY packet to our link partner; and wait for that to complete.
 			with m.State('SEND_ERDY'):
-				send_packet(ERDYHeaderPacket,
+				send_packet(
+					ERDYHeaderPacket,
 					subtype           = TransactionPacketSubtype.ERDY,
 					direction         = USBDirection.IN,
-
 					# TODO: eventually support bursting?
 					number_of_packets = 1,
 				)
 
 			# SEND_STALL -- actively send a STALL packet to our link partner; and wait for that to complete.
 			with m.State('SEND_STALL'):
-				send_packet(ACKHeaderPacket,
+				send_packet(
+					ACKHeaderPacket,
 					subtype           = TransactionPacketSubtype.STALL,
 					direction         = USBDirection.OUT,
 					number_of_packets = 1,
