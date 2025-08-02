@@ -305,15 +305,8 @@ class SuperSpeedRequestHandlerMultiplexer(Elaboratable):
 		#
 		# Multiplex the signals being routed -from- our pre-mux interface.
 		#
-		self._multiplex_signals(m,
-			when = 'address_changed',
-			multiplex = ['address_changed', 'new_address']
-		)
-
-		self._multiplex_signals(m,
-			when = 'config_changed',
-			multiplex = ['config_changed', 'new_config']
-		)
+		self._multiplex_signals(m, when = 'address_changed', multiplex = ['address_changed', 'new_address'])
+		self._multiplex_signals(m, when = 'config_changed', multiplex = ['config_changed', 'new_config'])
 
 		#
 		# Multiplex each of our transmit interfaces.
