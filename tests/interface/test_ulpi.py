@@ -166,9 +166,7 @@ class ULPIRxEventDecoderTest(ToriiUSBGatewareTestCase):
 		self.ulpi = Record([
 			('dir', 1),
 			('nxt', 1),
-			('data', [
-				('i', 8),
-			])
+			('data', [('i', 8),])
 		])
 
 		return ULPIRxEventDecoder(ulpi_bus = self.ulpi)

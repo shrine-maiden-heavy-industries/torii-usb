@@ -41,8 +41,10 @@ class GetDescriptorHandlerBlockTest(USBGatewareTestCase):
 
 	def traces_of_interest(self):
 		dut = self.dut
-		return (dut.value, dut.length, dut.start_position, dut.start, dut.stall,
-				dut.tx.ready, dut.tx.first, dut.tx.last, dut.tx.data, dut.tx.valid)
+		return (
+			dut.value, dut.length, dut.start_position, dut.start, dut.stall, dut.tx.ready, dut.tx.first,
+			dut.tx.last, dut.tx.data, dut.tx.valid
+		)
 
 	def _test_descriptor(self, type_number, index, raw_descriptor, start_position, max_length, delay_ready = 0):
 		''' Triggers a read and checks if correct data is transmitted. '''
@@ -65,14 +67,14 @@ class GetDescriptorHandlerBlockTest(USBGatewareTestCase):
 		yield from self.wait_until(self.dut.tx.valid, timeout = 100)
 
 		if delay_ready > 0:
-			for _ in range(delay_ready-1):
+			for _ in range(delay_ready - 1):
 				yield
 			yield self.dut.tx.ready.eq(1)
 			yield
 
 		max_packet_length = 64
 		expected_data = raw_descriptor[start_position:]
-		expected_bytes = min(len(expected_data), max_length-start_position, max_packet_length)
+		expected_bytes = min(len(expected_data), max_length - start_position, max_packet_length)
 
 		if expected_bytes == 0:
 			self.assertEqual((yield self.dut.tx.first), 0)
@@ -120,7 +122,9 @@ class GetDescriptorHandlerBlockTest(USBGatewareTestCase):
 	def test_all_descriptors(self):
 		for type_number, index, raw_descriptor in self.descriptors:
 			yield from self._test_descriptor(type_number, index, raw_descriptor, 0, len(raw_descriptor))
-			yield from self._test_descriptor(type_number, index, raw_descriptor, 0, len(raw_descriptor), delay_ready = 10)
+			yield from self._test_descriptor(
+				type_number, index, raw_descriptor, 0, len(raw_descriptor), delay_ready = 10
+			)
 
 	@usb_domain_test_case
 	def test_all_descriptors_with_offset(self):
@@ -132,16 +136,18 @@ class GetDescriptorHandlerBlockTest(USBGatewareTestCase):
 	def test_all_descriptors_with_length(self):
 		for type_number, index, raw_descriptor in self.descriptors:
 			if len(raw_descriptor) > 1:
-				yield from self._test_descriptor(type_number, index, raw_descriptor, 0, min(8, len(raw_descriptor)-1))
+				yield from self._test_descriptor(type_number, index, raw_descriptor, 0, min(8, len(raw_descriptor) - 1))
 				yield from self._test_descriptor(
-					type_number, index, raw_descriptor, 0, min(8, len(raw_descriptor)-1), delay_ready = 10
+					type_number, index, raw_descriptor, 0, min(8, len(raw_descriptor) - 1), delay_ready = 10
 				)
 
 	@usb_domain_test_case
 	def test_all_descriptors_with_offset_and_length(self):
 		for type_number, index, raw_descriptor in self.descriptors:
 			if len(raw_descriptor) > 1:
-				yield from self._test_descriptor(type_number, index, raw_descriptor, 1, min(8, len(raw_descriptor)-1))
+				yield from self._test_descriptor(
+					type_number, index, raw_descriptor, 1, min(8, len(raw_descriptor) - 1)
+				)
 
 	@usb_domain_test_case
 	def test_all_descriptors_with_zero_length(self):
