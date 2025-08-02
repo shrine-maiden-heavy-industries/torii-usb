@@ -150,7 +150,7 @@ class DataPacketReceiver(Elaboratable):
 					with m.If(sink.valid):
 						m.d.comb += crc16.advance_crc.eq(1)
 						m.d.ss += header[f'dw{n}'].eq(sink.data)
-						m.next = f'RECEIVE_DW{n+1}'
+						m.next = f'RECEIVE_DW{n + 1}'
 
 						# Extra check for our first packet; we'll make sure this of -data- type;
 						# and bail out, otherwise.
