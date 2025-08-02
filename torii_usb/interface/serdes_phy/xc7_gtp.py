@@ -105,16 +105,20 @@ class GTPQuadPLL(Elaboratable):
 		for n1 in 4, 5:
 			for n2 in 1, 2, 3, 4, 5:
 				for m in 1, 2:
-					vco_freq = refclk_freq*(n1*n2)/m
+					vco_freq = refclk_freq * (n1 * n2) / m
 					if 1.6e9 <= vco_freq <= 3.3e9:
 						for d in 1, 2, 4, 8, 16:
-							current_linerate = vco_freq*2/d
+							current_linerate = vco_freq * 2 / d
 							if current_linerate == linerate:
-								return {'n1': n1, 'n2': n2, 'm': m, 'd': d,
-										'vco_freq': vco_freq,
-										'clkin': refclk_freq,
-										'linerate': linerate}
-		raise ValueError(f'No config found for {refclk_freq/1e6:3.2f} MHz refclk / {linerate/1e9:3.2f} Gbps linerate.')
+								return {
+									'n1': n1, 'n2': n2, 'm': m, 'd': d,
+									'vco_freq': vco_freq,
+									'clkin': refclk_freq,
+									'linerate': linerate
+								}
+		raise ValueError(
+			f'No config found for {refclk_freq / 1e6:3.2f} MHz refclk / {linerate / 1e9:3.2f} Gbps linerate.'
+		)
 
 	def __repr__(self):
 		config = self.config
@@ -140,11 +144,11 @@ class GTPQuadPLL(Elaboratable):
 							+-------+
 	config:
 	-------
-	CLKIN		= {config['clkin']/1e6}MHz
-	CLKOUT		= CLKIN x (N1 x N2) / M = {config['clkin']/1e6}MHz x ({config['n1']} x {config['n2']}) / {config['m']}
-				= {config['vco_freq']/1e9}GHz
-	LINERATE	= CLKOUT x 2 / D = {config['vco_freq']/1e9}GHz x 2 / {config['d']}
-				= {config['linerate']/1e9}GHz
+	CLKIN		= {config['clkin'] / 1e6}MHz
+	CLKOUT		= CLKIN x (N1 x N2) / M = {config['clkin'] / 1e6}MHz x ({config['n1']} x {config['n2']}) / {config['m']}
+				= {config['vco_freq'] / 1e9}GHz
+	LINERATE	= CLKOUT x 2 / D = {config['vco_freq'] / 1e9}GHz x 2 / {config['d']}
+				= {config['linerate'] / 1e9}GHz
 '''
 
 class GTPChannel(Elaboratable):
@@ -224,7 +228,8 @@ class GTPChannel(Elaboratable):
 		# The recovered Rx clock will not match the generated Tx clock; use the recovered word
 		# clock to drive the CTC FIFO in the transceiver, which will compensate for the difference.
 		txoutclk = Signal()
-		m.submodules += Instance('BUFG',
+		m.submodules += Instance(
+			'BUFG',
 			i_I = txoutclk,
 			o_O = self.pclk
 		)
@@ -288,7 +293,8 @@ class GTPChannel(Elaboratable):
 		#
 		# Core SerDes instantiation.
 		#
-		m.submodules.gtp = Instance('GTPE2_CHANNEL',
+		m.submodules.gtp = Instance(
+			'GTPE2_CHANNEL',
 			# Simulation-Only Attributes
 			p_SIM_RECEIVER_DETECT_PASS   = 'TRUE',
 			p_SIM_TX_EIDLE_DRIVE_LEVEL   = 'X',

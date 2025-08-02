@@ -27,14 +27,16 @@ class ECP5SerDesPLLConfiguration:
 	@staticmethod
 	def compute_config(refclk_freq, linerate):
 		for mult in [8, 10, 16, 20, 25]:
-			current_linerate = refclk_freq*mult
+			current_linerate = refclk_freq * mult
 			if current_linerate == linerate:
 				return {
 					'mult':       mult,
 					'refck_freq': refclk_freq,
 					'linerate':   linerate,
 				}
-		raise ValueError(f'No config found for {refclk_freq/1e6:3.2f} MHz refclk / {linerate/1e9:3.2f} Gbps linerate.')
+		raise ValueError(
+			f'No config found for {refclk_freq / 1e6:3.2f} MHz refclk / {linerate / 1e9:3.2f} Gbps linerate.'
+		)
 
 class ECP5SerDesConfigInterface(Elaboratable):
 	''' Module that interfaces with the ECP5's SerDes Client Interface (SCI). '''
@@ -770,10 +772,10 @@ class ECP5SerDes(Elaboratable):
 			p_D_TX_VCO_CK_DIV       = {
 				32: '0b111',
 				16: '0b110',
-				8 : '0b101',
-				4 : '0b100',
-				2 : '0b010',
-				1 : '0b000'
+				8: '0b101',
+				4: '0b100',
+				2: '0b010',
+				1: '0b000'
 			}[1],                # DIV/1
 			p_D_BITCLK_LOCAL_EN     = '0b1',    # Use clock from local PLL
 
@@ -860,10 +862,10 @@ class ECP5SerDes(Elaboratable):
 			p_CHX_RX_DCO_CK_DIV     = {
 				32: '0b111',
 				16: '0b110',
-				8 : '0b101',
-				4 : '0b100',
-				2 : '0b010',
-				1 : '0b000'
+				8: '0b101',
+				4: '0b100',
+				2: '0b010',
+				1: '0b000'
 			}[1],                # DIV/1
 
 			# begin undocumented (Clarity Designer values for 5 Gbps PCIe used)
