@@ -119,10 +119,10 @@ class StandardRequestHandler(Elaboratable):
 		#
 
 		# Handler for Get Descriptor requests; responds with our various fixed descriptors.
-		m.submodules.get_descriptor = get_descriptor_handler = GetDescriptorHandler(self.descriptors,
-			usb_domain  = 'ss',
-			stream_type = SuperSpeedStreamInterface
+		m.submodules.get_descriptor = get_descriptor_handler = GetDescriptorHandler(
+			self.descriptors, usb_domain = 'ss', stream_type = SuperSpeedStreamInterface
 		)
+
 		m.d.comb += [
 			get_descriptor_handler.value.eq(setup.value),
 			get_descriptor_handler.length.eq(setup.length),
@@ -164,7 +164,8 @@ class StandardRequestHandler(Elaboratable):
 				# For now, we'll always return '0'.
 				with m.State('GET_STATUS'):
 					# TODO: handle reporting endpoint stall status
-					# TODO: copy the remote wakeup and bus-powered attributes from bmAttributes of the relevant descriptor?
+					# TODO:
+					# copy the remote wakeup and bus-powered attributes from bmAttributes of the relevant descriptor?
 					self.handle_simple_data_request(m, 0, length = 2)
 
 				# SET_ADDRESS -- The host is trying to assign us an address.
