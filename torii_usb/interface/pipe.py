@@ -352,8 +352,7 @@ class AsyncPIPEInterface(PIPEInterface, Elaboratable):
 			r_domain = 'sync'
 		)
 		m.d.phy  += [
-			rx_fifo.w_data.word_select(gear_index, len(phy_rx_bus_signals))
-								.eq(phy_rx_bus_signals),
+			rx_fifo.w_data.word_select(gear_index, len(phy_rx_bus_signals)).eq(phy_rx_bus_signals),
 			rx_fifo.w_en.eq(gear_advance),
 		]
 		m.d.comb += [
