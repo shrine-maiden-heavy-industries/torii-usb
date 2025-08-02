@@ -104,7 +104,7 @@ class RawHeaderPacketReceiver(Elaboratable):
 					with m.If(sink.valid):
 						m.d.comb += crc16.advance_crc.eq(1)
 						m.d.ss += packet[f'dw{n}'].eq(sink.data)
-						m.next = f'RECEIVE_DW{n+1}'
+						m.next = f'RECEIVE_DW{n + 1}'
 
 			# RECEIVE_DW3 -- we'll receive and parse our final data word, which contains the fields
 			# relevant to the link layer.

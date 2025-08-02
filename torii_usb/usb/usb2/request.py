@@ -108,7 +108,7 @@ class USBRequestHandler(Elaboratable):
 		]
 
 	@abstractmethod
-	def handler_condition(self, setup : SetupPacket) -> Operator:
+	def handler_condition(self, setup: SetupPacket) -> Operator:
 		raise NotImplementedError('You must implement handler_condition on your request handler.')
 
 class USBSetupDecoder(Elaboratable):
@@ -362,15 +362,8 @@ class USBRequestHandlerMultiplexer(Elaboratable):
 		#
 		# Multiplex the signals being routed -from- our pre-mux interface.
 		#
-		self._multiplex_signals(m,
-			when = 'address_changed',
-			multiplex = ['address_changed', 'new_address']
-		)
-
-		self._multiplex_signals(m,
-			when = 'config_changed',
-			multiplex = ['config_changed', 'new_config']
-		)
+		self._multiplex_signals(m, when = 'address_changed', multiplex = ['address_changed', 'new_address'])
+		self._multiplex_signals(m, when = 'config_changed', multiplex = ['config_changed', 'new_config'])
 
 		# Connect up our transmit interface.
 		m.submodules.tx_mux = tx_mux = OneHotMultiplexer(

@@ -45,8 +45,10 @@ class GetDescriptorHandler(Elaboratable):
 		The type of stream we'll be multiplexing.
 	'''
 
-	def __init__(self, descriptor_collection: DeviceDescriptorCollection, *,
-		usb_domain = 'ss', stream_type = SuperSpeedStreamInterface):
+	def __init__(
+		self, descriptor_collection: DeviceDescriptorCollection, *, usb_domain = 'ss',
+		stream_type = SuperSpeedStreamInterface
+	):
 		'''
 		Parameters
 		----------
@@ -85,8 +87,9 @@ class GetDescriptorHandler(Elaboratable):
 		for type_number, index, raw_descriptor in self._descriptors:
 
 			# Create the generator...
-			generator = ConstantStreamGenerator(raw_descriptor,
-				domain = self._domain, stream_type = self._stream_type, max_length_width = 16)
+			generator = ConstantStreamGenerator(
+				raw_descriptor, domain = self._domain, stream_type = self._stream_type, max_length_width = 16
+			)
 			descriptor_generators[(type_number, index)] = generator
 
 			# ... and attach it to this module.

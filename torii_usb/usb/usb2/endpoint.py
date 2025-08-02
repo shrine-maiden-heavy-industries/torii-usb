@@ -221,14 +221,8 @@ class USBEndpointMultiplexer(Elaboratable):
 		#
 		# Multiplex the signals being routed -from- our pre-mux interface.
 		#
-		self._multiplex_signals(m,
-			when = 'address_changed',
-			multiplex = ['address_changed', 'new_address']
-		)
-		self._multiplex_signals(m,
-			when = 'config_changed',
-			multiplex = ['config_changed', 'new_config']
-		)
+		self._multiplex_signals(m, when = 'address_changed', multiplex = ['address_changed', 'new_address'])
+		self._multiplex_signals(m, when = 'config_changed', multiplex = ['config_changed', 'new_config'])
 
 		# Connect up our transmit interface.
 		m.submodules.tx_mux = tx_mux = OneHotMultiplexer(
@@ -241,15 +235,15 @@ class USBEndpointMultiplexer(Elaboratable):
 		m.d.comb += self.shared.tx.stream_eq(tx_mux.output)
 
 		# OR together all of our handshake-generation requests...
-		self.or_join_interface_signals(m, lambda interface : interface.handshakes_out.ack)
-		self.or_join_interface_signals(m, lambda interface : interface.handshakes_out.nak)
-		self.or_join_interface_signals(m, lambda interface : interface.handshakes_out.stall)
+		self.or_join_interface_signals(m, lambda interface: interface.handshakes_out.ack)
+		self.or_join_interface_signals(m, lambda interface: interface.handshakes_out.nak)
+		self.or_join_interface_signals(m, lambda interface: interface.handshakes_out.stall)
 
 		# ... our CRC start signals...
-		self.or_join_interface_signals(m, lambda interface : interface.data_crc.start)
+		self.or_join_interface_signals(m, lambda interface: interface.data_crc.start)
 
 		# ... and our timer start signals.
-		self.or_join_interface_signals(m, lambda interface : interface.timer.start)
+		self.or_join_interface_signals(m, lambda interface: interface.timer.start)
 
 		# Finally, connect up our transmit PID select.
 		conditional = m.If

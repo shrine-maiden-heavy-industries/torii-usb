@@ -327,7 +327,7 @@ class GetDescriptorHandlerBlock(Elaboratable):
 				rom[index_base_address:index_base_address + 4] = pointer_bytes
 
 				# ... and then store the descriptor itself to the pointer address.
-				rom[next_free_address:next_free_address+len(raw_descriptor)] = raw_descriptor
+				rom[next_free_address:next_free_address + len(raw_descriptor)] = raw_descriptor
 
 				# Figure out the next free position for a descriptor.
 				aligned_size = self._align_to_element_size(len(raw_descriptor))
@@ -519,7 +519,9 @@ class GetDescriptorHandlerBlock(Elaboratable):
 							bytes_sent.eq(bytes_sent + 1),
 						]
 						m.d.comb += rom_read_port.addr.eq(
-							descriptor_data_base_address+(position_in_stream + 1).bit_select(2, position_in_stream.width - 2)
+							descriptor_data_base_address + (position_in_stream + 1).bit_select(
+								2, position_in_stream.width - 2
+							)
 						),
 
 					# Otherwise, we've finished! Return to IDLE.

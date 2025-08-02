@@ -52,14 +52,16 @@ class WindowsRequestHandler(USBRequestHandler):
 	  concludes, we return to :code:`IDLE`.
 	''' # noqa: E101, E501
 
-	def __init__(self, descriptors : PlatformDescriptorCollection, maxPacketSize = 64):
+	def __init__(self, descriptors: PlatformDescriptorCollection, maxPacketSize = 64):
 		self.descriptors = descriptors
 		self._maxPacketSize = maxPacketSize
 
 		super().__init__()
 
 	def elaborate(self, platform) -> Module:
-		''' Describes the specific gateware needed to implement the platform-specific windows descriptor handling on USB EP0.
+		'''
+		Describes the specific gateware needed to implement the platform-specific windows descriptor handling
+		on USB EP0.
 
 		Parameters
 		----------
@@ -143,7 +145,7 @@ class WindowsRequestHandler(USBRequestHandler):
 
 		return m
 
-	def handlerCondition(self, setup : SetupPacket):
+	def handlerCondition(self, setup: SetupPacket):
 		''' Defines the setup packet conditions under which the request handler will operate.
 
 		This is used to gate the handler's operation and forms part of the condition under which
