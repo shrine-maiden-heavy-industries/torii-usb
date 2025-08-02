@@ -67,8 +67,7 @@ def synchronize(m, signal, *, output = None, o_domain = 'sync', stages = 2):
 
 		# If this is a record itself, we'll need to recurse.
 		if isinstance(signal[name], (Record, Pin)):
-			synchronize(m, signal[name], output = output[name],
-					o_domain = o_domain, stages = stages)
+			synchronize(m, signal[name], output = output[name], o_domain = o_domain, stages = stages)
 			continue
 
 		# Skip any output elements, as they're already
