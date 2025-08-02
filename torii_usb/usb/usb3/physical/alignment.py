@@ -71,7 +71,7 @@ class RxWordAligner(Elaboratable):
 		ctrl = Cat(previous_ctrl, self.sink.ctrl)
 
 		# Create two multiplexers that allow us to select from each of our four possible alignments.
-		shifted_data_slices = Array(data[8*i:] for i in range(4))
+		shifted_data_slices = Array(data[8 * i:] for i in range(4))
 		shifted_ctrl_slices = Array(ctrl[i:]   for i in range(4))
 
 		#
