@@ -267,7 +267,7 @@ class TSEmitter(Elaboratable):
 								m.next = 'WORD_0'
 
 						else:
-							m.next = f'WORD_{i+1}'
+							m.next = f'WORD_{i + 1}'
 
 		return m
 
