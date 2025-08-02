@@ -35,7 +35,7 @@ class GetDescriptorSetHandler(Elaboratable):
 	'''
 	elementSize = 4
 
-	def __init__(self, descriptorCollection : PlatformDescriptorCollection, maxPacketLength = 64, domain = 'usb'):
+	def __init__(self, descriptorCollection: PlatformDescriptorCollection, maxPacketLength = 64, domain = 'usb'):
 		'''
 		Parameters
 		----------
@@ -244,8 +244,9 @@ class GetDescriptorSetHandler(Elaboratable):
 							positionInStream.eq(positionInStream + 1),
 							bytesSent.eq(bytesSent + 1),
 						]
-						m.d.comb += readPort.addr.eq(descriptorDataBaseAddress +
-							(positionInStream + 1).bit_select(2, positionInStream.width - 2)),
+						m.d.comb += readPort.addr.eq(
+							descriptorDataBaseAddress + (positionInStream + 1).bit_select(2, positionInStream.width - 2)
+						),
 					with m.Else():
 						m.d.sync += [
 							descriptorLength.eq(0),
