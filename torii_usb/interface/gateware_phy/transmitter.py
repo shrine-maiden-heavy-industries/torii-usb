@@ -105,7 +105,7 @@ class TxShifter(Elaboratable):
 			with m.If(empty):
 				m.d.usb += [
 					shifter.eq(self.i_data),
-					pos.eq(1 << (self._width-1)),
+					pos.eq(1 << (self._width - 1)),
 				]
 
 		with m.If(self.i_clear):
@@ -319,7 +319,7 @@ class TxBitstuffer(Elaboratable):
 				with m.State(f'D{i}'):
 					# Receiving '1' increments the bitstuff counter.
 					with m.If(self.i_data):
-						m.next = f'D{i+1}'
+						m.next = f'D{i + 1}'
 
 					# Receiving '0' resets the bitstuff counter.
 					with m.Else():

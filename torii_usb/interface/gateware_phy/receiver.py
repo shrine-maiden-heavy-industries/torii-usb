@@ -525,10 +525,10 @@ class RxShifter(Elaboratable):
 
 		# Instead of using a counter, we will use a sentinel bit in the shift
 		# register to indicate when it is full.
-		shift_reg = Signal(width+1, reset = 0b1)
+		shift_reg = Signal(width + 1, reset = 0b1)
 
 		m.d.comb += self.o_data.eq(shift_reg[0:width])
-		m.d.usb_io += self.o_put.eq(shift_reg[width-1] & ~shift_reg[width] & self.i_valid),
+		m.d.usb_io += self.o_put.eq(shift_reg[width - 1] & ~shift_reg[width] & self.i_valid),
 
 		with m.If(self.reset):
 			m.d.usb_io += shift_reg.eq(1)
@@ -630,7 +630,9 @@ class RxPipeline(Elaboratable):
 			payload_fifo.r_en.eq(1)
 		]
 
-		m.submodules.flags_fifo = flags_fifo = AsyncFIFOBuffered(width = 2, depth = 4, r_domain = 'usb', w_domain = 'usb_io')
+		m.submodules.flags_fifo = flags_fifo = AsyncFIFOBuffered(
+			width = 2, depth = 4, r_domain = 'usb', w_domain = 'usb_io'
+		)
 		m.d.comb += [
 			flags_fifo.w_data[1].eq(detect.o_pkt_start),
 			flags_fifo.w_data[0].eq(detect.o_pkt_end),
