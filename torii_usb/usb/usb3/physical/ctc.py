@@ -176,8 +176,8 @@ class CTCSkipRemover(Elaboratable):
 
 						# Grab our existing data, and stick it onto the end of the shift register.
 						m.d.ss += [
-							data_buffer.eq(Cat(data_buffer[8*i:], valid_data[0:8*i])),
-							ctrl_buffer.eq(Cat(ctrl_buffer[1*i:], valid_ctrl[0:1*i])),
+							data_buffer.eq(Cat(data_buffer[8 * i:], valid_data[0:8 * i])),
+							ctrl_buffer.eq(Cat(ctrl_buffer[1 * i:], valid_ctrl[0:1 * i])),
 						]
 
 		# If we're not receiving data, but we -are- removing it, we'll just update our total
@@ -201,8 +201,8 @@ class CTCSkipRemover(Elaboratable):
 					# Grab the relevant word from the end of the buffer.
 					word_position = 8 - i
 					m.d.comb += [
-						source.data.eq(data_buffer[8 * word_position : 8 * (word_position + bytes_in_stream)]),
-						source.ctrl.eq(ctrl_buffer[1 * word_position : 1 * (word_position + bytes_in_stream)]),
+						source.data.eq(data_buffer[8 * word_position:8 * (word_position + bytes_in_stream)]),
+						source.ctrl.eq(ctrl_buffer[1 * word_position:1 * (word_position + bytes_in_stream)]),
 					]
 
 		#
