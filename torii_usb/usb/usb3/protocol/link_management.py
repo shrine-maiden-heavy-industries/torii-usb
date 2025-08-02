@@ -131,13 +131,12 @@ class LinkManagementPacketHandler(Elaboratable):
 			with m.State('SEND_CAPABILITIES'):
 				handle_resets()
 
-				send_packet_response(PortCapabilityHeaderPacket,
+				send_packet_response(
+					PortCapabilityHeaderPacket,
 					subtype           = LinkManagementPacketSubtype.PORT_CAPABILITY,
 					link_speed        = self.LINK_SPEED_5GBPS,
-
 					# We're required by specification to support exactly four buffers.
 					num_hp_buffers    = 4,
-
 					# For now, we only can operate as an upstream device.
 					supports_upstream = 1
 				)
@@ -159,7 +158,8 @@ class LinkManagementPacketHandler(Elaboratable):
 			with m.State('SEND_PORT_CONFIGURATION_RESPONSE'):
 				handle_resets()
 
-				send_packet_response(PortConfigurationResponseHeaderPacket,
+				send_packet_response(
+					PortConfigurationResponseHeaderPacket,
 					subtype       = LinkManagementPacketSubtype.PORT_CONFIGURATION_RESPONSE,
 					response_code = pending_configuration_result
 				)
