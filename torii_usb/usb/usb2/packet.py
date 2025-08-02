@@ -529,7 +529,7 @@ class USBDataPacketCRC(Elaboratable):
 
 		self.crc   = Signal(16, reset = initial_value)
 
-	def add_interface(self, interface : DataCRCInterface):
+	def add_interface(self, interface: DataCRCInterface):
 		''' Adds an interface to the CRC generator module.
 
 		Each interface can reset the CRC; and can read the current CRC value.
@@ -545,7 +545,7 @@ class USBDataPacketCRC(Elaboratable):
 		'''
 		self._interfaces.append(interface)
 
-	def _generate_next_crc(self, current_crc : Signal, data_in : Signal):
+	def _generate_next_crc(self, current_crc: Signal, data_in: Signal):
 		''' Generates the next round of a bytewise USB CRC16. '''
 		# Extracted from the USB spec's definition of the CRC16 polynomial.
 		return Cat(

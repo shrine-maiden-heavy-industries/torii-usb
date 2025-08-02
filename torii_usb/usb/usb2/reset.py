@@ -35,8 +35,8 @@ def _generate_wide_incrementor(m, platform, adder_input):
 
 	# Otherwise, we'll create a DSP adder itself.
 	output = Signal.like(adder_input)
-	m.submodules += Instance('SB_MAC16',
-
+	m.submodules += Instance(
+		'SB_MAC16',
 		# Hook up our inputs and outputs.
 		# A = upper bits of input; B = lower bits of input
 		i_A      = adder_input[16:],
