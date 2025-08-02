@@ -833,7 +833,9 @@ class UTMITranslator(Elaboratable, UTMIInterface):
 
 		# Create the component parts of our ULPI interfacing hardware.
 		m.submodules.register_window     = register_window     = ULPIRegisterWindow()
-		m.submodules.control_translator  = control_translator  = ULPIControlTranslator(register_window = register_window)
+		m.submodules.control_translator  = control_translator  = ULPIControlTranslator(
+			register_window = register_window
+		)
 		m.submodules.rxevent_decoder     = rxevent_decoder     = ULPIRxEventDecoder(ulpi_bus = self.ulpi)
 		m.submodules.transmit_translator = transmit_translator = ULPITransmitTranslator()
 
