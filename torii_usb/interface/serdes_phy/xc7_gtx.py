@@ -58,7 +58,8 @@ class GTXQuadPLL(Elaboratable):
 			100: 1,
 		}
 
-		return Instance('GTXE2_COMMON',
+		return Instance(
+			'GTXE2_COMMON',
 			# Common Block Attributes
 			p_BIAS_CFG                 = 0x0000040000001000,
 			p_COMMON_CFG               = 0x00000000,
@@ -127,7 +128,7 @@ class GTXQuadPLL(Elaboratable):
 	def compute_config(refclk_freq, linerate):
 		for m in 1, 2, 3, 4:
 			for n in 16, 20, 32, 40, 64, 66, 80, 100:
-				vco_freq = refclk_freq*n/m
+				vco_freq = refclk_freq * n / m
 				if 5.93e9 <= vco_freq <= 8e9:
 					vco_band = 'lower'
 				elif 9.8e9 <= vco_freq <= 12.5e9:
@@ -136,15 +137,17 @@ class GTXQuadPLL(Elaboratable):
 					vco_band = None
 				if vco_band is not None:
 					for d in 1, 2, 4, 8, 16:
-						current_linerate = (vco_freq/2)*2/d
+						current_linerate = (vco_freq / 2) * 2 / d
 						if current_linerate == linerate:
-							return {'n': n, 'nr': 0 if n == 66 else 1, 'm': m, 'd': d,
-									'vco_freq': vco_freq,
-									'vco_band': vco_band,
-									'clkin': refclk_freq,
-									'linerate': linerate}
+							return {
+								'n': n, 'nr': 0 if n == 66 else 1, 'm': m, 'd': d,
+								'vco_freq': vco_freq,
+								'vco_band': vco_band,
+								'clkin': refclk_freq,
+								'linerate': linerate
+							}
 		msg = 'No config found for {:3.2f} MHz refclk / {:3.2f} Gbps linerate.'
-		raise ValueError(msg.format(refclk_freq/1e6, linerate/1e9))
+		raise ValueError(msg.format(refclk_freq / 1e6, linerate / 1e9))
 
 	def __repr__(self):
 		config = self.config
@@ -170,11 +173,11 @@ class GTXQuadPLL(Elaboratable):
 							+-------+
 	config:
 	-------
-	CLKIN		= {config['clkin']/1e6}MHz
-	CLKOUT		= CLKIN x N / (2 x M) = {config['clkin']/1e6}MHz x {config['n']} / (2 x {config['m']})
-				= {config['vco_freq']/1e9}GHz
-	LINERATE	= CLKOUT x 2 / D = {config['vco_freq']/1e9}GHz x 2 / {config['d']}
-				= {config['linerate']/1e9}GHz
+	CLKIN		= {config['clkin'] / 1e6}MHz
+	CLKOUT		= CLKIN x N / (2 x M) = {config['clkin'] / 1e6}MHz x {config['n']} / (2 x {config['m']})
+				= {config['vco_freq'] / 1e9}GHz
+	LINERATE	= CLKOUT x 2 / D = {config['vco_freq'] / 1e9}GHz x 2 / {config['d']}
+				= {config['linerate'] / 1e9}GHz
 '''
 
 class GTXChannelPLL(Elaboratable):
@@ -199,17 +202,19 @@ class GTXChannelPLL(Elaboratable):
 		for m in 1, 2:
 			for n2 in 1, 2, 3, 4, 5:
 				for n1 in 4, 5:
-					vco_freq = refclk_freq*(n1*n2)/m
+					vco_freq = refclk_freq * (n1 * n2) / m
 					if 1.6e9 <= vco_freq <= 3.3e9:
 						for d in 1, 2, 4, 8, 16:
-							current_linerate = vco_freq*2/d
+							current_linerate = vco_freq * 2 / d
 							if current_linerate == linerate:
-								return {'n1': n1, 'n2': n2, 'm': m, 'd': d,
-										'vco_freq': vco_freq,
-										'clkin': refclk_freq,
-										'linerate': linerate}
+								return {
+									'n1': n1, 'n2': n2, 'm': m, 'd': d,
+									'vco_freq': vco_freq,
+									'clkin': refclk_freq,
+									'linerate': linerate
+								}
 		msg = 'No config found for {:3.2f} MHz refclk / {:3.2f} Gbps linerate.'
-		raise ValueError(msg.format(refclk_freq/1e6, linerate/1e9))
+		raise ValueError(msg.format(refclk_freq / 1e6, linerate / 1e9))
 
 	def __repr__(self):
 		config = self.config
@@ -235,11 +240,11 @@ class GTXChannelPLL(Elaboratable):
 							+-------+
 	config:
 	-------
-	CLKIN		= {config['clkin']/1e6}MHz
-	CLKOUT		= CLKIN x (N1 x N2) / M = {config['clkin']/1e6}MHz x ({config['n1']} x {config['n2']}) / {config['m']}
-				= {config['vco_freq']/1e9}GHz
-	LINERATE	= CLKOUT x 2 / D = {config['vco_freq']/1e9}GHz x 2 / {config['d']}
-				= {config['linerate']/1e9}GHz
+	CLKIN		= {config['clkin'] / 1e6}MHz
+	CLKOUT		= CLKIN x (N1 x N2) / M = {config['clkin'] / 1e6}MHz x ({config['n1']} x {config['n2']}) / {config['m']}
+				= {config['vco_freq'] / 1e9}GHz
+	LINERATE	= CLKOUT x 2 / D = {config['vco_freq'] / 1e9}GHz x 2 / {config['d']}
+				= {config['linerate'] / 1e9}GHz
 '''
 
 class GTXChannel(Elaboratable):
@@ -323,7 +328,8 @@ class GTXChannel(Elaboratable):
 		# The recovered Rx clock will not match the generated Tx clock; use the recovered word
 		# clock to drive the CTC FIFO in the transceiver, which will compensate for the difference.
 		txoutclk = Signal()
-		m.submodules += Instance('BUFG',
+		m.submodules += Instance(
+			'BUFG',
 			i_I = txoutclk,
 			o_O = self.pclk
 		)
@@ -380,7 +386,8 @@ class GTXChannel(Elaboratable):
 		#
 		# Core SerDes instantiation.
 		#
-		m.submodules.gtx = Instance('GTXE2_CHANNEL',
+		m.submodules.gtx = Instance(
+			'GTXE2_CHANNEL',
 			# Simulation-Only Attributes
 			p_SIM_RECEIVER_DETECT_PASS   = 'TRUE',
 			p_SIM_TX_EIDLE_DRIVE_LEVEL   = 'X',
