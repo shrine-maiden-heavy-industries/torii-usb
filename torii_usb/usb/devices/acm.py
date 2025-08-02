@@ -102,10 +102,10 @@ class USBSerialDevice(Elaboratable):
 	_STATUS_ENDPOINT_NUMBER = 3
 	_DATA_ENDPOINT_NUMBER   = 4
 
-	def __init__(self, *, bus, idVendor, idProduct,
-			manufacturer_string = 'Torii-USB',
-			product_string = 'USB-to-serial',
-			serial_number = None, max_packet_size = 64):
+	def __init__(
+		self, *, bus, idVendor, idProduct, manufacturer_string = 'Torii-USB', product_string = 'USB-to-serial',
+		serial_number = None, max_packet_size = 64
+	):
 
 		self._bus                 = bus
 		self._idVendor            = idVendor
