@@ -76,6 +76,6 @@ class SynchronizedTest(TestCase):
 			('nested', [
 				('subsig_in',  1, Direction.FANIN),
 				('subsig_out', 1, Direction.FANOUT),
-			])
+			]) # noqa: E124
 		])
 		synchronize(m, record)

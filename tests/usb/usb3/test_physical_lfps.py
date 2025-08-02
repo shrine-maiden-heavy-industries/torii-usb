@@ -39,7 +39,7 @@ class LFPSGeneratorTest(USBSSGatewareTestCase):
 			yield
 
 		# Our observed burst length should be within 10% of our specification...
-		self.assertLess(abs(burst_ticks)/burst_length - 1.0, 10e-2)
+		self.assertLess(abs(burst_ticks) / burst_length - 1.0, 10e-2)
 
 		# ... as should our observed total length between bursts.
-		self.assertLess(abs(total_ticks)/burst_repeat - 1.0, 10e-2)
+		self.assertLess(abs(total_ticks) / burst_repeat - 1.0, 10e-2)

@@ -168,7 +168,7 @@ class ULPIRxEventDecoderTest(ToriiUSBGatewareTestCase):
 			('nxt', 1),
 			('data', [
 				('i', 8),
-			])
+			]) # noqa: E124
 		])
 
 		return ULPIRxEventDecoder(ulpi_bus = self.ulpi)
