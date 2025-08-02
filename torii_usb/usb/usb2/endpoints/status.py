@@ -80,7 +80,7 @@ class USBSignalInEndpoint(Elaboratable):
 
 		# Grab an byte-indexable reference into our signal.
 		bytes_in_signal = (self._width + 7) // 8
-		signal_bytes = Array(latched_signal[n * 8 : n * 8 + 8] for n in range(bytes_in_signal))
+		signal_bytes = Array(latched_signal[n * 8:n * 8 + 8] for n in range(bytes_in_signal))
 
 		# Store how many bytes we've transmitted.
 		bytes_transmitted = Signal(range(0, bytes_in_signal + 1))
