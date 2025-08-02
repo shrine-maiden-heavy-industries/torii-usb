@@ -107,7 +107,9 @@ class SuperSpeedStreamInEndpoint(Elaboratable):
 		# We'll create two buffers; so we can fill one as we empty the other.
 		# Since each buffer will be used for every other transaction, we'll use a simple flag to identify
 		# which of our 'ping-pong' buffers is currently being targeted.
-		buffer = Array(Memory(width = data_width, depth = buffer_depth, name = f'transmit_buffer_{i}') for i in range(2))
+		buffer = Array(
+			Memory(width = data_width, depth = buffer_depth, name = f'transmit_buffer_{i}') for i in range(2)
+		)
 		buffer_write_ports = Array(buffer[i].write_port(domain = 'ss') for i in range(2))
 		buffer_read_ports  = Array(buffer[i].read_port(domain = 'ss', transparent = False) for i in range(2))
 
