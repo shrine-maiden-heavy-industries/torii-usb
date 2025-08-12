@@ -7,3 +7,4 @@ sphinxext-opengraph
 matplotlib
 myst-parser
 sphinx-copybutton
+sphinx-multiversion
