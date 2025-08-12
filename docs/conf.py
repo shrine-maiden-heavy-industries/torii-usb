@@ -23,10 +23,12 @@ extensions = [
 	'sphinx.ext.napoleon',
 	'sphinx.ext.todo',
 	'myst_parser',
+	'sphinx_autodoc_typehints',
+	'sphinx_codeautolink',
 	'sphinx_copybutton',
 	'sphinx_inline_tabs',
-	'sphinxext.opengraph',
 	'sphinx_multiversion',
+	'sphinxext.opengraph',
 ]
 
 extlinks = {
@@ -63,10 +65,14 @@ napoleon_custom_sections  = [
 
 myst_heading_anchors = 3
 
+always_use_bars_union = True
+typehints_defaults = 'braces-after'
+typehints_use_signature = True
+typehints_use_signature_return = True
+
 templates_path = [
 	'_templates',
 ]
-
 
 html_baseurl     = 'https://torii-usb.shmdn.link'
 html_theme       = 'furo'
@@ -110,15 +116,20 @@ html_css_files = [
 	'css/styles.css'
 ]
 
-# OpenGraph config bits
+# TODO(aki): OpenGraph metadata stuff
 ogp_site_url = html_baseurl
-ogp_image    = f'{html_baseurl}/_images/og-image.png'
-
-autosectionlabel_prefix_document = True
+ogp_social_cards = {}
+ogp_image = None
+ogp_image_alt = None
+ogp_custom_meta_tags = list[str]()
+ogp_enable_meta_description = True
 
 linkcheck_retries = 2
 linkcheck_workers = 1 # At the cost of speed try to prevent rate-limiting
-linkcheck_ignore  = []
+linkcheck_ignore  = [
+	# SSL Timeout from GitHub actions
+	'https://aur.archlinux.org',
+]
 linkcheck_anchors_ignore_for_url = [
 	r'^https://web\.libera\.chat/',
 ]
