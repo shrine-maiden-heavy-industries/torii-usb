@@ -8,8 +8,11 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://torii-usb.shmdn.link/gateware/interface/gateware/receiver.html" />
 <meta property="og:site_name" content="Torii USB" />
-<meta property="og:image" content="https://torii-usb.shmdn.link/_images/og-image.png" />
-<meta property="og:image:alt" content="Torii USB" />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://torii-usb.shmdn.link/_images/social_previews/summary_gateware_interface_gateware_receiver_92b7aa7d.png" />
+<meta property="og:image:alt" content="" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Gateware PHY - Transmitter" href="transmitter.html" /><link rel="prev" title="Gateware PHY" href="phy.html" />
         <link rel="canonical" href="https://torii-usb.shmdn.link/gateware/interface/gateware/receiver.html" />
 
@@ -19,6 +22,7 @@
 
 <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=25af2a20" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-codeautolink.css?v=b2176991" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -196,7 +200,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">Torii USB 0.8.1.dev41 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">Torii USB 0.8.1.dev43 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -302,9 +306,9 @@
 	</p>
 	<a class="reference" href="../../../../main/gateware/interface/gateware/receiver.html">Development</a>
 	<ul>
-		<li class="toctree-l1"><a class="reference" href="../../../../v0.7.0/gateware/interface/gateware/receiver.html">v0.7.0</a></li>
-		<li class="toctree-l1"><a class="reference" href="../../../../v0.7.1/gateware/interface/gateware/receiver.html">v0.7.1</a></li>
 		<li class="toctree-l1"><a class="reference" href="receiver.html">v0.8.0</a></li>
+		<li class="toctree-l1"><a class="reference" href="../../../../v0.7.1/gateware/interface/gateware/receiver.html">v0.7.1</a></li>
+		<li class="toctree-l1"><a class="reference" href="../../../../v0.7.0/gateware/interface/gateware/receiver.html">v0.7.0</a></li>
 	</ul>
 </div>
 </div>
@@ -548,45 +552,47 @@ controls for resetting the shifter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">param Parameters are passed in via the constructor.<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
-<dt class="field-even">param width<span class="colon">:</span></dt>
-<dd class="field-even"><p>Number of bits to shift in.</p>
-</dd>
-<dt class="field-odd">type width<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-<dt class="field-even">param Input Ports<span class="colon">:</span></dt>
+<dt class="field-even">type width<span class="colon">:</span></dt>
 <dd class="field-even"><p></p></dd>
-<dt class="field-odd">param ———–<span class="colon">:</span></dt>
+<dt class="field-odd">param width<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of bits to shift in.</p>
+</dd>
+<dt class="field-even">type width<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">param Input Ports<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
-<dt class="field-even">param i_valid<span class="colon">:</span></dt>
-<dd class="field-even"><p>Qualifier for all of the input signals.  Indicates one bit of valid
+<dt class="field-even">param ———–<span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+<dt class="field-odd">param i_valid<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Qualifier for all of the input signals.  Indicates one bit of valid
 data is present on the inputs.</p>
 </dd>
-<dt class="field-odd">type i_valid<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Signal(1)</p>
+<dt class="field-even">type i_valid<span class="colon">:</span></dt>
+<dd class="field-even"><p>Signal(1)</p>
 </dd>
-<dt class="field-even">param i_data<span class="colon">:</span></dt>
-<dd class="field-even"><p>Serial input data.
+<dt class="field-odd">param i_data<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Serial input data.
 Qualified by valid.</p>
 </dd>
-<dt class="field-odd">type i_data<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Signal(1)</p>
+<dt class="field-even">type i_data<span class="colon">:</span></dt>
+<dd class="field-even"><p>Signal(1)</p>
 </dd>
-<dt class="field-even">param Output Ports<span class="colon">:</span></dt>
-<dd class="field-even"><p></p></dd>
-<dt class="field-odd">param ————<span class="colon">:</span></dt>
+<dt class="field-odd">param Output Ports<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
-<dt class="field-even">param o_data<span class="colon">:</span></dt>
-<dd class="field-even"><p>Shifted in data.</p>
+<dt class="field-even">param ————<span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+<dt class="field-odd">param o_data<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Shifted in data.</p>
 </dd>
-<dt class="field-odd">type o_data<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Signal(width)</p>
+<dt class="field-even">type o_data<span class="colon">:</span></dt>
+<dd class="field-even"><p>Signal(width)</p>
 </dd>
-<dt class="field-even">param o_put<span class="colon">:</span></dt>
-<dd class="field-even"><p>Asserted for one clock once the register is full.</p>
+<dt class="field-odd">param o_put<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Asserted for one clock once the register is full.</p>
 </dd>
-<dt class="field-odd">type o_put<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Signal(1)</p>
+<dt class="field-even">type o_put<span class="colon">:</span></dt>
+<dd class="field-even"><p>Signal(1)</p>
 </dd>
 </dl>
 </section>
@@ -666,7 +672,7 @@ Qualified by valid.</p>
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=99fae0d6"></script>
+</div><script src="../../../_static/documentation_options.js?v=5065405e"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

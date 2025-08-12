@@ -9,9 +9,12 @@
 <meta property="og:url" content="https://torii-usb.shmdn.link/gateware/usb/usb3/link.html" />
 <meta property="og:site_name" content="Torii USB" />
 <meta property="og:description" content="USB3 Link-Layer modules Command: USB Link Commands Transmitter/Receivers CRC: CRC computation gateware for USB3. Data: Data Packet Payload (DPP) management gateware. Header: Header Packet data inte..." />
-<meta property="og:image" content="https://torii-usb.shmdn.link/_images/og-image.png" />
-<meta property="og:image:alt" content="Torii USB" />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://torii-usb.shmdn.link/_images/social_previews/summary_gateware_usb_usb3_link_e5cf8e71.png" />
+<meta property="og:image:alt" content="USB3 Link-Layer modules Command: USB Link Commands Transmitter/Receivers CRC: CRC computation gateware for USB3. Data: Data Packet Payload (DPP) management gateware. Header: Header Packet data inte..." />
 <meta name="description" content="USB3 Link-Layer modules Command: USB Link Commands Transmitter/Receivers CRC: CRC computation gateware for USB3. Data: Data Packet Payload (DPP) management gateware. Header: Header Packet data inte..." />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Physical" href="physical.html" /><link rel="prev" title="Endpoints" href="endpoints.html" />
         <link rel="canonical" href="https://torii-usb.shmdn.link/gateware/usb/usb3/link.html" />
 
@@ -21,6 +24,7 @@
 
 <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=25af2a20" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-codeautolink.css?v=b2176991" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -206,7 +210,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">Torii USB 0.8.1.dev41 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">Torii USB 0.8.1.dev43 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -307,9 +311,9 @@
 	</p>
 	<a class="reference" href="../../../../main/gateware/usb/usb3/link.html">Development</a>
 	<ul>
-		<li class="toctree-l1"><a class="reference" href="../../../../v0.7.0/gateware/usb/usb3/link.html">v0.7.0</a></li>
-		<li class="toctree-l1"><a class="reference" href="link.html">v0.7.1</a></li>
 		<li class="toctree-l1"><a class="reference" href="../../../../v0.8.0/gateware/usb/usb3/link.html">v0.8.0</a></li>
+		<li class="toctree-l1"><a class="reference" href="link.html">v0.7.1</a></li>
+		<li class="toctree-l1"><a class="reference" href="../../../../v0.7.0/gateware/usb/usb3/link.html">v0.7.0</a></li>
 	</ul>
 </div>
 </div>
@@ -441,7 +445,7 @@ be ready to send another link command next cycle.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>Const</em>) – The initial value of the CRC shift register; the USB default is used if not provided.</p>
+<dd class="field-even"><p><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>Const</em>) – The initial value of the CRC shift register; the USB default is used if not provided. (default: <code class="docutils literal notranslate"><span class="pre">65535</span></code>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -469,7 +473,7 @@ where we have an incomplete word of 1, 2, or 3 bytes.</p>
 </ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>Const</em>) – The initial value of the CRC shift register; the USB default is used if not provided.</p>
+<dd class="field-even"><p><strong>initial_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>Const</em>) – The initial value of the CRC shift register; the USB default is used if not provided. (default: <code class="docutils literal notranslate"><span class="pre">4294967295</span></code>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -691,9 +695,9 @@ boundary to counter a swapped Rx differential pair.</p></li>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>ss_clock_frequency</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The frequency of the SS clock domain; used for computing timeouts.</p></li>
+<li><p><strong>ss_clock_frequency</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The frequency of the SS clock domain; used for computing timeouts. (default: <code class="docutils literal notranslate"><span class="pre">125000000.0</span></code>)</p></li>
 <li><p><strong>loosen_requirements</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, the requirements will be relaxed from the USB3 specification, in order
-to make things work a little more easily on a variety of PHYs and setups.</p></li>
+to make things work a little more easily on a variety of PHYs and setups. (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -826,7 +830,7 @@ need to perform link recovery.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ss_clock_frequency</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The frequency of our <code class="docutils literal notranslate"><span class="pre">ss</span></code> domain clock, in Hz.</p>
+<dd class="field-even"><p><strong>ss_clock_frequency</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The frequency of our <code class="docutils literal notranslate"><span class="pre">ss</span></code> domain clock, in Hz. (default: <code class="docutils literal notranslate"><span class="pre">125000000.0</span></code>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1026,7 +1030,7 @@ is asserted.</p></li>
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=99fae0d6"></script>
+</div><script src="../../../_static/documentation_options.js?v=5065405e"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>

@@ -9,9 +9,12 @@
 <meta property="og:url" content="https://torii-usb.shmdn.link/gateware/usb/usb2/descriptor.html" />
 <meta property="og:site_name" content="Torii USB" />
 <meta property="og:description" content="Utilities for building USB descriptors into gateware." />
-<meta property="og:image" content="https://torii-usb.shmdn.link/_images/og-image.png" />
-<meta property="og:image:alt" content="Torii USB" />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="https://torii-usb.shmdn.link/_images/social_previews/summary_gateware_usb_usb2_descriptor_71941289.png" />
+<meta property="og:image:alt" content="Utilities for building USB descriptors into gateware." />
 <meta name="description" content="Utilities for building USB descriptors into gateware." />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Deserializer" href="deserializer.html" /><link rel="prev" title="Control" href="control.html" />
         <link rel="canonical" href="https://torii-usb.shmdn.link/gateware/usb/usb2/descriptor.html" />
 
@@ -21,6 +24,7 @@
 
 <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=25af2a20" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-codeautolink.css?v=b2176991" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -206,7 +210,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">Torii USB 0.8.1.dev41 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">Torii USB 0.8.1.dev43 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -307,9 +311,9 @@
 	</p>
 	<a class="reference" href="../../../../main/gateware/usb/usb2/descriptor.html">Development</a>
 	<ul>
-		<li class="toctree-l1"><a class="reference" href="../../../../v0.7.0/gateware/usb/usb2/descriptor.html">v0.7.0</a></li>
-		<li class="toctree-l1"><a class="reference" href="descriptor.html">v0.7.1</a></li>
 		<li class="toctree-l1"><a class="reference" href="../../../../v0.8.0/gateware/usb/usb2/descriptor.html">v0.8.0</a></li>
+		<li class="toctree-l1"><a class="reference" href="descriptor.html">v0.7.1</a></li>
+		<li class="toctree-l1"><a class="reference" href="../../../../v0.7.0/gateware/usb/usb2/descriptor.html">v0.7.0</a></li>
 	</ul>
 </div>
 </div>
@@ -363,7 +367,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="torii_usb.usb.usb2.descriptor.GetDescriptorHandlerDistributed">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">torii_usb.usb.usb2.descriptor.</span></span><span class="sig-name descname"><span class="pre">GetDescriptorHandlerDistributed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_loc_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.usb.usb2.descriptor.GetDescriptorHandlerDistributed" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">torii_usb.usb.usb2.descriptor.</span></span><span class="sig-name descname"><span class="pre">GetDescriptorHandlerDistributed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">descriptor_collection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DeviceDescriptorCollection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_packet_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.usb.usb2.descriptor.GetDescriptorHandlerDistributed" title="Link to this definition">¶</a></dt>
 <dd><p>Gateware that handles responding to GetDescriptor requests.</p>
 <p>Currently does not support descriptors in multiple languages.</p>
 <dl>
@@ -382,7 +386,7 @@ O: stall      - Pulsed if a STALL handshake should be generated, instead of a re
 
 <dl class="py class">
 <dt class="sig sig-object py" id="torii_usb.usb.usb2.descriptor.GetDescriptorHandlerBlock">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">torii_usb.usb.usb2.descriptor.</span></span><span class="sig-name descname"><span class="pre">GetDescriptorHandlerBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_loc_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.usb.usb2.descriptor.GetDescriptorHandlerBlock" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">torii_usb.usb.usb2.descriptor.</span></span><span class="sig-name descname"><span class="pre">GetDescriptorHandlerBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">descriptor_collection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DeviceDescriptorCollection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_packet_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'usb'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#torii_usb.usb.usb2.descriptor.GetDescriptorHandlerBlock" title="Link to this definition">¶</a></dt>
 <dd><p>Gateware that handles responding to GetDescriptor requests.</p>
 <p>Currently does not support descriptors in multiple languages.</p>
 <dl>
@@ -515,7 +519,7 @@ of the descriptor (2 bytes) and the address of first data byte (2 bytes).</p>
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=99fae0d6"></script>
+</div><script src="../../../_static/documentation_options.js?v=5065405e"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
