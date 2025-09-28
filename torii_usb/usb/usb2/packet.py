@@ -541,7 +541,7 @@ class USBDataPacketCRC(Elaboratable):
 		interface: DataCRCInterface
 			The interface to be added; accepts control signals from other modules, and
 			brings CRC output to them. This method can be called multiple times to generate
-			multiplpe CRCs.
+			multiple CRCs.
 		'''
 		self._interfaces.append(interface)
 
