@@ -55,6 +55,8 @@ class USBOutStreamInterface(Record):
 		rx_valid  | next
 
 	'''
+	valid: Signal
+	next: Signal
 
 	def __init__(self, data_width = 8):
 		'''
