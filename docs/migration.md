@@ -43,4 +43,4 @@ For the moment, we still retain the `.stream.generators` module and it's content
 
 [SOL]: https://github.com/shrine-maiden-heavy-industries/sol
 [Torii]: https://github.com/shrine-maiden-heavy-industries/torii-hdl
-[`torii.lib.streams.simple`]: https://github.com/shrine-maiden-heavy-industries/torii-hdl/blob/main/torii/lib/stream/simple.py
+[`torii.lib.streams.simple`]: https://github.com/shrine-maiden-heavy-industries/torii-hdl/blob/main/torii/lib/stream/simple/__init__.py
