@@ -270,7 +270,11 @@ class USBDevice(Elaboratable):
 			endpoint_collection.speed.eq(self.speed),
 			endpoint_collection.active_config.eq(configuration),
 			endpoint_collection.active_address.eq(address),
+		]
 
+		# Register all the endpoint TX and RX signals before they go through the multiplexing
+		# so we limit the critical path generated and the resulting timing misery
+		m.d.usb += [
 			# Receive interface.
 			receiver.stream.connect(endpoint_collection.rx),
 			endpoint_collection.rx_complete.eq(receiver.packet_complete),
@@ -279,10 +283,13 @@ class USBDevice(Elaboratable):
 			endpoint_collection.rx_pid_toggle.eq(receiver.active_pid[3]),
 
 			# Transmit interface.
-			endpoint_collection.tx.attach(transmitter.stream),
 			handshake_generator.issue_ack.eq(endpoint_collection.handshakes_out.ack),
 			handshake_generator.issue_nak.eq(endpoint_collection.handshakes_out.nak),
 			handshake_generator.issue_stall.eq(endpoint_collection.handshakes_out.stall),
+		]
+
+		m.d.comb += [
+			endpoint_collection.tx.attach(transmitter.stream),
 			transmitter.data_pid.eq(endpoint_collection.tx_pid_toggle),
 		]
 

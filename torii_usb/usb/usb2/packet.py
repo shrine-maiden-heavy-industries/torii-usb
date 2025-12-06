@@ -6,8 +6,9 @@
 
 ''' Contains the gatware module necessary to interpret and generate low-level USB packets. '''
 
-from torii.hdl         import Array, Cat, Const, Elaboratable, Module, Signal
+from torii.hdl         import Array, Cat, Const, Elaboratable, Module, Signal, DomainRenamer
 from torii.hdl.rec     import Direction, Record
+from torii.lib.fifo    import SyncFIFOBuffered
 
 from ...interface.utmi import UTMITransmitInterface
 from ..stream          import USBInStreamInterface, USBOutStreamInterface
@@ -1076,6 +1077,12 @@ class USBDataPacketGenerator(Elaboratable):
 		# Flag that stores whether we're sending a zero-length packet.
 		is_zlp = Signal()
 
+		# FIFO to handle any packet up to the USB HS max packet size, allowing proper and
+		# clean re-timing of the transmit endpoint stream
+		m.submodules.transmit_fifo = transmit_fifo = DomainRenamer(sync = 'usb')(
+			SyncFIFOBuffered(width = 8, depth = 64)
+		)
+
 		# If we're creating an internal CRC generator, create a submodule
 		# and hook it up.
 		if self.standalone:
@@ -1085,17 +1092,27 @@ class USBDataPacketGenerator(Elaboratable):
 			m.d.comb += [
 				crc.rx_valid.eq(0),
 
-				crc.tx_data.eq(self.stream.data),
+				crc.tx_data.eq(transmit_fifo.r_data),
 				crc.tx_valid.eq(self.tx.ready)
 			]
 
-		with m.FSM(domain = 'usb'):
+		# State machine tracking signal to make the write enable for the FIFO work right
+		is_idle = Signal()
+
+		# Plumb things together so when a sender starts wanting to send a packet, if there's space, we
+		# start buffering that packet immediately while processing it out the UTMI interface
+		m.d.comb += [
+			transmit_fifo.w_data.eq(self.stream.data),
+			# Make sure we don't enqueue ZLPs by checking for only self.stream.last being true while idle
+			transmit_fifo.w_en.eq(self.stream.valid & ~(is_idle & ~self.stream.first & self.stream.last)),
+			self.stream.ready.eq(transmit_fifo.w_rdy),
+		]
+
+		with m.FSM(domain = 'usb') as fsm:
+			m.d.comb += is_idle.eq(fsm.ongoing('IDLE'))
 
 			# IDLE -- waiting for an active transmission to start.
 			with m.State('IDLE'):
-
-				# We won't consume any data while we're in the IDLE state.
-				m.d.comb += self.stream.ready.eq(0)
 
 				# Latch in the requested data PID.
 				m.d.usb += current_data_pid.eq(data_pids[self.data_pid])
@@ -1121,9 +1138,6 @@ class USBDataPacketGenerator(Elaboratable):
 					# Send the USB packet ID for our data packet...
 					self.tx.data.eq(current_data_pid),
 					self.tx.valid.eq(1),
-
-					# ... and don't consume any data.
-					self.stream.ready.eq(0)
 				]
 
 				# Advance once the PHY accepts our PID.
@@ -1143,10 +1157,14 @@ class USBDataPacketGenerator(Elaboratable):
 
 				# While sending the payload, we'll essentially connect
 				# our stream directly through to the ULPI transmitter.
-				m.d.comb += self.stream.bridge_to(self.tx)
+				m.d.comb += [
+					self.tx.valid.eq(transmit_fifo.r_rdy),
+					self.tx.data.eq(transmit_fifo.r_data),
+					transmit_fifo.r_en.eq(self.tx.ready),
+				]
 
 				# We'll stop sending once the packet ends, and move on to our CRC.
-				with m.If(self.tx.ready & (self.stream.last | ~self.stream.valid)):
+				with m.If(self.tx.ready & (transmit_fifo.r_level == 1)):
 					m.next = 'SEND_CRC_FIRST'
 
 			# SEND_CRC_FIRST -- send the first byte of the packet's CRC

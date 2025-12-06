@@ -314,15 +314,17 @@ class USBDataPacketGeneratorTest(ToriiUSBGatewareTestCase):
 		yield stream.data.eq(0x00)
 		yield
 
+		# We shouldn't consume any data, yet, as we're still transmitting our PID.
+		self.assertEqual((yield stream.ready), 0)
+
 		# Once our first byte has been provided, our transmission should
 		# start (valid = 1), and we should see our data PID.
 		yield
 		self.assertEqual((yield tx.valid), 1)
 		self.assertEqual((yield tx.data), 0xc3)
 
-		# We shouldn't consume any data, yet, as we're still
-		# transmitting our PID.
-		self.assertEqual((yield stream.ready), 0)
+		# To allow the endpoint interface to be registered, this goes high a cycle early
+		self.assertEqual((yield stream.ready), 1)
 
 		# Drop our first value back to zero, as it should also work as a strobe.
 		yield stream.first.eq(0)
