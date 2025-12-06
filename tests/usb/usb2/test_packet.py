@@ -302,8 +302,12 @@ class USBDataPacketGeneratorTest(ToriiUSBGatewareTestCase):
 		#    0x00, 0x05, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, # DATA
 		#    0xEB, 0xBC                                      # CRC
 
+		data = (0x00, 0x05, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00)
+
 		# Before we send anything, we shouldn't be transmitting.
 		self.assertEqual((yield dut.tx.valid), 0)
+		# But the transmit FIFO should be ready for data
+		self.assertEqual((yield stream.ready), 1)
 
 		# Work with DATA0 packet IDs.
 		yield dut.data_pid.eq(0)
@@ -311,11 +315,16 @@ class USBDataPacketGeneratorTest(ToriiUSBGatewareTestCase):
 		# Start sending our first byte.
 		yield stream.first.eq(1)
 		yield stream.valid.eq(1)
-		yield stream.data.eq(0x00)
+		yield stream.data.eq(data[0])
 		yield
 
-		# We shouldn't consume any data, yet, as we're still transmitting our PID.
-		self.assertEqual((yield stream.ready), 0)
+		# Drop our first value back to zero, as it should also work as a strobe.
+		yield stream.first.eq(0)
+
+		# We expect the transmit FIFO to absorb our packet
+		self.assertEqual((yield stream.ready), 1)
+		# Set up the second byte as it's going to keep eating till we tell it we're done
+		yield stream.data.eq(data[1])
 
 		# Once our first byte has been provided, our transmission should
 		# start (valid = 1), and we should see our data PID.
@@ -323,45 +332,44 @@ class USBDataPacketGeneratorTest(ToriiUSBGatewareTestCase):
 		self.assertEqual((yield tx.valid), 1)
 		self.assertEqual((yield tx.data), 0xc3)
 
-		# To allow the endpoint interface to be registered, this goes high a cycle early
+		# Queue the third byte
 		self.assertEqual((yield stream.ready), 1)
-
-		# Drop our first value back to zero, as it should also work as a strobe.
-		yield stream.first.eq(0)
+		yield stream.data.eq(data[2])
 
 		# One cycle later, we should see our first data byte, and our
 		# stream should indicate that data was consumed.
 		yield
-		self.assertEqual((yield tx.data), 0x00)
+		self.assertEqual((yield tx.data), data[0])
 		self.assertEqual((yield stream.ready), 1)
 
 		# Provide the remainder of our data, and make sure that our
 		# output value mirrors it.
-		for datum in [0x05, 0x08, 0x00, 0x00, 0x00, 0x00]:
-			yield stream.data.eq(datum)
+		for index in range(1, 5):
+			yield stream.data.eq(data[2 + index])
 			yield
-			self.assertEqual((yield tx.data), datum)
+			self.assertEqual((yield tx.data), data[index])
 
 		# Finally, provide our last data value.
-		yield stream.data.eq(0x00)
+		yield stream.data.eq(data[7])
 		yield stream.last.eq(1)
 		yield
 
 		# Drop our stream-valid to zero after the last stream byte.
 		yield stream.valid.eq(0)
 
-		# We should now see that we're no longer consuming data...
-		yield
-		self.assertEqual((yield stream.ready), 0)
+		# Check that the last bytes come out correctly
+		for index in range(5, 8):
+			self.assertEqual((yield tx.data), data[index])
+			yield
 
-		# ... but the transmission is still valid; and now presenting our CRC...
+		# Followed by presenting our CRC...
 		self.assertEqual((yield tx.valid), 1)
-		self.assertEqual((yield tx.data),  0xeb)
+		self.assertEqual((yield tx.data), 0xeb)
 
 		# ... which is two-bytes long.
 		yield
 		self.assertEqual((yield tx.valid), 1)
-		self.assertEqual((yield tx.data),  0xbc)
+		self.assertEqual((yield tx.data), 0xbc)
 
 		# Once our CRC is completed, our transmission should stop.
 		yield
@@ -408,9 +416,9 @@ class USBDataPacketGeneratorTest(ToriiUSBGatewareTestCase):
 		# Drop our stream-valid to zero after the last stream byte.
 		yield stream.valid.eq(0)
 
-		# We should now see that we're no longer consuming data...
+		# FIFO should not have budged on the amount of space available
 		yield
-		self.assertEqual((yield stream.ready), 0)
+		self.assertEqual((yield stream.ready), 1)
 
 		# ... but the transmission is still valid; and now presenting our CRC...
 		self.assertEqual((yield tx.valid), 1)
