@@ -8,9 +8,11 @@
 
 import unittest
 
-from torii.hdl      import Cat
+from torii.hdl                         import Cat
+from torii.lib.stream.simple.generator import StreamSerializer
 
-from ..usb2.request import USBRequestHandler
+from ..usb2.request                    import USBRequestHandler
+from ..stream                          import USBInStreamInterface
 
 class ControlRequestHandler(USBRequestHandler):
 	''' Pure-gateware USB control request handler. '''
@@ -52,7 +54,7 @@ class ControlRequestHandler(USBRequestHandler):
 			# ... and then return to idle.
 			m.next = 'IDLE'
 
-	def handle_simple_data_request(self, m, transmitter, data, length = 1):
+	def handle_simple_data_request(self, m, transmitter: StreamSerializer[USBInStreamInterface], data, length = 1):
 		'''
 		Fills in a given current state with a request that returns a given piece of data.
 
