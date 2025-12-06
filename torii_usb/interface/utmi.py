@@ -83,32 +83,32 @@ class UTMIInterfaceMultiplexer(OneHotMultiplexer):
 class UTMIInterface(Record):
 	''' UTMI+-standardized interface. Intended mostly as a simulation aid.'''
 
-	rx_data: Signal
-	rx_active: Signal
-	rx_valid: Signal
+	rx_data: Signal[8]
+	rx_active: Signal[1]
+	rx_valid: Signal[1]
 
-	tx_data: Signal
-	tx_valid: Signal
-	tx_ready: Signal
+	tx_data: Signal[8]
+	tx_valid: Signal[1]
+	tx_ready: Signal[1]
 
-	xcvr_select: Signal
-	term_select: Signal
-	op_mode: Signal
-	suspend: Signal
-	id_pullup: Signal
-	dm_pulldown: Signal
-	dp_pulldown: Signal
-	chrg_vbus: Signal
-	dischrg_vbus: Signal
-	use_external_vbus_indicator: Signal
+	xcvr_select: Signal[2]
+	term_select: Signal[1]
+	op_mode: Signal[2]
+	suspend: Signal[1]
+	id_pullup: Signal[1]
+	dm_pulldown: Signal[1]
+	dp_pulldown: Signal[1]
+	chrg_vbus: Signal[1]
+	dischrg_vbus: Signal[1]
+	use_external_vbus_indicator: Signal[1]
 
-	line_state: Signal
-	vbus_valid: Signal
-	session_valid: Signal
-	session_end: Signal
-	rx_error: Signal
-	host_disconnect: Signal
-	id_digital: Signal
+	line_state: Signal[2]
+	vbus_valid: Signal[1]
+	session_valid: Signal[1]
+	session_end: Signal[1]
+	rx_error: Signal[1]
+	host_disconnect: Signal[1]
+	id_digital: Signal[1]
 
 	def __init__(self):
 		super().__init__([
