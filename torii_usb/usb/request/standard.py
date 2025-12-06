@@ -8,19 +8,19 @@
 
 import os
 import unittest
-from collections.abc        import Callable, Iterable
+from collections.abc                   import Callable, Iterable
 
-from torii.hdl              import Module, Signal
-from torii.hdl.ast          import Cat, Value, Operator
+from torii.hdl                         import Module, Signal
+from torii.hdl.ast                     import Cat, Value, Operator
+from torii.lib.stream.simple.generator import StreamSerializer
 
-from usb_construct.emitters import DeviceDescriptorCollection
-from usb_construct.types    import USBRequestRecipient, USBRequestType, USBStandardRequests
+from usb_construct.emitters            import DeviceDescriptorCollection
+from usb_construct.types               import USBRequestRecipient, USBRequestType, USBStandardRequests
 
-from ...stream.generator    import StreamSerializer
-from ..stream               import USBInStreamInterface
-from ..usb2.descriptor      import GetDescriptorHandlerBlock, GetDescriptorHandlerDistributed
-from .                      import SetupPacket
-from .control               import ControlRequestHandler
+from ..stream                          import USBInStreamInterface
+from ..usb2.descriptor                 import GetDescriptorHandlerBlock, GetDescriptorHandlerDistributed
+from .                                 import SetupPacket
+from .control                          import ControlRequestHandler
 
 class StandardRequestHandler(ControlRequestHandler):
 	''' Pure-gateware USB setup request handler. Implements the standard requests required for enumeration.
