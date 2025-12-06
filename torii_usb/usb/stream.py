@@ -11,6 +11,8 @@ from torii.hdl.rec           import Direction, Record
 from torii.hdl.xfrm          import DomainRenamer
 from torii.lib.stream.simple import StreamInterface, StreamArbiter
 
+from ..interface.utmi        import UTMITransmitInterface
+
 class USBInStreamInterface(StreamInterface):
 	''' Variant of Torii-USB's StreamInterface optimized for USB IN transmission.
 
@@ -28,7 +30,7 @@ class USBInStreamInterface(StreamInterface):
 		ready   | tx_ready
 	'''
 
-	def bridge_to(self, utmi_tx):
+	def bridge_to(self, utmi_tx: UTMITransmitInterface):
 		''' Generates a list of connections that connect this stream to the provided UTMITransmitInterface. '''
 
 		return [
