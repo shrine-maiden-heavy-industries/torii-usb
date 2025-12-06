@@ -273,6 +273,9 @@ class USBTokenDetector(Elaboratable):
 			self.interface.new_token.eq(0)
 		]
 
+		expected_crc = Signal(5)
+		actual_crc = Signal(5)
+
 		with m.FSM(domain = 'usb'):
 
 			# IDLE -- waiting for a packet to be presented
@@ -323,8 +326,11 @@ class USBTokenDetector(Elaboratable):
 				# Once we've just gotten the second core byte of our token,
 				# we can validate our checksum and handle it.
 				with m.Elif(self.utmi.rx_valid):
-					expected_crc = self._generate_crc_for_token(
-						Cat(token_data[0:8], self.utmi.rx_data[0:3]))
+					m.d.comb += [
+						expected_crc.eq(self._generate_crc_for_token(
+							Cat(token_data[0:8], self.utmi.rx_data[0:3]))),
+						actual_crc.eq(self.utmi.rx_data[3:8]),
+					]
 
 					# If the token has a valid CRC, capture it...
 					with m.If(self.utmi.rx_data[3:8] == expected_crc):
