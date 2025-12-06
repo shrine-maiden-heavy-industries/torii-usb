@@ -33,23 +33,15 @@ class UTMITerminationSelect:
 class UTMITransmitInterface(Record):
 	''' Interface present on hardware that transmits onto a UTMI bus. '''
 
-	LAYOUT = [
+	# Indicates when the data on tx_data is valid.
+	valid: Signal[1, Direction.FANOUT]
+	# The data to be transmitted.
+	data: Signal[8, Direction.FANOUT]
+	# Pulsed by the UTMI bus when the given data byte will be accepted
+	# at the next clock edge.
+	ready: Signal[1, Direction.FANIN]
 
-		# Indicates when the data on tx_data is valid.
-		('valid', 1, Direction.FANOUT),
-
-		# The data to be transmitted.
-		('data',  8, Direction.FANOUT),
-
-		# Pulsed by the UTMI bus when the given data byte will be accepted
-		# at the next clock edge.
-		('ready', 1, Direction.FANIN),
-	]
-
-	def __init__(self):
-		super().__init__(self.LAYOUT)
-
-	def attach(self, utmi_bus):
+	def attach(self, utmi_bus: 'UTMIInterface'):
 		''' Returns a list of connection fragments connecting this interface to the provided bus.
 
 		A typical usage might look like:
