@@ -1,0 +1,220 @@
+{
+  "changelog": [],
+  "features": [],
+  "gateware/index": [],
+  "gateware/interface/gateware/index": [],
+  "gateware/interface/gateware/phy": [],
+  "gateware/interface/gateware/receiver": [],
+  "gateware/interface/gateware/transmitter": [],
+  "gateware/interface/index": [],
+  "gateware/interface/pipe": [],
+  "gateware/interface/serdes/ecp5": [],
+  "gateware/interface/serdes/index": [],
+  "gateware/interface/serdes/lfps": [],
+  "gateware/interface/serdes/xc7": [],
+  "gateware/interface/ulpi": [],
+  "gateware/interface/utmi": [],
+  "gateware/stream/index": [],
+  "gateware/usb/index": [],
+  "gateware/usb/request": [],
+  "gateware/usb/stream": [],
+  "gateware/usb/usb2/control": [],
+  "gateware/usb/usb2/descriptor": [],
+  "gateware/usb/usb2/deserializer": [],
+  "gateware/usb/usb2/device": [],
+  "gateware/usb/usb2/endpoint": [],
+  "gateware/usb/usb2/endpoints": [],
+  "gateware/usb/usb2/index": [],
+  "gateware/usb/usb2/interfaces": [],
+  "gateware/usb/usb2/packet": [],
+  "gateware/usb/usb2/request": [],
+  "gateware/usb/usb2/reset": [],
+  "gateware/usb/usb2/transfer": [],
+  "gateware/usb/usb3/application": [],
+  "gateware/usb/usb3/device": [],
+  "gateware/usb/usb3/endpoints": [],
+  "gateware/usb/usb3/index": [],
+  "gateware/usb/usb3/link": [],
+  "gateware/usb/usb3/physical": [],
+  "gateware/usb/usb3/protocol": [],
+  "gateware/usb/usb3/request": [],
+  "getting_started": [],
+  "index": [],
+  "install": [
+    {
+      "source": ".. platform-picker::\n\n        .. platform-choice:: linux\n                :title: Linux\n\n                .. code-block:: console\n\n                        $ pip3 install --user --upgrade torii\n",
+      "names": [],
+      "example": {
+        "document": "install",
+        "ref_id": "installing-torii",
+        "headings": [
+          "Installation",
+          "Installing Prerequisites",
+          "Installing Torii"
+        ]
+      },
+      "doc_lineno": null
+    },
+    {
+      "source": "\n### Editable development snapshot\n\nTo install an editable development snapshot of Torii-USB for the first time, run:\n\n```{eval-rst}\n.. tab:: Arch-like\n\n\t.. code-block:: console\n\n\t\t$ git clone https://github.com/shrine-maiden-heavy-industries/torii-usb\n\t\t$ cd torii-usb\n\t\t$ pip3 install --user --editable '.'\n\n.. tab:: Other Linux\n\n\t.. code-block:: console\n\n\t\t$ git clone https://github.com/shrine-maiden-heavy-industries/torii-usb\n\t\t$ cd torii-usb\n\t\t$ pip3 install --user --editable '.'\n\n\n.. tab:: macOS\n\n\t.. code-block:: console\n\n\t\t$ git clone https://github.com/shrine-maiden-heavy-industries/torii-usb\n\t\t$ cd torii-usb\n\t\t$ pip3 install --user --editable '.'\n\n\n.. tab:: Windows\n\n\t.. code-block:: doscon\n\n\t\t> git clone https://github.com/shrine-maiden-heavy-industries/torii-usb\n\t\t> cd torii-usb\n\t\t> pip install --editable .\n",
+      "names": [],
+      "example": {
+        "document": "install",
+        "ref_id": "development-snapshot",
+        "headings": [
+          "Installation",
+          "Installing Torii-USB",
+          "Development snapshot"
+        ]
+      },
+      "doc_lineno": 236
+    }
+  ],
+  "intro": [],
+  "migration": [
+    {
+      "source": "from sol_usb.usb2                      import USBDevice\nfrom sol_usb.gateware.usb.usb2.request import USBRequestHandler, SetupPacket\nfrom sol_usb.gateware.usb.stream       import USBInStreamInterface, USBOutStreamInterface\nfrom sol_usb.gateware.stream.generator import StreamSerializer\n",
+      "names": [],
+      "example": {
+        "document": "migration",
+        "ref_id": "updating-imports",
+        "headings": [
+          "Migration Guide",
+          "Updating Imports"
+        ]
+      },
+      "doc_lineno": 16
+    },
+    {
+      "source": "from torii_usb.usb2             import USBDevice\nfrom torii_usb.usb.usb2.request import USBRequestHandler, SetupPacket\nfrom torii_usb.usb.stream       import USBInStreamInterface, USBOutStreamInterface\nfrom torii_usb.stream.generator import StreamSerializer\n",
+      "names": [
+        {
+          "import_components": [
+            "torii_usb",
+            "usb2",
+            "USBDevice"
+          ],
+          "code_str": "USBDevice",
+          "lineno": 1,
+          "end_lineno": 1,
+          "context": "import_target",
+          "resolved_location": "torii_usb.usb.usb2.device.USBDevice"
+        },
+        {
+          "import_components": [
+            "torii_usb",
+            "usb",
+            "usb2",
+            "request"
+          ],
+          "code_str": "torii_usb.usb.usb2.request",
+          "lineno": 2,
+          "end_lineno": 2,
+          "context": "import_from",
+          "resolved_location": "torii_usb.usb.usb2.request"
+        },
+        {
+          "import_components": [
+            "torii_usb",
+            "usb",
+            "usb2",
+            "request",
+            "USBRequestHandler"
+          ],
+          "code_str": "USBRequestHandler",
+          "lineno": 2,
+          "end_lineno": 2,
+          "context": "import_target",
+          "resolved_location": "torii_usb.usb.usb2.request.USBRequestHandler"
+        },
+        {
+          "import_components": [
+            "torii_usb",
+            "usb",
+            "usb2",
+            "request",
+            "SetupPacket"
+          ],
+          "code_str": "SetupPacket",
+          "lineno": 2,
+          "end_lineno": 2,
+          "context": "import_target",
+          "resolved_location": "torii_usb.usb.request.interface.SetupPacket"
+        },
+        {
+          "import_components": [
+            "torii_usb",
+            "usb",
+            "stream"
+          ],
+          "code_str": "torii_usb.usb.stream",
+          "lineno": 3,
+          "end_lineno": 3,
+          "context": "import_from",
+          "resolved_location": "torii_usb.usb.stream"
+        },
+        {
+          "import_components": [
+            "torii_usb",
+            "usb",
+            "stream",
+            "USBInStreamInterface"
+          ],
+          "code_str": "USBInStreamInterface",
+          "lineno": 3,
+          "end_lineno": 3,
+          "context": "import_target",
+          "resolved_location": "torii_usb.usb.stream.USBInStreamInterface"
+        },
+        {
+          "import_components": [
+            "torii_usb",
+            "usb",
+            "stream",
+            "USBOutStreamInterface"
+          ],
+          "code_str": "USBOutStreamInterface",
+          "lineno": 3,
+          "end_lineno": 3,
+          "context": "import_target",
+          "resolved_location": "torii_usb.usb.stream.USBOutStreamInterface"
+        },
+        {
+          "import_components": [
+            "torii_usb",
+            "stream",
+            "generator"
+          ],
+          "code_str": "torii_usb.stream.generator",
+          "lineno": 4,
+          "end_lineno": 4,
+          "context": "import_from",
+          "resolved_location": "torii_usb.stream.generator"
+        },
+        {
+          "import_components": [
+            "torii_usb",
+            "stream",
+            "generator",
+            "StreamSerializer"
+          ],
+          "code_str": "StreamSerializer",
+          "lineno": 4,
+          "end_lineno": 4,
+          "context": "import_target",
+          "resolved_location": "torii_usb.stream.generator.StreamSerializer"
+        }
+      ],
+      "example": {
+        "document": "migration",
+        "ref_id": "updating-imports",
+        "headings": [
+          "Migration Guide",
+          "Updating Imports"
+        ]
+      },
+      "doc_lineno": 25
+    }
+  ],
+  "tutorials/index": []
+}
