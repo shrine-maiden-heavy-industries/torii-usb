@@ -165,7 +165,7 @@ class USBSuperSpeedDevice(Elaboratable):
 
 			# Create a display name for the endpoint...
 			name = endpoint.__class__.__name__
-			if hasattr(m.submodules, name):
+			if m.has_submodule(name):
 				name = f'{name}_{id(endpoint)}'
 
 			# ... and add it, both as a submodule and to our multiplexer.
