@@ -164,7 +164,7 @@ class USBControlEndpoint(Elaboratable):
 
 			# Create a display name for the handler...
 			name = handler.__class__.__name__
-			if hasattr(m.submodules, name):
+			if m.has_submodule(name):
 				name = f'{name}_{id(handler)}'
 
 			# ... and add it.
